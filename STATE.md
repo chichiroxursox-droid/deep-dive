@@ -10,13 +10,13 @@ If a checkpoint slips 90 minutes, apply the next scope cut (see CLAUDE.md) and l
 
 | Clock | Done when | Status |
 |---|---|---|
-| Sat 2:51pm | Hour 1 timebox: deployed to prod, diver walks the hall with a third-person camera (else fixed-camera fallback) | |
-| Sat ~4:00pm | Lesson 1 Token Reef playable in Map mode, test green, deployed | |
-| Sat ~5:00pm | Lesson 2 Guessing Machine, same bar | |
-| Sat ~6:00pm | Lesson 3 Backpack, same bar. LESSONS.md review flag raised | |
-| Sat ~7:00pm | Lessons 4 Robot Chef and 5 Fact Check, same bar | |
-| **Sat 9:00pm** | **GATE: lessons 1 to 5 playable on prod in Map mode AND reachable from bays in the 3D hall** | |
-| Sat night | Nice-to-haves in kit order: Toolbox, Library, Safe Harbor, read-aloud | |
+| Sat 2:51pm | Hour 1 timebox: deployed to prod, diver walks the hall with a third-person camera (else fixed-camera fallback) | HIT ~1:58pm, no fallback |
+| Sat ~4:00pm | Lesson 1 Token Reef playable in Map mode, test green, deployed | HIT ~2:00pm |
+| Sat ~5:00pm | Lesson 2 Guessing Machine, same bar | HIT ~2:02pm |
+| Sat ~6:00pm | Lesson 3 Backpack, same bar. LESSONS.md review flag raised | HIT 2:05pm |
+| Sat ~7:00pm | Lessons 4 Robot Chef and 5 Fact Check, same bar | HIT ~2:10pm |
+| **Sat 9:00pm** | **GATE: lessons 1 to 5 playable on prod in Map mode AND reachable from bays in the 3D hall** | **PASSED ~2:13pm** |
+| Sat night | Nice-to-haves in kit order: Toolbox, Library, Safe Harbor, read-aloud | ALL HIT by ~2:28pm |
 | **Sun 8:00am** | **CODE FREEZE.** After this only README, DEMO.md, DEVPOST.md, video | |
 | Sun 9:15am | Submitted | |
 
@@ -116,3 +116,13 @@ If a checkpoint slips 90 minutes, apply the next scope cut (see CLAUDE.md) and l
 - Prod URL works: yes (guess.mp3 served, button toggles). Full keyboard-only offline Map mode run re-passed. Tests: 31/31.
 - Scope cuts so far: none. All kit nice-to-haves built.
 - Next step: README, DEMO.md, DEVPOST.md, scripted Map mode recording.
+
+### Sat 2:33PM, docs + backup video
+- Milestone: hit.
+- README.md: what it is, the two verified stats with URLs (Code.org 84%/16% quoted in the kit's verified wording; Philly SD page quoted from a fetch today), lessons table with AI4K12 Big Ideas, what is real per lab (GPT-4o tokenizer, in-browser language model), kid-safety line, limitations (Perception not covered, and more), Gutenberg credits incl. the donkey swap, AI disclosure (Claude Code built it; no AI at runtime; ElevenLabs used once at build time). Screenshots in docs/.
+- DEMO.md: 2-minute shot list with voiceover lines, ordered to match the app (Token Reef strawberry then name; Robot Chef done in Map mode so the license ends at 5/5).
+- DEVPOST.md: 671 words, HCI track, Philly Special as second track if allowed, ElevenLabs prize if listed. Only the two sourced stats. The PA "no state guidance" line was left out (kit marked it CHECK before quoting).
+- Backup video: one scripted Playwright recording of the Map mode path (all 5 core labs + license, keyboard only) saved to ~/Desktop/deep-dive-demo.mp4 (58 s, 1280x800, H.264). Map mode has no WebGL, so nothing was choppy. The 3D hall was not recorded by script; Ethan's hand-recorded video covers it.
+- Prod URL works: yes. Build: pass. Tests: 31/31 (`node --test`).
+- Scope cuts so far: none.
+- Next step: Ethan reviews LESSONS.md (4 [CHECK] lines) and records the 2-minute video. Any copy edits get ported into src/content.ts, then `npm run lessons`, redeploy before the Sun 8:00am freeze. If the edits change a lab's intro, that lab's Read to me falls back to browser speech (credits are not re-spent).
