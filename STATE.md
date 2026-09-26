@@ -64,3 +64,28 @@ If a checkpoint slips 90 minutes, apply the next scope cut (see CLAUDE.md) and l
 - What broke: nothing.
 - Next step: Lesson 4 Robot Chef.
 - Scope cuts so far: none.
+
+### Sat ~2:08pm, Lesson 4 Robot Chef
+- Milestone: hit.
+- Done-when result: 6 prompt cards (task, who, details, length, tone, example) build the prompt; Pip's card is assembled only from cards present; stars are scored on the finished card. Task only = 1 star, all cards = 5 stars.
+- Prod URL works: yes, keyboard-only run passed. Tests: 4 (all cards 5 stars + Maya + sharks, task alone 1, none 0 + deterministic, each goal card is worth one star).
+- What broke: nothing.
+- Next step: Lesson 5.
+- Scope cuts so far: none.
+
+### Sat ~2:10pm, Lesson 5 Fact Check Lagoon
+- Milestone: hit.
+- Done-when result: Pip states 5 facts at "99% sure"; kids mark each backed up / wrong / not in the guide against a 5-entry Field Guide. True + surprising: octopus three hearts, horseshoe crab blue blood. Wrong: shark skeleton is bone (made up), blue whale is the biggest fish (mix-up). Not in guide: clownfish glow (made up). Every guide fact links a NOAA page fetched and quoted today.
+- Prod URL works: yes, keyboard-only run passed (native radio groups + details element). Tests: 4 (key matches guide, has octopus + 2 made-up, every fact has a .gov source, grading).
+- What broke: nothing.
+- Next step: wire bays.
+- Scope cuts so far: none.
+
+### Sat 2:15PM, bays wired + GATE (early)
+- Milestone: GATE hit about 6h45m early. Lessons 1 to 5 playable on prod in Map mode and reachable from their bays in the 3D hall.
+- Done-when result: Playwright walked the diver from spawn to all 5 bays with WASD on prod; each "Press E" + E opened the matching lesson. Full keyboard-only Map mode run of all 5 labs + Diver's License passed with the network switched OFF after load (labs, tokenizer and books are prefetched), zero external requests.
+- Prod URL works: yes. Tests: 22/22 pass (`node --test`).
+- What broke: Token Reef route missed its sensor (diver slid past the pad edge); widened all bay trigger zones.
+- Also: reduced-motion users get Map mode focused by default with a calm hint.
+- Next step: nice-to-haves in kit order: Toolbox, then Library, Safe Harbor, read-aloud.
+- Scope cuts so far: none.
