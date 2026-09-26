@@ -90,6 +90,15 @@ export const PROPS: Record<string, ReactNode> = {
       <mesh position={[0.85, 1.8, 0]}><torusGeometry args={[0.18, 0.07, 8, 16]} />{m('#c8d6de')}</mesh>
     </group>
   ),
+  // a bookshelf with three books
+  library: (
+    <group>
+      <RoundedBox args={[2, 2.2, 0.6]} radius={0.08} position={[0, 1.1, 0]}>{m('#7a5230')}</RoundedBox>
+      {[['#ff7a59', -0.55], ['#5ef2e6', 0], ['#ffd166', 0.55]].map(([c, x]) => (
+        <mesh key={c as string} position={[x as number, 1.5, 0.2]}><boxGeometry args={[0.4, 0.9, 0.4]} />{m(c as string, 0.3)}</mesh>
+      ))}
+    </group>
+  ),
   factcheck: (
     <group position={[0, 1.1, 0]}>
       <mesh position={[0, -0.6, 0]}><cylinderGeometry args={[0.12, 0.3, 1, 12]} />{m('#e8b04a')}</mesh>

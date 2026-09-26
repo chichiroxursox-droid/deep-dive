@@ -201,6 +201,84 @@ Token splits and word probabilities are never written here: the app computes the
 - **agentDone**: Plan ready: sunny beach, snacks cost ${total}, report written. And nothing was sent without asking you.
 - **agentOops**: Look again at the steps marked in red.
 
+## Lab 7: Library
+- **Rule**: AI only knows what it read.
+- **Intro**: A language model learns only from the text it reads. Pick the books Pip reads. Then see how it finishes a story. If it reads only one kind of book, it only talks one way. That is a kind of bias.
+- **AI4K12 Big Idea**: Learning, Societal Impact
+- **What is real**: Pip really retrains in your browser each time, using the same language model as the Guessing Machine.
+- **pick**: Pick the books Pip reads.
+- **train**: Train Pip
+- **none**: Pick at least one book.
+- **read**: Pip read {words} words.
+- **topTitle**: Pip's top 10 guesses after "the":
+- **meter**: {n} of 10 are animals.
+- **storyStart**: once upon a time there was a
+- **storyTitle**: Pip finishes the story:
+- **another**: Tell another
+- **challenge**: Challenge: make Pip talk about animals. Get at least {goal} animals in its top 10.
+- **goal**: 5
+- **win**: You did it! Pip talks about animals because it read books full of animals.
+- **why**: Pip is not choosing to like animals. It repeats what it read most. Real chatbots read huge piles of text, and whatever is missing or too common in that pile shows up in their answers.
+- **animals**:
+  - fox
+  - lion
+  - wolf
+  - cat
+  - eagle
+  - mouse
+  - mice
+  - donkey
+  - dog
+  - horse
+  - bull
+  - ox
+  - oxen
+  - goat
+  - sheep
+  - lamb
+  - crow
+  - hare
+  - tortoise
+  - frog
+  - frogs
+  - bird
+  - birds
+  - snake
+  - serpent
+  - monkey
+  - bear
+  - stag
+  - deer
+  - cock
+  - hen
+  - swallow
+  - ant
+  - grasshopper
+  - fly
+  - bee
+  - crab
+  - fish
+  - whale
+  - shark
+  - octopus
+  - seal
+  - narwhal
+  - parrot
+  - pig
+  - sow
+  - boar
+  - camel
+  - peacock
+  - crane
+  - stork
+  - jackdaw
+  - kid
+  - beast
+  - animal
+  - animals
+  - dolphin
+  - cuttlefish
+
 ## 3D hall
 - **help**: WASD or arrow keys to walk. Drag to look around. Walk up to a lab and press E.
 - **enter**: Press E to dive in
