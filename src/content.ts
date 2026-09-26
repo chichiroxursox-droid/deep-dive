@@ -152,6 +152,39 @@ export const GUESS = {
   start: 'the captain',
 }
 
+// Lab 3. Each message's weight is counted by the real tokenizer at runtime.
+export const BACKPACK = {
+  chat: [
+    { from: 'you', text: 'Hi Pip! My dog\'s name is Biscuit.' },
+    { from: 'pip', text: 'Hi! I love dogs. What else is new?' },
+    { from: 'you', text: 'I had pancakes for breakfast today.', filler: true },
+    { from: 'pip', text: 'Yum! Pancakes are a good way to start the day.', filler: true },
+    { from: 'you', text: 'What is the biggest fish in the sea?' },
+    { from: 'pip', text: 'The whale shark is the biggest fish in the sea.' },
+    { from: 'you', text: 'Cool! My favorite color is green.', filler: true },
+    { from: 'pip', text: 'Green like seaweed! Nice choice.', filler: true },
+  ],
+  question: 'What\'s my dog\'s name?',
+  answer: 'Biscuit',
+  goal: 'Chat with Pip, then ask it about your dog. Can Pip still find the answer?',
+  tip: 'Tip: pin one message so it never falls out, or toss chat you don\'t need.',
+  next: 'Next message',
+  ask: 'Ask Pip: "What\'s my dog\'s name?"',
+  pack: 'Pip\'s backpack',
+  meter: '{used} of {cap} tokens',
+  pin: 'Pin',
+  unpin: 'Unpin',
+  toss: 'Toss',
+  fell: 'Fell out:',
+  fellNow: '"{text}" fell out of the backpack!',
+  right: 'Your dog\'s name is Biscuit! I found it in my backpack.',
+  wrong: 'Hmm... is your dog\'s name Max?',
+  wrongWhy: 'Pip could not find the answer in its backpack, so it guessed. The guess is wrong!',
+  rightWhy: 'The answer was still in the backpack, so Pip could use it.',
+  real: 'In this game the oldest message falls out. Real apps handle it differently: some drop old messages, some squeeze them into a summary. Either way, details can get lost.',
+  again: 'Try again',
+}
+
 export const LICENSE = {
   title: 'Diver\'s License',
   namePrompt: 'Your first name',
@@ -159,4 +192,10 @@ export const LICENSE = {
   locked: 'Finish a lab to add its rule to your license.',
   done: 'You finished every lab. You know how chatbots really work!',
   print: 'Print my license',
+}
+
+// AI claims waiting for Ethan's OK. Shown as [CHECK] in LESSONS.md only, never in the app.
+export const CHECK: Record<string, string> = {
+  'tokens.strawberry': 'Newer chatbots often count letters fine. "can trip" is hedged, but confirm the wording.',
+  'backpack.wrongWhy': 'Real chatbots sometimes say "I don\'t know" instead of guessing. Is "so it guessed" fair for kids?',
 }
