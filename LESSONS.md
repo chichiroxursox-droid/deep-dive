@@ -167,6 +167,40 @@ Token splits and word probabilities are never written here: the app computes the
 - **lesson**: Pip was 99% sure every time, even when it was wrong. Sounding sure is not the same as being right.
 - **source**: Source
 
+## Lab 6: Toolbox
+- **Rule**: Tools make AI more reliable. An agent picks its own tools.
+- **Intro**: A chatbot only writes words, so it can slip on exact math or today's news. Tools fix that. A calculator does exact math. A weather tool looks things up. An agent is an AI that picks its own tools and takes steps on its own.
+- **AI4K12 Big Idea**: Representation and Reasoning
+- **What is real**: The calculator really calculates. The weather tool is pretend, so the app never goes online.
+- **task**: Pip has four jobs. Give Pip the right tool for each one. Drag a tool onto a job, or press a tool button.
+- **tools**:
+  - id: calc; label: Calculator; icon: 🧮; about: Does exact math.
+  - id: weather; label: Weather; icon: 🌦️; about: Looks up the weather.
+  - id: skill; label: Skill card; icon: 📋; about: Saved instructions, like the station's report format.
+  - id: none; label: No tool; icon: 💬; about: Pip just writes.
+- **jobs**:
+  - id: math; text: What is 4,839 x 27?; a: 4839; b: 27; tool: calc; answers: [object Object]; wrongWhy: Close, but wrong! Without a calculator, Pip guesses big numbers one piece at a time, and a digit can slip.
+  - id: weather; text: What's the weather at the beach today?; tool: weather; answers: [object Object]; rightNote: In this game the weather tool is pretend. Real weather tools look up live data.; wrongWhy: Pip made that up. Without a tool, it has no way to know today's weather.
+  - id: report; text: Write today's lab report in the station's format.; tool: skill; answers: [object Object]; wrongWhy: Pip did not know the station's format. A skill card is saved instructions Pip can follow every time.
+  - id: joke; text: Tell me a crab joke.; tool: none; answers: [object Object]; wrongWhy: This job did not need a tool. The wrong tool just got in the way.
+- **right**: Right tool!
+- **wrong**: Wrong tool.
+- **agentTitle**: Agent mode
+- **agentGoal**: Now Pip is an agent. It picks its own tools. Your goal for Pip: "Plan a beach trip for {divers} divers. Snacks cost ${price} each. Write it up as a lab report."
+- **agentAsk**: Pip wants to take these steps. Say yes or no to each one.
+- **divers**: 3
+- **price**: 4
+- **steps**:
+  - tool: weather; text: Use Weather to check the beach.; ok: true
+  - tool: calc; text: Use Calculator: {divers} x ${price} for snacks.; ok: true
+  - tool: skill; text: Use the Skill card to write the lab report.; ok: true
+  - tool: send; text: Send the report to everyone in the station.; ok: false
+- **yes**: Yes
+- **no**: No
+- **sendWhy**: You never asked Pip to send anything. Agents can take real actions, so a person should check each step.
+- **agentDone**: Plan ready: sunny beach, snacks cost ${total}, report written. And nothing was sent without asking you.
+- **agentOops**: Look again at the steps marked in red.
+
 ## 3D hall
 - **help**: WASD or arrow keys to walk. Drag to look around. Walk up to a lab and press E.
 - **enter**: Press E to dive in

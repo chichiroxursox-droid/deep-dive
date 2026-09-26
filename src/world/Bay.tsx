@@ -82,6 +82,14 @@ export const PROPS: Record<string, ReactNode> = {
       {[-0.3, 0, 0.3].map((x) => <mesh key={x} position={[x, 2.4, 0]}><sphereGeometry args={[0.32, 16, 12]} />{m('#ffffff', 0.2)}</mesh>)}
     </group>
   ),
+  toolbox: (
+    <group position={[0, 0.5, 0]}>
+      <RoundedBox args={[1.8, 1, 1]} radius={0.1}>{m('#a78bfa')}</RoundedBox>
+      <mesh position={[0, 0.75, 0]} rotation={[0, 0, 0]}><torusGeometry args={[0.4, 0.07, 10, 24, Math.PI]} />{m('#e8b04a')}</mesh>
+      <mesh position={[0.5, 1.3, 0]} rotation={[0, 0, 0.6]}><cylinderGeometry args={[0.08, 0.08, 1.2, 10]} />{m('#c8d6de')}</mesh>
+      <mesh position={[0.85, 1.8, 0]}><torusGeometry args={[0.18, 0.07, 8, 16]} />{m('#c8d6de')}</mesh>
+    </group>
+  ),
   factcheck: (
     <group position={[0, 1.1, 0]}>
       <mesh position={[0, -0.6, 0]}><cylinderGeometry args={[0.12, 0.3, 1, 12]} />{m('#e8b04a')}</mesh>

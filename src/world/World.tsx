@@ -5,7 +5,7 @@ import { Html, KeyboardControls } from '@react-three/drei'
 import Hall from './Hall.tsx'
 import Bay, { PROPS } from './Bay.tsx'
 import Diver from './Diver.tsx'
-import { HALL, LESSONS, LICENSE, type LessonId } from '../content.ts'
+import { coreDone, HALL, LESSONS, LICENSE, type LessonId } from '../content.ts'
 
 export type Station = LessonId | 'license'
 
@@ -17,7 +17,7 @@ const KEYS = [
   { name: 'run', keys: ['ShiftLeft', 'ShiftRight'] },
   { name: 'jump', keys: ['Space'] },
 ]
-const COLORS = ['#ff7a59', '#5ef2e6', '#ffd166', '#7ddc8a', '#ff5c8a']
+const COLORS = ['#ff7a59', '#5ef2e6', '#ffd166', '#7ddc8a', '#ff5c8a', '#a78bfa', '#7fb3ff', '#ffb38a']
 const RING = 13
 
 type Props = { paused: boolean; done: ReadonlySet<LessonId>; onOpen: (s: Station) => void }
@@ -54,7 +54,7 @@ export default function World({ paused, done, onOpen }: Props) {
                   key={l.id}
                   position={[Math.sin(a) * RING, 0, Math.cos(a) * RING]}
                   rotationY={a + Math.PI}
-                  label={`Lab ${l.num}: ${l.title}`}
+                  label={`${l.bonus ? 'Bonus ' : ''}Lab ${l.num}: ${l.title}`}
                   color={COLORS[i]}
                   done={done.has(l.id)}
                   prop={PROPS[l.id]}
@@ -63,7 +63,7 @@ export default function World({ paused, done, onOpen }: Props) {
                 />
               )
             })}
-            <LicenseKiosk ready={done.size === LESSONS.length} onEnter={() => setNear('license')} onLeave={leave('license')} />
+            <LicenseKiosk ready={coreDone(done, LESSONS)} onEnter={() => setNear('license')} onLeave={leave('license')} />
             <Diver enabled={!paused} />
           </Physics>
         </Canvas>

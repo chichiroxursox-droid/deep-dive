@@ -1,7 +1,7 @@
 // All lesson text lives here. `npm run lessons` exports it to LESSONS.md for review.
 // Lines marked [CHECK] are AI claims waiting for Ethan's approval.
 
-export type LessonId = 'tokens' | 'guess' | 'backpack' | 'chef' | 'factcheck'
+export type LessonId = 'tokens' | 'guess' | 'backpack' | 'chef' | 'factcheck' | 'toolbox'
 
 export type LessonMeta = {
   id: LessonId
@@ -11,7 +11,10 @@ export type LessonMeta = {
   intro: string[]
   bigIdea: string
   real: string
+  bonus?: boolean
 }
+
+export const coreDone = (done: ReadonlySet<LessonId>, all: LessonMeta[]) => all.filter((l) => !l.bonus).every((l) => done.has(l.id))
 
 export const SAFETY = 'No accounts. No chatting with a live AI. Nothing you type leaves this page. Works offline once it loads.'
 
@@ -98,7 +101,23 @@ export const LESSONS: LessonMeta[] = [
     bigIdea: 'Societal Impact',
     real: 'Every Field Guide fact links to a NOAA page that was checked by hand.',
   },
+  {
+    id: 'toolbox',
+    num: 6,
+    title: 'Toolbox',
+    rule: 'Tools make AI more reliable. An agent picks its own tools.',
+    intro: [
+      'A chatbot only writes words, so it can slip on exact math or today\'s news.',
+      'Tools fix that. A calculator does exact math. A weather tool looks things up.',
+      'An agent is an AI that picks its own tools and takes steps on its own.',
+    ],
+    bigIdea: 'Representation and Reasoning',
+    real: 'The calculator really calculates. The weather tool is pretend, so the app never goes online.',
+    bonus: true,
+  },
 ]
+
+export const CORE = LESSONS.filter((l) => !l.bonus)
 
 // Lab 1. Splits are never written here: the lesson asks the real tokenizer.
 export const TOKENS = {
@@ -280,6 +299,88 @@ export const FACTS = {
   score: 'You got {n} of {total} right.',
   lesson: 'Pip was 99% sure every time, even when it was wrong. Sounding sure is not the same as being right.',
   source: 'Source',
+}
+
+// Lab 6 (bonus). The calculator's answer is computed in code, never written here.
+export const TOOLBOX = {
+  task: 'Pip has four jobs. Give Pip the right tool for each one. Drag a tool onto a job, or press a tool button.',
+  tools: [
+    { id: 'calc', label: 'Calculator', icon: '\u{1F9EE}', about: 'Does exact math.' },
+    { id: 'weather', label: 'Weather', icon: '\u{1F326}\uFE0F', about: 'Looks up the weather.' },
+    { id: 'skill', label: 'Skill card', icon: '\u{1F4CB}', about: 'Saved instructions, like the station\'s report format.' },
+    { id: 'none', label: 'No tool', icon: '\u{1F4AC}', about: 'Pip just writes.' },
+  ],
+  jobs: [
+    {
+      id: 'math',
+      text: 'What is 4,839 x 27?',
+      a: 4839,
+      b: 27,
+      tool: 'calc',
+      answers: {
+        calc: '{product}. The calculator does it exactly.',
+        none: '4,839 x 27 is 130,563.',
+        weather: 'Sunny and 78 degrees.',
+        skill: 'LAB REPORT. Topic: a big number.',
+      },
+      wrongWhy: 'Close, but wrong! Without a calculator, Pip guesses big numbers one piece at a time, and a digit can slip.',
+    },
+    {
+      id: 'weather',
+      text: 'What\'s the weather at the beach today?',
+      tool: 'weather',
+      answers: {
+        weather: 'The beach sensor says 78 degrees, sunny, light wind.',
+        none: 'It is probably sunny and 72 degrees!',
+        calc: 'The weather is 0.',
+        skill: 'LAB REPORT. Weather: unknown.',
+      },
+      rightNote: 'In this game the weather tool is pretend. Real weather tools look up live data.',
+      wrongWhy: 'Pip made that up. Without a tool, it has no way to know today\'s weather.',
+    },
+    {
+      id: 'report',
+      text: 'Write today\'s lab report in the station\'s format.',
+      tool: 'skill',
+      answers: {
+        skill: 'STATION LAB REPORT | Day 12 | What we saw: 3 octopuses by the reef | What it means: the reef is healthy',
+        none: 'Today we saw some octopuses and it was cool.',
+        calc: '3',
+        weather: 'Sunny.',
+      },
+      wrongWhy: 'Pip did not know the station\'s format. A skill card is saved instructions Pip can follow every time.',
+    },
+    {
+      id: 'joke',
+      text: 'Tell me a crab joke.',
+      tool: 'none',
+      answers: {
+        none: 'Why don\'t crabs share? Because they\'re shellfish!',
+        calc: 'Crab joke = 0.5',
+        weather: 'Partly crabby, 70 degrees.',
+        skill: 'LAB REPORT. Joke: crab.',
+      },
+      wrongWhy: 'This job did not need a tool. The wrong tool just got in the way.',
+    },
+  ],
+  right: 'Right tool!',
+  wrong: 'Wrong tool.',
+  agentTitle: 'Agent mode',
+  agentGoal: 'Now Pip is an agent. It picks its own tools. Your goal for Pip: "Plan a beach trip for {divers} divers. Snacks cost ${price} each. Write it up as a lab report."',
+  agentAsk: 'Pip wants to take these steps. Say yes or no to each one.',
+  divers: 3,
+  price: 4,
+  steps: [
+    { tool: 'weather', text: 'Use Weather to check the beach.', ok: true },
+    { tool: 'calc', text: 'Use Calculator: {divers} x ${price} for snacks.', ok: true },
+    { tool: 'skill', text: 'Use the Skill card to write the lab report.', ok: true },
+    { tool: 'send', text: 'Send the report to everyone in the station.', ok: false },
+  ],
+  yes: 'Yes',
+  no: 'No',
+  sendWhy: 'You never asked Pip to send anything. Agents can take real actions, so a person should check each step.',
+  agentDone: 'Plan ready: sunny beach, snacks cost ${total}, report written. And nothing was sent without asking you.',
+  agentOops: 'Look again at the steps marked in red.',
 }
 
 export const LICENSE = {

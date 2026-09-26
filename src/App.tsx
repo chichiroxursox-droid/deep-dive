@@ -1,5 +1,5 @@
 import { lazy, Suspense, useCallback, useEffect, useRef, useState, type ComponentType, type ReactNode } from 'react'
-import { BOOKS, HALL, LESSONS, SAFETY, START, type LessonId } from './content.ts'
+import { BOOKS, CORE, HALL, LESSONS, SAFETY, START, type LessonId } from './content.ts'
 import MapMode from './MapMode.tsx'
 import Certificate from './Certificate.tsx'
 import type { Station } from './world/World.tsx'
@@ -14,6 +14,7 @@ const LOADERS = {
   backpack: () => import('./lessons/backpack/Lesson.tsx'),
   chef: () => import('./lessons/chef/Lesson.tsx'),
   factcheck: () => import('./lessons/factcheck/Lesson.tsx'),
+  toolbox: () => import('./lessons/toolbox/Lesson.tsx'),
 }
 const GAMES: Partial<Record<LessonId, ComponentType<GameProps>>> = Object.fromEntries(
   Object.entries(LOADERS).map(([id, load]) => [id, lazy(load)]),
@@ -60,7 +61,7 @@ export default function App() {
           <div className="pointer-events-none fixed inset-x-0 top-0 flex flex-wrap items-start justify-between gap-2 p-3">
             <p className="rounded-xl bg-abyss/80 px-3 py-2 text-sm">{HALL.help}</p>
             <div className="pointer-events-auto flex gap-2">
-              <span className="rounded-xl bg-abyss/80 px-3 py-2 text-sm">Labs done: {done.size} / {LESSONS.length}</span>
+              <span className="rounded-xl bg-abyss/80 px-3 py-2 text-sm">Labs done: {CORE.filter((l) => done.has(l.id)).length} / {CORE.length}</span>
               <button className="btn-ghost bg-abyss/80" onClick={() => setMode('map')}>Map mode</button>
             </div>
           </div>
@@ -126,7 +127,7 @@ function Lesson({ id, onDone }: { id: LessonId; onDone: () => void }) {
       <header className="flex items-start gap-4">
         <Pip size={56} />
         <div>
-          <p className="text-sm font-bold uppercase tracking-wider text-glow">Lab {meta.num}</p>
+          <p className="text-sm font-bold uppercase tracking-wider text-glow">{meta.bonus ? 'Bonus lab' : 'Lab'} {meta.num}</p>
           <h2 className="text-3xl font-black">{meta.title}</h2>
           <p className="mt-1 text-xl font-bold text-coral">{meta.rule}</p>
           <div className="mt-2 space-y-1 text-lg">{meta.intro.map((s) => <p key={s}>{s}</p>)}</div>
