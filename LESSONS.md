@@ -11,6 +11,8 @@ Token splits and word probabilities are never written here: the app computes the
 - **dive**: Dive in (3D)
 - **map**: Map mode (no 3D)
 - **mapHint**: Map mode works with a keyboard alone and on slower computers.
+- **noWebGL**: This computer can't show 3D, so Map mode has every lab.
+- **calm**: Your computer asks for less motion, so Map mode is a calm pick. It has every lab.
 - **safety**: No accounts. No chatting with a live AI. Nothing you type leaves this page. Works offline once it loads.
 
 ## Lab 1: Token Reef

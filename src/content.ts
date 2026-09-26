@@ -22,6 +22,8 @@ export const START = {
   dive: 'Dive in (3D)',
   map: 'Map mode (no 3D)',
   mapHint: 'Map mode works with a keyboard alone and on slower computers.',
+  noWebGL: 'This computer can\'t show 3D, so Map mode has every lab.',
+  calm: 'Your computer asks for less motion, so Map mode is a calm pick. It has every lab.',
 }
 
 export const HALL = {

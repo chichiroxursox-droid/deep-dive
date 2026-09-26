@@ -1,5 +1,5 @@
 import { lazy, Suspense, useCallback, useEffect, useRef, useState, type ComponentType, type ReactNode } from 'react'
-import { HALL, LESSONS, SAFETY, START, type LessonId } from './content.ts'
+import { BOOKS, HALL, LESSONS, SAFETY, START, type LessonId } from './content.ts'
 import MapMode from './MapMode.tsx'
 import Certificate from './Certificate.tsx'
 import type { Station } from './world/World.tsx'
@@ -8,13 +8,25 @@ export type GameProps = { onDone: () => void }
 
 // Map mode never downloads three.js: the 3D world is its own lazy chunk.
 const World = lazy(() => import('./world/World.tsx'))
-const GAMES: Partial<Record<LessonId, ComponentType<GameProps>>> = {
-  tokens: lazy(() => import('./lessons/tokens/Lesson.tsx')),
-  guess: lazy(() => import('./lessons/guess/Lesson.tsx')),
-  backpack: lazy(() => import('./lessons/backpack/Lesson.tsx')),
-  chef: lazy(() => import('./lessons/chef/Lesson.tsx')),
-  factcheck: lazy(() => import('./lessons/factcheck/Lesson.tsx')),
+const LOADERS = {
+  tokens: () => import('./lessons/tokens/Lesson.tsx'),
+  guess: () => import('./lessons/guess/Lesson.tsx'),
+  backpack: () => import('./lessons/backpack/Lesson.tsx'),
+  chef: () => import('./lessons/chef/Lesson.tsx'),
+  factcheck: () => import('./lessons/factcheck/Lesson.tsx'),
 }
+const GAMES: Partial<Record<LessonId, ComponentType<GameProps>>> = Object.fromEntries(
+  Object.entries(LOADERS).map(([id, load]) => [id, lazy(load)]),
+)
+
+// Fetch every lab, the tokenizer and the books in the background, so the app keeps working offline once loaded.
+function prefetch() {
+  Object.values(LOADERS).forEach((load) => load())
+  import('./lessons/tokens/logic.ts').then((m) => m.loadEncoder())
+  import('./lessons/guess/logic.ts').then((m) => m.loadBooks(BOOKS.map((b) => b.file)))
+}
+
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
 const hasWebGL = (() => {
   try {
@@ -29,6 +41,11 @@ export default function App() {
   const [open, setOpen] = useState<Station | null>(null)
   const [done, setDone] = useState<ReadonlySet<LessonId>>(new Set())
   const [name, setName] = useState('')
+
+  useEffect(() => {
+    const t = setTimeout(prefetch, 1500)
+    return () => clearTimeout(t)
+  }, [])
 
   const finish = useCallback((id: LessonId) => setDone((d) => (d.has(id) ? d : new Set(d).add(id))), [])
 
@@ -74,10 +91,10 @@ function Start({ onPick }: { onPick: (m: 'hall' | 'map') => void }) {
         </div>
       </div>
       <div className="flex flex-wrap gap-3">
-        <button className="btn-main text-xl" disabled={!hasWebGL} onClick={() => onPick('hall')} autoFocus={hasWebGL}>{START.dive}</button>
-        <button className="btn-ghost text-xl" onClick={() => onPick('map')} autoFocus={!hasWebGL}>{START.map}</button>
+        <button className="btn-main text-xl" disabled={!hasWebGL} onClick={() => onPick('hall')} autoFocus={hasWebGL && !reducedMotion}>{START.dive}</button>
+        <button className="btn-ghost text-xl" onClick={() => onPick('map')} autoFocus={!hasWebGL || reducedMotion}>{START.map}</button>
       </div>
-      <p className="text-sand/80">{hasWebGL ? START.mapHint : 'This computer can\'t show 3D, so Map mode has every lab.'}</p>
+      <p className="text-sand/80">{!hasWebGL ? START.noWebGL : reducedMotion ? START.calm : START.mapHint}</p>
       <section className="card border-2 border-line" aria-label="For teachers and parents">
         <p className="font-bold text-glow">{SAFETY}</p>
         <p className="mt-1 text-sand/80">{START.teachers}</p>
