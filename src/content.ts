@@ -249,6 +249,37 @@ export const CHEF = {
   win: '5 stars! When you say exactly what you want, you get closer to what you want.',
 }
 
+// Lab 5. Every guide fact was checked against its source page on 2026-09-26.
+export const FACTS = {
+  task: 'For each fact, pick one: backed up by the guide, wrong by the guide, or not in the guide.',
+  sure: '99% sure',
+  choices: [
+    { id: 'backed', label: 'Backed up' },
+    { id: 'wrong', label: 'Wrong' },
+    { id: 'missing', label: 'Not in the guide' },
+  ],
+  claims: [
+    { id: 'octopus', text: 'An octopus has three hearts.', answer: 'backed', guide: 'octopus', why: 'The guide says so. Surprising, but true!' },
+    { id: 'bones', text: 'A shark\'s skeleton is made of bone, just like yours.', answer: 'wrong', guide: 'sharks', why: 'The guide says shark skeletons are made of cartilage, not bone. Pip made this up.' },
+    { id: 'bluewhale', text: 'The blue whale is the biggest fish in the ocean.', answer: 'wrong', guide: 'whaleshark', why: 'The guide says the biggest fish is the whale shark. The blue whale is the biggest animal, but it is a mammal, not a fish.' },
+    { id: 'horseshoe', text: 'Horseshoe crabs have blue blood.', answer: 'backed', guide: 'horseshoe', why: 'The guide says so. It sounds made up, but it is true!' },
+    { id: 'clownfish', text: 'Clownfish glow in the dark to scare away sharks.', answer: 'missing', subject: 'clownfish', why: 'Nothing in the guide backs this up. Pip made it up. If you can\'t find it in a good source, don\'t trust it yet.' },
+  ],
+  guideTitle: 'Field Guide',
+  guideOpen: 'Open the Field Guide',
+  guide: [
+    { id: 'octopus', title: 'Octopus', fact: 'Octopuses have three hearts. Two pump blood to the gills, and one pumps it to the rest of the body.', source: 'NOAA Ocean Service', url: 'https://oceanservice.noaa.gov/news/feb26/undersea-creatures-valentines-day.html' },
+    { id: 'sharks', title: 'Sharks', fact: 'Sharks, skates, and rays are fish with skeletons made of cartilage instead of bone.', source: 'NOAA National Marine Sanctuaries', url: 'https://sanctuaries.noaa.gov/education/teachers/sharks/background.html' },
+    { id: 'bluewhale', title: 'Blue whale', fact: 'The blue whale is the largest animal on Earth. It is a mammal (class Mammalia).', source: 'NOAA Fisheries', url: 'https://www.fisheries.noaa.gov/species/blue-whale' },
+    { id: 'whaleshark', title: 'Whale shark', fact: 'The whale shark is the largest fish in the world.', source: 'NOAA National Marine Sanctuaries', url: 'https://sanctuaries.noaa.gov/education/teachers/whale-sharks.html' },
+    { id: 'horseshoe', title: 'Horseshoe crab', fact: 'Horseshoe crab blood is blue, and it is copper-based.', source: 'NOAA Ocean Today', url: 'https://oceantoday.noaa.gov/fullmoon-bluebloodsbattlebacteria/' },
+  ],
+  check: 'Check my answers',
+  score: 'You got {n} of {total} right.',
+  lesson: 'Pip was 99% sure every time, even when it was wrong. Sounding sure is not the same as being right.',
+  source: 'Source',
+}
+
 export const LICENSE = {
   title: 'Diver\'s License',
   namePrompt: 'Your first name',
