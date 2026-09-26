@@ -1,7 +1,7 @@
 // All lesson text lives here. `npm run lessons` exports it to LESSONS.md for review.
 // Lines marked [CHECK] are AI claims waiting for Ethan's approval.
 
-export type LessonId = 'tokens' | 'guess' | 'backpack' | 'chef' | 'factcheck' | 'toolbox' | 'library'
+export type LessonId = 'tokens' | 'guess' | 'backpack' | 'chef' | 'factcheck' | 'toolbox' | 'library' | 'harbor'
 
 export type LessonMeta = {
   id: LessonId
@@ -127,6 +127,20 @@ export const LESSONS: LessonMeta[] = [
     ],
     bigIdea: 'Learning, Societal Impact',
     real: 'Pip really retrains in your browser each time, using the same language model as the Guessing Machine.',
+    bonus: true,
+  },
+  {
+    id: 'harbor',
+    num: 8,
+    title: 'Safe Harbor',
+    rule: 'Some things you never tell a chatbot.',
+    intro: [
+      'A chat can feel private, but it is not a diary.',
+      'What you type can be saved by the company that runs the chatbot.',
+      'Sort each card: fine to share, or keep private?',
+    ],
+    bigIdea: 'Societal Impact',
+    real: 'Nothing here is sent anywhere. The cards are sorted right on this page.',
     bonus: true,
   },
 ]
@@ -415,6 +429,27 @@ export const LIBRARY = {
   animals: ['fox', 'lion', 'wolf', 'cat', 'eagle', 'mouse', 'mice', 'donkey', 'dog', 'horse', 'bull', 'ox', 'oxen', 'goat', 'sheep', 'lamb', 'crow', 'hare', 'tortoise', 'frog', 'frogs', 'bird', 'birds', 'snake', 'serpent', 'monkey', 'bear', 'stag', 'deer', 'cock', 'hen', 'swallow', 'ant', 'grasshopper', 'fly', 'bee', 'crab', 'fish', 'whale', 'shark', 'octopus', 'seal', 'narwhal', 'parrot', 'pig', 'sow', 'boar', 'camel', 'peacock', 'crane', 'stork', 'jackdaw', 'kid', 'beast', 'animal', 'animals', 'dolphin', 'cuttlefish'],
 }
 
+// Lab 8 (bonus).
+export const HARBOR = {
+  choices: [
+    { id: 'ok', label: 'Fine to share' },
+    { id: 'private', label: 'Keep private' },
+  ],
+  cards: [
+    { id: 'color', text: 'Your favorite color', answer: 'ok', why: 'Fine. Nobody can find you with your favorite color.' },
+    { id: 'address', text: 'Your home address', answer: 'private', why: 'Keep it private. It tells someone exactly where you live.' },
+    { id: 'password', text: 'Your password', answer: 'private', why: 'Never share a password with anyone, not even a chatbot.' },
+    { id: 'pet', text: 'Your pet\'s name', answer: 'private', why: 'Surprise! Lots of people use a pet\'s name in passwords and secret questions, so keep it to yourself.' },
+    { id: 'joke', text: 'A joke you made up', answer: 'ok', why: 'Fine. Jokes are for sharing.' },
+    { id: 'school', text: 'Your full name and school', answer: 'private', why: 'Keep it private. Together they can lead a stranger to you.' },
+    { id: 'animal', text: 'Your favorite sea animal', answer: 'ok', why: 'Fine. Tell everyone about octopuses!' },
+    { id: 'phone', text: 'Your phone number', answer: 'private', why: 'Keep it private. A phone number lets people reach you.' },
+  ],
+  check: 'Check my sorting',
+  score: 'You sorted {n} of {total} right.',
+  lesson: 'Chats can be saved, and people at the company may read them or use them to train new AI. So share ideas, not secrets.',
+}
+
 export const LICENSE = {
   title: 'Diver\'s License',
   namePrompt: 'Your first name',
@@ -427,5 +462,7 @@ export const LICENSE = {
 // AI claims waiting for Ethan's OK. Shown as [CHECK] in LESSONS.md only, never in the app.
 export const CHECK: Record<string, string> = {
   'tokens.strawberry': 'Newer chatbots often count letters fine. "can trip" is hedged, but confirm the wording.',
+  'harbor.lesson': 'Depends on the app and its settings. Is "may read them or use them to train new AI" fair as a general warning?',
+  'harbor.cards': 'Pet\'s name is marked private because of security questions. OK, or should it be "fine"?',
   'backpack.wrongWhy': 'Real chatbots sometimes say "I don\'t know" instead of guessing. Is "so it guessed" fair for kids?',
 }

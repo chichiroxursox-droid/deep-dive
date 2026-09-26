@@ -279,6 +279,27 @@ Token splits and word probabilities are never written here: the app computes the
   - dolphin
   - cuttlefish
 
+## Lab 8: Safe Harbor
+- **Rule**: Some things you never tell a chatbot.
+- **Intro**: A chat can feel private, but it is not a diary. What you type can be saved by the company that runs the chatbot. Sort each card: fine to share, or keep private?
+- **AI4K12 Big Idea**: Societal Impact
+- **What is real**: Nothing here is sent anywhere. The cards are sorted right on this page.
+- **choices**:
+  - id: ok; label: Fine to share
+  - id: private; label: Keep private
+- **cards**: **[CHECK: Pet's name is marked private because of security questions. OK, or should it be "fine"?]**
+  - id: color; text: Your favorite color; answer: ok; why: Fine. Nobody can find you with your favorite color.
+  - id: address; text: Your home address; answer: private; why: Keep it private. It tells someone exactly where you live.
+  - id: password; text: Your password; answer: private; why: Never share a password with anyone, not even a chatbot.
+  - id: pet; text: Your pet's name; answer: private; why: Surprise! Lots of people use a pet's name in passwords and secret questions, so keep it to yourself.
+  - id: joke; text: A joke you made up; answer: ok; why: Fine. Jokes are for sharing.
+  - id: school; text: Your full name and school; answer: private; why: Keep it private. Together they can lead a stranger to you.
+  - id: animal; text: Your favorite sea animal; answer: ok; why: Fine. Tell everyone about octopuses!
+  - id: phone; text: Your phone number; answer: private; why: Keep it private. A phone number lets people reach you.
+- **check**: Check my sorting
+- **score**: You sorted {n} of {total} right.
+- **lesson**: Chats can be saved, and people at the company may read them or use them to train new AI. So share ideas, not secrets. **[CHECK: Depends on the app and its settings. Is "may read them or use them to train new AI" fair as a general warning?]**
+
 ## 3D hall
 - **help**: WASD or arrow keys to walk. Drag to look around. Walk up to a lab and press E.
 - **enter**: Press E to dive in

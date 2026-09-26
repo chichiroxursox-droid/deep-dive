@@ -2,7 +2,7 @@
 import { writeFileSync } from 'node:fs'
 import * as C from '../src/content.ts'
 
-const perLesson: Record<string, unknown> = { tokens: C.TOKENS, guess: C.GUESS, backpack: C.BACKPACK, chef: C.CHEF, factcheck: C.FACTS, toolbox: C.TOOLBOX, library: C.LIBRARY }
+const perLesson: Record<string, unknown> = { tokens: C.TOKENS, guess: C.GUESS, backpack: C.BACKPACK, chef: C.CHEF, factcheck: C.FACTS, toolbox: C.TOOLBOX, library: C.LIBRARY, harbor: C.HARBOR }
 
 const line = (v: unknown): string =>
   typeof v === 'object' && v !== null ? Object.entries(v).map(([k, x]) => `${k}: ${Array.isArray(x) ? x.join(', ') : String(x)}`).join('; ') : String(v)

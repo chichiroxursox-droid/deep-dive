@@ -99,6 +99,15 @@ export const PROPS: Record<string, ReactNode> = {
       ))}
     </group>
   ),
+  // a lighthouse for Safe Harbor
+  harbor: (
+    <group>
+      <mesh position={[0, 1.2, 0]}><cylinderGeometry args={[0.45, 0.7, 2.4, 20]} />{m('#fff4e0')}</mesh>
+      <mesh position={[0, 0.9, 0]}><cylinderGeometry args={[0.62, 0.64, 0.35, 20]} />{m('#ff5c8a')}</mesh>
+      <mesh position={[0, 2.65, 0]}><cylinderGeometry args={[0.4, 0.4, 0.5, 16]} />{m('#ffd166', 1)}</mesh>
+      <mesh position={[0, 3.05, 0]}><coneGeometry args={[0.55, 0.5, 16]} />{m('#ff5c8a')}</mesh>
+    </group>
+  ),
   factcheck: (
     <group position={[0, 1.1, 0]}>
       <mesh position={[0, -0.6, 0]}><cylinderGeometry args={[0.12, 0.3, 1, 12]} />{m('#e8b04a')}</mesh>

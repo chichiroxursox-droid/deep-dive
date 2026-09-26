@@ -16,6 +16,7 @@ const LOADERS = {
   factcheck: () => import('./lessons/factcheck/Lesson.tsx'),
   toolbox: () => import('./lessons/toolbox/Lesson.tsx'),
   library: () => import('./lessons/library/Lesson.tsx'),
+  harbor: () => import('./lessons/harbor/Lesson.tsx'),
 }
 const GAMES: Partial<Record<LessonId, ComponentType<GameProps>>> = Object.fromEntries(
   Object.entries(LOADERS).map(([id, load]) => [id, lazy(load)]),
