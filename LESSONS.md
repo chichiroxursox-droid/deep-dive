@@ -12,6 +12,7 @@ Token splits and word probabilities are never written here: the app computes the
 - **map**: Map mode (no 3D)
 - **mapHint**: Map mode works with a keyboard alone and on slower computers.
 - **noWebGL**: This computer can't show 3D, so Map mode has every lab.
+- **touch**: On a phone or tablet, use Map mode. Walking the 3D station needs a keyboard.
 - **calm**: Your computer asks for less motion, so Map mode is a calm pick. It has every lab.
 - **safety**: No accounts. No chatting with a live AI. Nothing you type leaves this page. Works offline once it loads.
 
@@ -49,7 +50,7 @@ Token splits and word probabilities are never written here: the app computes the
 - **loading**: The machine is reading three old books...
 - **read**: It just read {words} words from three old books, right here in your browser.
 - **prompt**: The captain looked at the
-- **ask**: What word comes next? Type a guess or pick one.
+- **ask**: What word comes next? Type one word or pick one.
 - **suggestions**:
   - sea
   - map

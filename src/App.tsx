@@ -31,6 +31,8 @@ function prefetch() {
 }
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+// ponytail: no touch joystick in the 3D hall, so touch devices get pointed at Map mode instead.
+const touch = window.matchMedia('(pointer: coarse)').matches
 
 const hasWebGL = (() => {
   try {
@@ -95,10 +97,10 @@ function Start({ onPick }: { onPick: (m: 'hall' | 'map') => void }) {
         </div>
       </div>
       <div className="flex flex-wrap gap-3">
-        <button className="btn-main text-xl" disabled={!hasWebGL} onClick={() => onPick('hall')} autoFocus={hasWebGL && !reducedMotion}>{START.dive}</button>
-        <button className="btn-ghost text-xl" onClick={() => onPick('map')} autoFocus={!hasWebGL || reducedMotion}>{START.map}</button>
+        <button className="btn-main text-xl" disabled={!hasWebGL} onClick={() => onPick('hall')} autoFocus={hasWebGL && !reducedMotion && !touch}>{START.dive}</button>
+        <button className="btn-ghost text-xl" onClick={() => onPick('map')} autoFocus={!hasWebGL || reducedMotion || touch}>{START.map}</button>
       </div>
-      <p className="text-sand/80">{!hasWebGL ? START.noWebGL : reducedMotion ? START.calm : START.mapHint}</p>
+      <p className="text-sand/80">{!hasWebGL ? START.noWebGL : touch ? START.touch : reducedMotion ? START.calm : START.mapHint}</p>
       <section className="card border-2 border-line" aria-label="For teachers and parents">
         <p className="font-bold text-glow">{SAFETY}</p>
         <p className="mt-1 text-sand/80">{START.teachers}</p>

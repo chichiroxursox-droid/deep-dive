@@ -42,7 +42,13 @@ export default function Toolbox({ onDone }: GameProps) {
               className={`card flex flex-col gap-2 border-2 ${over === j.id ? 'border-glow' : 'border-transparent'}`}
               onDragOver={(e) => { e.preventDefault(); setOver(j.id) }}
               onDragLeave={() => setOver(null)}
-              onDrop={(e) => { e.preventDefault(); setOver(null); setPicks({ ...picks, [j.id]: e.dataTransfer.getData('text/plain') as ToolId }) }}
+              onDrop={(e) => {
+                e.preventDefault()
+                setOver(null)
+                // Anything can be dropped here (dragged text, links), so only accept a real tool id.
+                const id = e.dataTransfer.getData('text/plain')
+                if (T.tools.some((t) => t.id === id)) setPicks({ ...picks, [j.id]: id as ToolId })
+              }}
             >
               <p className="text-xl font-bold">{j.text}</p>
               <div className="flex flex-wrap gap-1.5" role="group" aria-label={`Tool for: ${j.text}`}>

@@ -65,7 +65,7 @@ export default function GuessingMachine({ onDone }: GameProps) {
         >
           <label className="flex flex-col gap-2">
             <span className="text-lg">{G.ask}</span>
-            <input autoFocus className="max-w-xs rounded-xl border-2 border-line bg-abyss px-3 py-2 text-xl" value={guess} maxLength={20} autoComplete="off" onChange={(e) => { setGuess(e.target.value); setShown(false) }} />
+            <input autoFocus className="max-w-xs rounded-xl border-2 border-line bg-abyss px-3 py-2 text-xl" value={guess} maxLength={20} autoComplete="off" onChange={(e) => { setGuess(e.target.value.replace(/[^a-zA-Z']/g, '')); setShown(false) }} />
           </label>
           <div className="flex flex-wrap gap-2">
             {G.suggestions.map((s) => (
