@@ -89,3 +89,30 @@ If a checkpoint slips 90 minutes, apply the next scope cut (see CLAUDE.md) and l
 - Also: reduced-motion users get Map mode focused by default with a calm hint.
 - Next step: nice-to-haves in kit order: Toolbox, then Library, Safe Harbor, read-aloud.
 - Scope cuts so far: none.
+
+### Sat ~2:18pm, nice-to-have 1: Toolbox (bonus lab 6)
+- Milestone: hit.
+- Done-when result: 4 jobs (4,839 x 27, beach weather, lab report in station format, crab joke) and 4 tools (calculator, weather, skill card, none). Wrong picks give plausible wrong answers. Agent mode: Pip proposes 4 steps; approve weather, calculator (3 x $4 computed), skill card; deny "send the report to everyone".
+- Prod URL works: yes, keyboard-only run passed (tool buttons; drag and drop also works with a mouse). Tests: 4 (task-to-tool map, every job x tool answer, calculator really multiplies, agent judging).
+- Also: labs 6 to 8 are marked bonus. The Diver's License completes on the 5 core labs; bonus rules get added when done.
+- Scope cuts so far: none.
+
+### Sat ~2:21pm, nice-to-have 2: Library (bonus lab 7)
+- Milestone: hit.
+- Done-when result: pick any of the 3 books, Pip retrains in the browser, shows its top 10 words after "the" and finishes "Once upon a time there was a". Challenge: 5+ animals in the top 10. Treasure Island alone: 0 of 10. Aesop alone: 7 of 10 (win).
+- Editorial: the 1912 Aesop translation says "ass" 40 times; swapped for "donkey" in the excerpt (kid audience). Test guards it. Disclose in README.
+- Prod URL works: yes, keyboard-only run passed. Tests: 3 (retraining changes output, real books make the challenge winnable but not with Treasure Island alone, no "ass" left).
+- Scope cuts so far: none.
+
+### Sat ~2:23pm, nice-to-have 3: Safe Harbor (bonus lab 8)
+- Milestone: hit.
+- Done-when result: sort 8 cards into "fine to share" / "keep private" (native radios), then see why. Pet's name is private (security questions), flagged [CHECK] for Ethan.
+- Prod URL works: yes, keyboard-only run passed. 3D: all 8 bays re-walked with WASD on prod, each opens its lab. Tests: 2.
+- Scope cuts so far: none.
+
+### Sat 2:28PM, nice-to-have 4: read-aloud
+- Milestone: hit.
+- Done-when result: "Read to me" on every lab. 8 MP3s pre-generated ONCE with ElevenLabs (eleven_multilingual_v2) by scripts/narrate.ts: 1,911 of the 2,000-character cap (account was at 118 of 10,000 before). src/narration.json records the text each clip was made from; if the copy changes after Ethan's review, or the clip can't load (offline), the browser's speech reads it instead. The app itself never calls ElevenLabs.
+- Prod URL works: yes (guess.mp3 served, button toggles). Full keyboard-only offline Map mode run re-passed. Tests: 31/31.
+- Scope cuts so far: none. All kit nice-to-haves built.
+- Next step: README, DEMO.md, DEVPOST.md, scripted Map mode recording.
