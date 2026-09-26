@@ -98,6 +98,27 @@ export const LESSONS: LessonMeta[] = [
   },
 ]
 
+// Lab 1. Splits are never written here: the lesson asks the real tokenizer.
+export const TOKENS = {
+  loading: 'Loading the real tokenizer...',
+  ask: 'How many tokens do you think this is?',
+  show: 'Show me',
+  next: 'Next',
+  result: 'You guessed {guess}. The tokenizer made {n}.',
+  exact: 'Spot on!',
+  close: 'So close!',
+  off: 'Now you know!',
+  space: 'A dot (·) is a space. Spaces ride along with the word after them.',
+  numbers: 'The small number under each chunk is its token number. Inside the AI, every chunk is really a number.',
+  rounds: ['fish', 'jellyfish', 'The ocean is deep.', 'strawberry'],
+  strawberry:
+    'How many r\'s are in strawberry? You can count them. The AI never sees letters, only chunks like the ones above. That is one reason chatbots can trip on counting letters.',
+  letters: '{letters} letters, but only {n} tokens.',
+  name: 'Now type your own name. How does the AI cut it up?',
+  namePlaceholder: 'Your name',
+  free: 'Try anything else: a word, an emoji, or a silly sentence.',
+}
+
 export const LICENSE = {
   title: 'Diver\'s License',
   namePrompt: 'Your first name',

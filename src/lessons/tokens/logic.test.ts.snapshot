@@ -1,0 +1,32 @@
+exports[`splits of 5 fixed strings match the snapshot from the real tokenizer 1`] = `
+[
+  [
+    "st",
+    "raw",
+    "berry"
+  ],
+  [
+    "j",
+    "elly",
+    "fish"
+  ],
+  [
+    "The",
+    " ocean",
+    " is",
+    " deep",
+    "."
+  ],
+  [
+    "M",
+    "aya"
+  ],
+  [
+    "P",
+    "ip",
+    " 🐙",
+    " swims",
+    "!"
+  ]
+]
+`;

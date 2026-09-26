@@ -8,7 +8,9 @@ export type GameProps = { onDone: () => void }
 
 // Map mode never downloads three.js: the 3D world is its own lazy chunk.
 const World = lazy(() => import('./world/World.tsx'))
-const GAMES: Partial<Record<LessonId, ComponentType<GameProps>>> = {}
+const GAMES: Partial<Record<LessonId, ComponentType<GameProps>>> = {
+  tokens: lazy(() => import('./lessons/tokens/Lesson.tsx')),
+}
 
 const hasWebGL = (() => {
   try {
@@ -109,7 +111,13 @@ function Lesson({ id, onDone }: { id: LessonId; onDone: () => void }) {
           <div className="mt-2 space-y-1 text-lg">{meta.intro.map((s) => <p key={s}>{s}</p>)}</div>
         </div>
       </header>
-      {Game ? <Game onDone={onDone} /> : <p className="card">This lab is still being built.</p>}
+      {Game ? (
+        <Suspense fallback={<p className="card">Loading the lab...</p>}>
+          <Game onDone={onDone} />
+        </Suspense>
+      ) : (
+        <p className="card">This lab is still being built.</p>
+      )}
     </>
   )
 }

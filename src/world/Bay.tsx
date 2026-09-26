@@ -32,7 +32,7 @@ export default function Bay({ position, rotationY, label, color, done, prop, onE
         <boxGeometry args={[4.4, 0.4, 0.4]} />
         <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.5} />
       </mesh>
-      <Html position={[0, 4.2, -1.6]} center distanceFactor={12} zIndexRange={[10, 0]}>
+      <Html position={[0, 4.2, -1.6]} center distanceFactor={22} zIndexRange={[10, 0]}>
         <div className="pointer-events-none select-none whitespace-nowrap rounded-xl border-2 border-glow bg-abyss/85 px-3 py-1 text-center text-lg font-bold text-sand">
           {label}{done ? ' ✓' : ''}
         </div>
