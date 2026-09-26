@@ -134,3 +134,13 @@ If a checkpoint slips 90 minutes, apply the next scope cut (see CLAUDE.md) and l
 - Prod URL works: yes. Re-verified on prod: full keyboard-only offline Map mode run, exploratory pass (no crash), read-aloud, all 8 bays by walking. Tests: 32/32.
 - Scope cuts so far: none.
 - Next step: Ethan reviews LESSONS.md (now complete, 4 [CHECK] lines) and records the video.
+
+### Sat 5:30PM, realistic 3D station (Ethan's request, modeled on the Opus 5.5 world in Nate Herk's video)
+- Milestone: hit. Ethan picked: keep the sea station theme, built-out rooms + 2 physics demos.
+- Done-when result: start on the sea floor (welcome sign, facade, canopy, kelp, fish, light rays), walk through the airlock into a lobby (3D Pip with rotating tips, kickable balls with F), a corridor of 8 themed lab rooms with blade signs, and the Captain's Deck with the license console. Low over-the-shoulder camera that slides in front of solid walls (glass lets it through). Ceilings with light panels and a corridor skylight. HUD like the video: area name, license stamps, Map + Graphics High/Low.
+- Demos: Next Word Machine (Lab 2) samples balls from the real model's top 5 after "at the"; Backpack belt (Lab 3) sizes blocks by real token counts and runs the lesson's own add().
+- Performance: first build was 872 draw calls and 1.7 fps in software rendering. Added StaticBatch (merge still meshes by material), instanced kelp and machine balls, dropped per-console point lights: about 270 draw calls. Measured 60 fps (vsync cap) on the Mac GPU in headless Chrome, High and Low. Low is auto-picked on 4-or-fewer-core machines.
+- What broke: diver tipped over and scrambled controls (fixed with an auto-stand-up); rotated rooms hid signs from the fixed camera (rooms now mirror by position, everything faces +z); ball bin walls wedged the diver (replaced with a mat); a damaged node_modules/@types/three folder from the interrupted first install.
+- Prod URL works: yes. On prod: walked to all 8 consoles + license and opened each with E; full keyboard-only Map mode run with the network off; zero external requests. Tests: 36/36 (new layout tests).
+- Docs: README (station section, demos, Graphics toggle, screenshots), DEMO.md shot list rewritten for the walk-through, DEVPOST updated (under 700 words).
+- Scope cuts so far: none.

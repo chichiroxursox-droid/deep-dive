@@ -6,7 +6,20 @@ Deep Dive is a free 3D browser game for kids ages 10 to 14. You walk a diver thr
 
 Built solo for OwlHacks 2026. Track: HCI.
 
-![The 3D research station with eight lab bays](docs/hall.png)
+![The diver on the sea floor outside Deep Dive Station](docs/station.png)
+
+## The station
+
+You start on the sandy sea floor outside the station, walk through the airlock into the lobby (Pip the robot greets you, and there are beach balls to kick), then down a corridor lined with lab rooms, 4 on each side. Every room is built out for its lesson: a reef tank of token blocks, a kitchen for Robot Chef, bookshelves for the Library, a workbench and weather station for the Toolbox. Walk up to the glowing console in any room and press E to start its lesson. The Diver's License waits on the Captain's Deck at the end.
+
+![The main corridor with lab doors on both sides](docs/corridor.png)
+
+Two rooms have hands-on 3D physics that run the lesson's real logic:
+
+- **Next Word Machine** (Lab 2): balls drop into 5 tubes labeled with the model's real top 5 words after "The captain looked at the". Each ball is one guess, sampled with the real odds, so the likeliest word's tube fills fastest.
+- **Backpack belt** (Lab 3): each chat message becomes a block as long as its real token count. They slide into a 60-token trough using the same code as the lesson, and the oldest block falls off the end when it's full.
+
+![The Next Word Machine filling its tubes](docs/next-word-machine.png)
 
 ## Why
 
@@ -61,7 +74,9 @@ It is a static site. There is no server, no database, no login, no analytics, an
 
 - **Map mode** opens every lab as a plain list, with the same lessons and no 3D. It never downloads three.js, so it works on slow school Chromebooks and on computers without WebGL.
 - Everything in Map mode works with a keyboard alone: native buttons, radio groups, sliders and dialogs, with a visible focus ring. We checked this with scripted Playwright runs on the live site that play all five core labs and the license using only Tab, arrows, Space and Enter.
-- It respects `prefers-reduced-motion`: lesson animations turn off, and the start screen points those kids to Map mode first (the 3D hall itself still moves).
+- It respects `prefers-reduced-motion`: animations turn off in the lessons and in the 3D station (fish, kelp, light ripples and glowing consoles hold still), and the start screen points those kids to Map mode first.
+- The 3D station has a **Graphics: High / Low** switch. Low drops shadows, light rays and most of the fish and kelp, and it's picked automatically on computers with 4 or fewer processor cores. Still meshes are merged when the station loads (about 870 draw calls down to about 270), and it holds 60 frames per second on a laptop GPU.
+- Phones and tablets are pointed to Map mode, since the 3D station has no touch controls.
 - Every lab has **Read to me**, with narration recorded once ahead of time. If a clip can't load, the browser's own voice reads it instead.
 - Copy is written at about a grade 5 reading level, 2 to 4 short sentences per lesson. Pip says AI "guesses" or "predicts," never "knows" or "thinks."
 
@@ -72,7 +87,8 @@ It is a static site. There is no server, no database, no login, no analytics, an
 - Token Reef and Backpack use GPT-4o's tokenizer. Other chatbots cut text differently, and the lesson says so.
 - In the Backpack the oldest message falls out. Real apps handle a full context window in different ways, like summarizing, and the lesson says that too.
 - Robot Chef's Pip and the Toolbox weather tool are scripted, not live AI.
-- The 3D hall needs WebGL2 and a keyboard or mouse. Keyboard users can walk but can't turn the camera, and there are no touch controls. Map mode covers all of these.
+- The 3D station needs WebGL2 and a keyboard or mouse. The camera never turns by itself, so keyboard-only players can walk but not look around, and there are no touch controls. Map mode covers all of these.
+- The Next Word Machine only drops balls into the top 5 words; the lesson itself shows the full odds.
 - Keyboard-only play was tested with scripted runs, not yet with a real screen reader user.
 - Progress is not saved between visits. That is on purpose: nothing is stored.
 - English only.
@@ -102,7 +118,7 @@ npm run lessons    # regenerate LESSONS.md from src/content.ts
 npm run build      # type check + production build
 ```
 
-Stack: Vite, React 19, TypeScript, Tailwind 4, three.js with @react-three/fiber, drei, rapier and ecctrl for the diver, js-tiktoken for the tokenizer. Deployed as a static site on Vercel.
+Stack: Vite, React 19, TypeScript, Tailwind 4, three.js with @react-three/fiber, drei, rapier and ecctrl for the diver, js-tiktoken for the tokenizer. Deployed as a static site on Vercel. The station is built from simple shapes, and every texture (tiles, wall panels, sand, signs) is painted on a canvas in the browser, so the 3D world downloads no images or models.
 
 All lesson text lives in `src/content.ts`. Each lab is `src/lessons/<lab>/Lesson.tsx` (the screen), `logic.ts` (pure logic) and `logic.test.ts`.
 

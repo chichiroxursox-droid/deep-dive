@@ -3,50 +3,46 @@
 **Tagline:** A 3D underwater game where kids learn how chatbots really work, and every lesson runs the real mechanism.
 
 **Track:** HCI. Second track if the form allows: Philly Special.
-**Also entering:** Best Use of ElevenLabs (the Read to me narration), if that prize is listed.
+**Also entering:** Best Use of ElevenLabs, if that prize is listed.
 
 **Try it:** https://deep-dive-rosy.vercel.app
 **Code:** https://github.com/chichiroxursox-droid/deep-dive
 
 ## Inspiration
 
-Code.org's 2025 State of AI + CS Education Report found that 84% of students use AI, but only 16% are being taught to understand it (https://advocacy.code.org/stateofcs/). Here in Philadelphia, the School District approved Google Gemini and Adobe Express with Firefly "for staff and student use." The AI training it lists is a staff course on data privacy and AI fundamentals. No student lessons are listed (https://www.philasd.org/pstv/ai-resources/).
+Code.org's 2025 State of AI + CS Education Report found that 84% of students use AI, but only 16% are being taught to understand it (https://advocacy.code.org/stateofcs/). In Philadelphia, the School District approved Google Gemini and Adobe Express with Firefly "for staff and student use." The AI training it lists is a staff course on data privacy and AI fundamentals. No student lessons are listed (https://www.philasd.org/pstv/ai-resources/).
 
 Free AI curricula exist, but they are teacher-led and most kids never get them. I wanted something a 12-year-old could play alone on a school Chromebook in 20 minutes.
 
 ## What it does
 
-You walk a diver around an underwater research station. At each lab, Pip the robot explains one idea, then a mini game runs the real thing at kid size:
+You walk a diver from the sea floor into an underwater research station with a lobby and a corridor of themed lab rooms. At each room's glowing console, Pip the robot explains one idea, then a mini game runs the real thing at kid size:
 
 1. **Token Reef:** guess how many tokens a word is, then see the real split from GPT-4o's tokenizer. "strawberry" is 10 letters but 3 tokens.
-2. **Guessing Machine:** a real language model trains in your browser on three public-domain books, shows its top 5 next-word guesses as probability bars, and writes stories with a temperature dial. Cold repeats itself. Hot gets silly.
+2. **Guessing Machine:** a real language model trains in your browser on three public-domain books, shows its top 5 next-word guesses, and writes stories with a temperature dial: cold repeats itself, hot gets silly.
 3. **Backpack:** a 60-token context window. Your dog's name falls out of the chat and Pip guesses wrong, until you pin it.
 4. **Robot Chef:** build a prompt from cards and see how many stars Pip's birthday card earns.
 5. **Fact Check Lagoon:** Pip is "99% sure" about five sea facts. Check them against a Field Guide linked to NOAA sources.
 
-Three bonus labs cover tools and agents (approve or deny each step Pip wants to take), training-data bias (pick the books Pip reads), and what never to tell a chatbot. Finishing the core labs earns a Diver's License.
+Two rooms have hands-on 3D physics: a Next Word Machine drops balls into word tubes using the real model's odds, and a belt pushes the oldest chat message out of a 60-token backpack. Three bonus labs cover tools and agents, training-data bias, and what never to tell a chatbot. Finishing the core labs earns a Diver's License.
 
 ## How it's HCI
 
-- **Map mode** plays every lab with no 3D, keyboard only, with visible focus. It skips the 3D engine entirely, so it works on weak Chromebooks, without WebGL, and for kids who need less motion.
+- **Map mode** plays every lab with no 3D, keyboard only, with visible focus. It skips the 3D engine, so it works on weak Chromebooks and for kids who need less motion.
 - Grade 5 reading level and a Read to me button on every lab.
 - Nothing is faked: token splits and probabilities are computed live.
 - **Kid safety:** no accounts, no chatting with a live AI, nothing you type leaves the page, and it works offline once it loads.
 
 ## How I built it
 
-React, TypeScript and three.js (react-three-fiber, rapier, ecctrl for the diver), static on Vercel. js-tiktoken runs the o200k_base tokenizer in the browser. The language model is a trigram model with bigram backoff, trained on Project Gutenberg excerpts. All lesson text lives in one file that exports to LESSONS.md for accuracy review. 32 unit tests cover every lab's logic, and scripted Playwright runs played the live site keyboard-only with the network off. Narration was recorded once with ElevenLabs and ships as MP3s.
+React, TypeScript and three.js (react-three-fiber, rapier, ecctrl for the diver), static on Vercel. Every texture is painted on a canvas at runtime, and still meshes are merged on load, so it holds 60 fps on a laptop. js-tiktoken runs the o200k_base tokenizer in the browser. The language model is a trigram model with bigram backoff, trained on Project Gutenberg excerpts. All lesson text exports to LESSONS.md for accuracy review. 36 unit tests cover every lab's logic, and scripted Playwright runs played the live site keyboard-only with the network off. Narration was recorded once with ElevenLabs and ships as MP3s.
 
 **AI disclosure:** I built Deep Dive with Claude Code as my coding agent. No AI runs at runtime.
 
 ## Challenges
 
-- Keeping lessons honest: the Backpack had to lose the dog's name using real token counts, so the chat was tuned against the real tokenizer and a test locks it in.
+- Keeping lessons honest: the Backpack had to lose the dog's name using real token counts, so the chat was tuned against the real tokenizer and a test locks it.
 - A 1912 Aesop translation taught the model a word I didn't want in a kids' game, so I swapped it for "donkey" and disclosed it.
-
-## What I learned
-
-A tiny model you can retrain with one click teaches "it only knows what it read" better than any sentence can.
 
 ## What's next
 

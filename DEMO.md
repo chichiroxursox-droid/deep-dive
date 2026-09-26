@@ -16,17 +16,20 @@ Backup: a scripted Map mode run is saved at `~/Desktop/deep-dive-demo.mp4` (58 s
 
 | Time | Screen | What you do | What you say |
 |---|---|---|---|
-| 0:00 to 0:10 | Start screen | Hold on the title and the teacher box. | "Kids use chatbots every day, and almost none are taught how they work. Deep Dive is 20 minutes a kid can play alone, with no account, where every lesson runs the real mechanism." |
-| 0:10 to 0:20 | 3D hall | Press Dive in (3D). Walk with W toward Lab 1, Token Reef (straight ahead, go around the center kiosk). Press E. | "You're a diver in an underwater research station. Each lab teaches one thing about chatbots." |
-| 0:20 to 0:40 | Token Reef | Rounds 1 to 3: pick any number, Show me, Next (move fast). Round 4, "strawberry": guess 1, Show me. Hold on st, raw, berry. Next. Type your first name. | "This is the real tokenizer GPT-4o uses. Strawberry is 10 letters but only 3 tokens. The AI never sees the letters, which is one reason chatbots trip on counting them." |
-| 0:40 to 0:58 | Guessing Machine | Esc, walk to Lab 2 (or use Map mode if walking is slow). Type "door", Enter. Show the bars. Write a story on Ice cold. Slide to Red hot, write again. | "This is a real language model, trained right in your browser on three old books. Cold, it gets stuck repeating itself. Hot, it gets silly." |
-| 0:58 to 1:20 | Backpack | Press Next message 8 times. Point at "fell out." Ask Pip: it says Max. Try again, press Next once, Pin the first message, keep going, Ask. Pip says Biscuit. | "The backpack is the context window: 60 tokens, weighed by the real tokenizer. When it fills up, my dog's name falls out and Pip just guesses. Pin it, and Pip remembers." |
-| 1:20 to 1:35 | Fact Check Lagoon | Open the Field Guide. Mark the five facts. Check my answers. | "Pip is 99% sure about every fact. Two are true and surprising. The rest are wrong or made up. Every guide fact links to a NOAA page." |
-| 1:35 to 1:50 | Map mode | Esc, press Map mode (top right). Tab down the list so the focus ring shows. Open Lab 4 Robot Chef with Enter, turn on all six cards with Tab and Enter, Cook it: 5 stars. Esc. | "Map mode has every lab with no 3D. It works with a keyboard alone, on slow school Chromebooks, for kids who need less motion, and offline." |
-| 1:50 to 2:00 | Diver's License | Tab to Diver's License, Enter. Type your name. Hold on 5/5 and the list of rules. | "No accounts, no live AI, nothing leaves the page. Deep Dive: how chatbots really work, for kids." |
+| 0:00 to 0:08 | Start screen | Hold on the title and the teacher box. Press Dive in (3D). | "Kids use chatbots every day, and almost none are taught how they work. Deep Dive is 20 minutes a kid can play alone, with no account, where every lesson runs the real mechanism." |
+| 0:08 to 0:20 | Sea floor, lobby | Hold Shift and W: walk past the welcome sign, through the airlock, past Pip. Tap F next to the beach balls. Keep going into the corridor. | "You're a diver visiting an underwater research station. Every room is a lab about one idea." |
+| 0:20 to 0:38 | Lab 1: Token Reef | Turn left (A) into the first room. Point the camera at the wall screen showing st, raw, berry. Walk to the glowing console, press E. Go straight to round 4, "strawberry": guess, Show me, Next. Type your first name. Esc. | "This is the real tokenizer GPT-4o uses. Strawberry is 10 letters but only 3 tokens, which is one reason chatbots trip on counting letters." |
+| 0:38 to 0:56 | Lab 2: Guessing Machine | Cross the corridor (D) into the room opposite. Let the Next Word Machine fill for two seconds. Press E at the console. Type "door", Enter. Write a story on Ice cold, slide to Red hot, write again. Esc. | "Every ball is one guess from a real language model trained in your browser on three old books. Cold, it repeats itself. Hot, it gets silly." |
+| 0:56 to 1:16 | Lab 3: Backpack | Cross back and go one door further down, on the left. Show the belt pushing a block off the end. Press E. Next message 8 times, Ask: Pip says Max. Try again, Next once, Pin the first message, keep going, Ask: Pip says Biscuit. Esc. | "The backpack is the context window: 60 tokens, weighed by the real tokenizer. When it's full, my dog's name falls out and Pip just guesses. Pin it, and Pip remembers." |
+| 1:16 to 1:32 | Lab 5: Fact Check Lagoon | The next door down on the left. Press E, open the Field Guide, mark the five facts, Check my answers. Esc. | "Pip is 99% sure about every fact. Two are true and surprising. The rest are wrong or made up. Every guide fact links to a NOAA page." |
+| 1:32 to 1:48 | Map mode | Press Map mode (bottom right). Tab down the list so the focus ring shows. Open Lab 4 Robot Chef with Enter, turn on all six cards with Tab and Enter, Cook it: 5 stars. Esc. | "Map mode has every lab with no 3D. It works with a keyboard alone, on slow school Chromebooks, for kids who need less motion, and offline." |
+| 1:48 to 2:00 | Diver's License | Tab to Diver's License, Enter. Type your name. Hold on 5/5 and the list of rules. | "No accounts, no live AI, nothing leaves the page. Deep Dive: how chatbots really work, for kids." |
+
+Room map: Labs 1, 3, 5, 7 are on the left of the corridor and Labs 2, 4, 6, 8 on the right, in pairs. Labs 1 and 2 are the first doors past the lobby.
 
 ## If something goes wrong on camera
 
-- Walking is slow or the 3D stutters: press Map mode and keep going. That is the point of Map mode.
+- Walking is slow or the 3D stutters: press Graphics to switch to Low, or press Map mode and keep going. That is the point of Map mode.
+- The camera ended up at an odd angle: drag with the mouse to turn it back behind the diver.
 - A lab looks stuck loading: wait two seconds. The tokenizer is about 1 MB.
 - You missed a step in the Backpack: press Try again.
