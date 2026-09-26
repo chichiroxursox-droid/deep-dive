@@ -119,6 +119,39 @@ export const TOKENS = {
   free: 'Try anything else: a word, an emoji, or a silly sentence.',
 }
 
+// Public-domain books the language model reads (Project Gutenberg, license header removed).
+export const BOOKS = [
+  { file: 'twenty-thousand-leagues.txt', title: 'Twenty Thousand Leagues Under the Sea', author: 'Jules Verne', gutenberg: 164 },
+  { file: 'treasure-island.txt', title: 'Treasure Island', author: 'Robert Louis Stevenson', gutenberg: 120 },
+  { file: 'aesops-fables.txt', title: 'Aesop\'s Fables', author: 'Aesop, translated by V. S. Vernon Jones', gutenberg: 11339 },
+]
+
+// Lab 2. Probabilities are never written here: they come from counting words in BOOKS.
+export const GUESS = {
+  loading: 'The machine is reading three old books...',
+  read: 'It just read {words} words from three old books, right here in your browser.',
+  prompt: 'The captain looked at the',
+  ask: 'What word comes next? Type a guess or pick one.',
+  suggestions: ['sea', 'map', 'door', 'sky', 'fish'],
+  reveal: 'Show the machine\'s top 5',
+  yours: 'The machine gave "{word}" a {p} chance.',
+  never: 'The machine never saw "{word}" after "{context}" in its books, so it gives it 0%.',
+  how: 'It counted every word that came after "{context}" in the books. More counts make a bigger bar.',
+  storyTitle: 'Story mode',
+  story: 'Now let the machine write, one word at a time. The temperature dial changes how it picks.',
+  temps: [
+    { t: 0, label: 'Ice cold' },
+    { t: 0.6, label: 'Cool' },
+    { t: 1, label: 'Just right' },
+    { t: 1.6, label: 'Warm' },
+    { t: 2.5, label: 'Red hot' },
+  ],
+  cold: 'Cold: it always picks its top guess, so it gets stuck repeating itself.',
+  hot: 'Hot: it picks long shots more often, so it gets silly.',
+  write: 'Write a story',
+  start: 'the captain',
+}
+
 export const LICENSE = {
   title: 'Diver\'s License',
   namePrompt: 'Your first name',

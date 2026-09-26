@@ -10,6 +10,7 @@ export type GameProps = { onDone: () => void }
 const World = lazy(() => import('./world/World.tsx'))
 const GAMES: Partial<Record<LessonId, ComponentType<GameProps>>> = {
   tokens: lazy(() => import('./lessons/tokens/Lesson.tsx')),
+  guess: lazy(() => import('./lessons/guess/Lesson.tsx')),
 }
 
 const hasWebGL = (() => {

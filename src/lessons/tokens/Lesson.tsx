@@ -9,7 +9,7 @@ export const fill = (s: string, v: Record<string, string | number>) => s.replace
 export function Chunks({ enc, text }: { enc: Encoder; text: string }) {
   const pieces = split(enc, text)
   return (
-    <ol aria-label={`${pieces.length} tokens`} className="flex flex-wrap gap-1.5">
+    <ol aria-label={`${pieces.length} ${pieces.length === 1 ? "token" : "tokens"}`} className="flex flex-wrap gap-1.5">
       {pieces.map((p, i) => (
         <li key={i} className={`${COLORS[i % COLORS.length]} flex flex-col items-center rounded-lg px-2 py-1 text-abyss`}>
           <span className="whitespace-pre font-mono text-xl font-bold">{p.text.replaceAll(' ', '·')}</span>
