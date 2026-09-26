@@ -126,3 +126,11 @@ If a checkpoint slips 90 minutes, apply the next scope cut (see CLAUDE.md) and l
 - Prod URL works: yes. Build: pass. Tests: 31/31 (`node --test`).
 - Scope cuts so far: none.
 - Next step: Ethan reviews LESSONS.md (4 [CHECK] lines) and records the 2-minute video. Any copy edits get ported into src/content.ts, then `npm run lessons`, redeploy before the Sun 8:00am freeze. If the edits change a lab's intro, that lab's Read to me falls back to browser speech (credits are not re-spent).
+
+### Sat 3:40PM, playtest + code review
+- Milestone: hit.
+- Exploratory playtest on prod (odd names with emoji and accents, punctuation guesses, tossing the fact, no-task prompt, phone width 390px). Found: dropping non-tool text on a Toolbox job crashed the whole app (blank page); "!!!" accepted as a guess; phones offered a 3D hall with no touch controls. All fixed (drop validates the tool id, guesses need a real word, touch devices are pointed at Map mode).
+- Code review (high, src + scripts): 10 findings, all fixed. Biggest: LESSONS.md printed "[object Object]" for nested copy, so Toolbox answers and Robot Chef card lines were missing from Ethan's review file (generator now recurses); "Stop reading" before the MP3 started made the browser voice start talking; ~30 UI strings were hardcoded in components (now in content.ts UI object, exported to LESSONS.md); literal U+FFFD in Token Reef swallowed the rest of the text (split now matches decoded groups against the source); narration ledger now counts real spend.
+- Prod URL works: yes. Re-verified on prod: full keyboard-only offline Map mode run, exploratory pass (no crash), read-aloud, all 8 bays by walking. Tests: 32/32.
+- Scope cuts so far: none.
+- Next step: Ethan reviews LESSONS.md (now complete, 4 [CHECK] lines) and records the video.

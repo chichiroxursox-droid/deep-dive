@@ -35,7 +35,7 @@ Three bonus labs cover tools and agents (approve or deny each step Pip wants to 
 
 ## How I built it
 
-React, TypeScript and three.js (react-three-fiber, rapier, ecctrl for the diver), static on Vercel. js-tiktoken runs the o200k_base tokenizer in the browser. The language model is a trigram model with bigram backoff, trained on Project Gutenberg excerpts. All lesson text lives in one file that exports to LESSONS.md for accuracy review. 31 unit tests cover every lab's logic, and scripted Playwright runs played the live site keyboard-only with the network off. Narration was recorded once with ElevenLabs and ships as MP3s.
+React, TypeScript and three.js (react-three-fiber, rapier, ecctrl for the diver), static on Vercel. js-tiktoken runs the o200k_base tokenizer in the browser. The language model is a trigram model with bigram backoff, trained on Project Gutenberg excerpts. All lesson text lives in one file that exports to LESSONS.md for accuracy review. 32 unit tests cover every lab's logic, and scripted Playwright runs played the live site keyboard-only with the network off. Narration was recorded once with ElevenLabs and ships as MP3s.
 
 **AI disclosure:** I built Deep Dive with Claude Code as my coding agent. No AI runs at runtime.
 
