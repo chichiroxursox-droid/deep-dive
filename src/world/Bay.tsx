@@ -39,7 +39,7 @@ export default function Bay({ position, rotationY, label, color, done, prop, onE
       </Html>
       <group position={[0, 0, -0.6]}>{prop}</group>
       <RigidBody type="fixed" colliders={false}>
-        <CuboidCollider sensor args={[2.2, 1.5, 2.4]} position={[0, 1.5, 0.6]} onIntersectionEnter={onEnter} onIntersectionExit={onLeave} />
+        <CuboidCollider sensor args={[2.8, 1.5, 3]} position={[0, 1.5, 0.3]} onIntersectionEnter={onEnter} onIntersectionExit={onLeave} />
       </RigidBody>
     </group>
   )
