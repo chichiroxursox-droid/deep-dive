@@ -185,6 +185,70 @@ export const BACKPACK = {
   again: 'Try again',
 }
 
+// Lab 4. Pip's card is assembled only from the cards in the prompt. Stars check the finished card.
+export const CHEF = {
+  goal: 'Goal: a funny 3-line birthday card for Maya, who loves sharks.',
+  build: 'Pick cards to build your prompt. Then press Cook it!',
+  cards: [
+    { id: 'task', label: 'Task', text: 'Write a birthday card.' },
+    { id: 'who', label: 'Who it\'s for', text: 'It\'s for my friend Maya.' },
+    { id: 'details', label: 'Details', text: 'She loves sharks.' },
+    { id: 'length', label: 'Length', text: 'Make it 3 lines.' },
+    { id: 'tone', label: 'Tone', text: 'Make it funny.' },
+    { id: 'example', label: 'Example', text: 'Here is one I like: "Happy birthday, Sam! You rock. Love, your friend"' },
+  ],
+  prompt: 'Your prompt',
+  emptyPrompt: '(no cards yet)',
+  cook: 'Cook it!',
+  output: 'Pip made this:',
+  openers: {
+    cardNamed: 'Happy birthday, Maya!',
+    cardAnon: 'Happy birthday to you!',
+    named: 'Hi Maya!',
+    anon: 'Hello there!',
+  },
+  body: {
+    plain_generic: [
+      { text: 'I hope you have a nice day.' },
+      { text: 'Eat some cake.' },
+      { text: 'Have fun with your friends.' },
+      { text: 'Enjoy your presents.' },
+      { text: 'Have a good year.' },
+    ],
+    plain_sharks: [
+      { text: 'Sharks are big fish that live in the sea.' },
+      { text: 'Some sharks have many rows of teeth.' },
+      { text: 'Have fun with your friends.' },
+      { text: 'Enjoy your presents.' },
+      { text: 'Have a good year.' },
+    ],
+    funny_generic: [
+      { text: 'You are not old. You are a classic!', funny: true },
+      { text: 'Eat cake like nobody is watching.', funny: true },
+      { text: 'Party like a dancing banana.', funny: true },
+      { text: 'Enjoy your presents.' },
+      { text: 'Have a good year.' },
+    ],
+    funny_sharks: [
+      { text: 'You are more fun than a shark at a pool party!', funny: true },
+      { text: 'Eat your cake like a hungry shark. Chomp!', funny: true },
+      { text: 'Have a fin-tastic, jaw-some day.', funny: true },
+      { text: 'Enjoy your presents.' },
+      { text: 'Have a good year.' },
+    ],
+  },
+  signoff: { text: 'Love, your friend' },
+  goals: [
+    { id: 'card', label: 'It is a birthday card', miss: 'Pip did not know what to make. Try the Task card.' },
+    { id: 'maya', label: 'It is for Maya', miss: 'Pip did not know who it was for.' },
+    { id: 'sharks', label: 'It talks about sharks', miss: 'Pip did not know Maya loves sharks.' },
+    { id: 'short', label: 'It is 3 lines long', miss: 'Pip did not know how long to make it, so it kept going.' },
+    { id: 'funny', label: 'It is funny', miss: 'Pip did not know you wanted it funny.' },
+  ],
+  example: 'The Example card shows Pip a style you like. Pip copied the sign-off.',
+  win: '5 stars! When you say exactly what you want, you get closer to what you want.',
+}
+
 export const LICENSE = {
   title: 'Diver\'s License',
   namePrompt: 'Your first name',

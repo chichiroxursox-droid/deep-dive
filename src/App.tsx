@@ -12,6 +12,7 @@ const GAMES: Partial<Record<LessonId, ComponentType<GameProps>>> = {
   tokens: lazy(() => import('./lessons/tokens/Lesson.tsx')),
   guess: lazy(() => import('./lessons/guess/Lesson.tsx')),
   backpack: lazy(() => import('./lessons/backpack/Lesson.tsx')),
+  chef: lazy(() => import('./lessons/chef/Lesson.tsx')),
 }
 
 const hasWebGL = (() => {

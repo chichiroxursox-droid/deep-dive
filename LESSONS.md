@@ -110,7 +110,30 @@ Token splits and word probabilities are never written here: the app computes the
 - **Intro**: The message you give a chatbot is called a prompt. If you leave something out, the chatbot has to guess it. Build a prompt from cards and see how close Pip gets.
 - **AI4K12 Big Idea**: Natural Interaction
 - **What is real**: Pip builds its answer only from the cards in your prompt, so every missing card shows up in the result.
-- (game copy not written yet)
+- **goal**: Goal: a funny 3-line birthday card for Maya, who loves sharks.
+- **build**: Pick cards to build your prompt. Then press Cook it!
+- **cards**:
+  - id: task; label: Task; text: Write a birthday card.
+  - id: who; label: Who it's for; text: It's for my friend Maya.
+  - id: details; label: Details; text: She loves sharks.
+  - id: length; label: Length; text: Make it 3 lines.
+  - id: tone; label: Tone; text: Make it funny.
+  - id: example; label: Example; text: Here is one I like: "Happy birthday, Sam! You rock. Love, your friend"
+- **prompt**: Your prompt
+- **emptyPrompt**: (no cards yet)
+- **cook**: Cook it!
+- **output**: Pip made this:
+- **openers**: cardNamed: Happy birthday, Maya!; cardAnon: Happy birthday to you!; named: Hi Maya!; anon: Hello there!
+- **body**: plain_generic: [object Object], [object Object], [object Object], [object Object], [object Object]; plain_sharks: [object Object], [object Object], [object Object], [object Object], [object Object]; funny_generic: [object Object], [object Object], [object Object], [object Object], [object Object]; funny_sharks: [object Object], [object Object], [object Object], [object Object], [object Object]
+- **signoff**: text: Love, your friend
+- **goals**:
+  - id: card; label: It is a birthday card; miss: Pip did not know what to make. Try the Task card.
+  - id: maya; label: It is for Maya; miss: Pip did not know who it was for.
+  - id: sharks; label: It talks about sharks; miss: Pip did not know Maya loves sharks.
+  - id: short; label: It is 3 lines long; miss: Pip did not know how long to make it, so it kept going.
+  - id: funny; label: It is funny; miss: Pip did not know you wanted it funny.
+- **example**: The Example card shows Pip a style you like. Pip copied the sign-off.
+- **win**: 5 stars! When you say exactly what you want, you get closer to what you want.
 
 ## Lab 5: Fact Check Lagoon
 - **Rule**: AI can sound sure and still be wrong. Check facts that matter.
