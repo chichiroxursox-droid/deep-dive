@@ -31,7 +31,7 @@ Token splits and word probabilities are never written here: the app computes the
 - **off**: Now you know!
 - **space**: A dot (·) is a space. Spaces ride along with the word after them.
 - **numbers**: The small number under each chunk is its token number. Inside the AI, every chunk is really a number.
-- **rounds**:
+- **rounds**: 
   - fish
   - jellyfish
   - The ocean is deep.
@@ -50,8 +50,8 @@ Token splits and word probabilities are never written here: the app computes the
 - **loading**: The machine is reading three old books...
 - **read**: It just read {words} words from three old books, right here in your browser.
 - **prompt**: The captain looked at the
-- **ask**: What word comes next? Type one word or pick one.
-- **suggestions**:
+- **ask**: What word comes next? Type a word or pick one.
+- **suggestions**: 
   - sea
   - map
   - door
@@ -63,12 +63,22 @@ Token splits and word probabilities are never written here: the app computes the
 - **how**: It counted every word that came after "{context}" in the books. More counts make a bigger bar.
 - **storyTitle**: Story mode
 - **story**: Now let the machine write, one word at a time. The temperature dial changes how it picks.
-- **temps**:
-  - t: 0; label: Ice cold
-  - t: 0.6; label: Cool
-  - t: 1; label: Just right
-  - t: 1.6; label: Warm
-  - t: 2.5; label: Red hot
+- **temps**: 
+  - (1)
+    - **t**: 0
+    - **label**: Ice cold
+  - (2)
+    - **t**: 0.6
+    - **label**: Cool
+  - (3)
+    - **t**: 1
+    - **label**: Just right
+  - (4)
+    - **t**: 1.6
+    - **label**: Warm
+  - (5)
+    - **t**: 2.5
+    - **label**: Red hot
 - **cold**: Cold: it always picks its top guess, so it gets stuck repeating itself.
 - **hot**: Hot: it picks long shots more often, so it gets silly.
 - **write**: Write a story
@@ -79,15 +89,35 @@ Token splits and word probabilities are never written here: the app computes the
 - **Intro**: A chatbot carries your chat in a backpack. The backpack only holds so many tokens. That space is called the context window. When it gets full, something has to go.
 - **AI4K12 Big Idea**: Representation and Reasoning
 - **What is real**: Each message weighs its real token count from the GPT-4o tokenizer.
-- **chat**:
-  - from: you; text: Hi Pip! My dog's name is Biscuit.
-  - from: pip; text: Hi! I love dogs. What else is new?
-  - from: you; text: I had pancakes for breakfast today.; filler: true
-  - from: pip; text: Yum! Pancakes are a good way to start the day.; filler: true
-  - from: you; text: What is the biggest fish in the sea?
-  - from: pip; text: The whale shark is the biggest fish in the sea.
-  - from: you; text: Cool! My favorite color is green.; filler: true
-  - from: pip; text: Green like seaweed! Nice choice.; filler: true
+- **chat**: 
+  - (1)
+    - **from**: you
+    - **text**: Hi Pip! My dog's name is Biscuit.
+  - (2)
+    - **from**: pip
+    - **text**: Hi! I love dogs. What else is new?
+  - (3)
+    - **from**: you
+    - **text**: I had pancakes for breakfast today.
+    - **filler**: true
+  - (4)
+    - **from**: pip
+    - **text**: Yum! Pancakes are a good way to start the day.
+    - **filler**: true
+  - (5)
+    - **from**: you
+    - **text**: What is the biggest fish in the sea?
+  - (6)
+    - **from**: pip
+    - **text**: The whale shark is the biggest fish in the sea.
+  - (7)
+    - **from**: you
+    - **text**: Cool! My favorite color is green.
+    - **filler**: true
+  - (8)
+    - **from**: pip
+    - **text**: Green like seaweed! Nice choice.
+    - **filler**: true
 - **question**: What's my dog's name?
 - **answer**: Biscuit
 - **goal**: Chat with Pip, then ask it about your dog. Can Pip still find the answer?
@@ -115,26 +145,114 @@ Token splits and word probabilities are never written here: the app computes the
 - **What is real**: Pip builds its answer only from the cards in your prompt, so every missing card shows up in the result.
 - **goal**: Goal: a funny 3-line birthday card for Maya, who loves sharks.
 - **build**: Pick cards to build your prompt. Then press Cook it!
-- **cards**:
-  - id: task; label: Task; text: Write a birthday card.
-  - id: who; label: Who it's for; text: It's for my friend Maya.
-  - id: details; label: Details; text: She loves sharks.
-  - id: length; label: Length; text: Make it 3 lines.
-  - id: tone; label: Tone; text: Make it funny.
-  - id: example; label: Example; text: Here is one I like: "Happy birthday, Sam! You rock. Love, your friend"
+- **cards**: 
+  - (1)
+    - **id**: task
+    - **label**: Task
+    - **text**: Write a birthday card.
+  - (2)
+    - **id**: who
+    - **label**: Who it's for
+    - **text**: It's for my friend Maya.
+  - (3)
+    - **id**: details
+    - **label**: Details
+    - **text**: She loves sharks.
+  - (4)
+    - **id**: length
+    - **label**: Length
+    - **text**: Make it 3 lines.
+  - (5)
+    - **id**: tone
+    - **label**: Tone
+    - **text**: Make it funny.
+  - (6)
+    - **id**: example
+    - **label**: Example
+    - **text**: Here is one I like: "Happy birthday, Sam! You rock. Love, your friend"
 - **prompt**: Your prompt
 - **emptyPrompt**: (no cards yet)
 - **cook**: Cook it!
 - **output**: Pip made this:
-- **openers**: cardNamed: Happy birthday, Maya!; cardAnon: Happy birthday to you!; named: Hi Maya!; anon: Hello there!
-- **body**: plain_generic: [object Object], [object Object], [object Object], [object Object], [object Object]; plain_sharks: [object Object], [object Object], [object Object], [object Object], [object Object]; funny_generic: [object Object], [object Object], [object Object], [object Object], [object Object]; funny_sharks: [object Object], [object Object], [object Object], [object Object], [object Object]
-- **signoff**: text: Love, your friend
-- **goals**:
-  - id: card; label: It is a birthday card; miss: Pip did not know what to make. Try the Task card.
-  - id: maya; label: It is for Maya; miss: Pip did not know who it was for.
-  - id: sharks; label: It talks about sharks; miss: Pip did not know Maya loves sharks.
-  - id: short; label: It is 3 lines long; miss: Pip did not know how long to make it, so it kept going.
-  - id: funny; label: It is funny; miss: Pip did not know you wanted it funny.
+- **openers**: 
+  - **cardNamed**: Happy birthday, Maya!
+  - **cardAnon**: Happy birthday to you!
+  - **named**: Hi Maya!
+  - **anon**: Hello there!
+- **body**: 
+  - **plain_generic**: 
+    - (1)
+      - **text**: I hope you have a nice day.
+    - (2)
+      - **text**: Eat some cake.
+    - (3)
+      - **text**: Have fun with your friends.
+    - (4)
+      - **text**: Enjoy your presents.
+    - (5)
+      - **text**: Have a good year.
+  - **plain_sharks**: 
+    - (1)
+      - **text**: Sharks are big fish that live in the sea.
+    - (2)
+      - **text**: Some sharks have many rows of teeth.
+    - (3)
+      - **text**: Have fun with your friends.
+    - (4)
+      - **text**: Enjoy your presents.
+    - (5)
+      - **text**: Have a good year.
+  - **funny_generic**: 
+    - (1)
+      - **text**: You are not old. You are a classic!
+      - **funny**: true
+    - (2)
+      - **text**: Eat cake like nobody is watching.
+      - **funny**: true
+    - (3)
+      - **text**: Party like a dancing banana.
+      - **funny**: true
+    - (4)
+      - **text**: Enjoy your presents.
+    - (5)
+      - **text**: Have a good year.
+  - **funny_sharks**: 
+    - (1)
+      - **text**: You are more fun than a shark at a pool party!
+      - **funny**: true
+    - (2)
+      - **text**: Eat your cake like a hungry shark. Chomp!
+      - **funny**: true
+    - (3)
+      - **text**: Have a fin-tastic, jaw-some day.
+      - **funny**: true
+    - (4)
+      - **text**: Enjoy your presents.
+    - (5)
+      - **text**: Have a good year.
+- **signoff**: 
+  - **text**: Love, your friend
+- **goals**: 
+  - (1)
+    - **id**: card
+    - **label**: It is a birthday card
+    - **miss**: Pip did not know what to make. Try the Task card.
+  - (2)
+    - **id**: maya
+    - **label**: It is for Maya
+    - **miss**: Pip did not know who it was for.
+  - (3)
+    - **id**: sharks
+    - **label**: It talks about sharks
+    - **miss**: Pip did not know Maya loves sharks.
+  - (4)
+    - **id**: short
+    - **label**: It is 3 lines long
+    - **miss**: Pip did not know how long to make it, so it kept going.
+  - (5)
+    - **id**: funny
+    - **label**: It is funny
+    - **miss**: Pip did not know you wanted it funny.
 - **example**: The Example card shows Pip a style you like. Pip copied the sign-off.
 - **win**: 5 stars! When you say exactly what you want, you get closer to what you want.
 
@@ -145,24 +263,80 @@ Token splits and word probabilities are never written here: the app computes the
 - **What is real**: Every Field Guide fact links to a NOAA page that was checked by hand.
 - **task**: For each fact, pick one: backed up by the guide, wrong by the guide, or not in the guide.
 - **sure**: 99% sure
-- **choices**:
-  - id: backed; label: Backed up
-  - id: wrong; label: Wrong
-  - id: missing; label: Not in the guide
-- **claims**:
-  - id: octopus; text: An octopus has three hearts.; answer: backed; guide: octopus; why: The guide says so. Surprising, but true!
-  - id: bones; text: A shark's skeleton is made of bone, just like yours.; answer: wrong; guide: sharks; why: The guide says shark skeletons are made of cartilage, not bone. Pip made this up.
-  - id: bluewhale; text: The blue whale is the biggest fish in the ocean.; answer: wrong; guide: whaleshark; why: The guide says the biggest fish is the whale shark. The blue whale is the biggest animal, but it is a mammal, not a fish.
-  - id: horseshoe; text: Horseshoe crabs have blue blood.; answer: backed; guide: horseshoe; why: The guide says so. It sounds made up, but it is true!
-  - id: clownfish; text: Clownfish glow in the dark to scare away sharks.; answer: missing; subject: clownfish; why: Nothing in the guide backs this up. Pip made it up. If you can't find it in a good source, don't trust it yet.
+- **choices**: 
+  - (1)
+    - **id**: backed
+    - **label**: Backed up
+  - (2)
+    - **id**: wrong
+    - **label**: Wrong
+  - (3)
+    - **id**: missing
+    - **label**: Not in the guide
+- **claims**: 
+  - (1)
+    - **id**: octopus
+    - **text**: An octopus has three hearts.
+    - **answer**: backed
+    - **guide**: octopus
+    - **why**: The guide says so. Surprising, but true!
+  - (2)
+    - **id**: bones
+    - **text**: A shark's skeleton is made of bone, just like yours.
+    - **answer**: wrong
+    - **guide**: sharks
+    - **why**: The guide says shark skeletons are made of cartilage, not bone. Pip made this up.
+  - (3)
+    - **id**: bluewhale
+    - **text**: The blue whale is the biggest fish in the ocean.
+    - **answer**: wrong
+    - **guide**: whaleshark
+    - **why**: The guide says the biggest fish is the whale shark. The blue whale is the biggest animal, but it is a mammal, not a fish.
+  - (4)
+    - **id**: horseshoe
+    - **text**: Horseshoe crabs have blue blood.
+    - **answer**: backed
+    - **guide**: horseshoe
+    - **why**: The guide says so. It sounds made up, but it is true!
+  - (5)
+    - **id**: clownfish
+    - **text**: Clownfish glow in the dark to scare away sharks.
+    - **answer**: missing
+    - **subject**: clownfish
+    - **why**: Nothing in the guide backs this up. Pip made it up. If you can't find it in a good source, don't trust it yet.
 - **guideTitle**: Field Guide
 - **guideOpen**: Open the Field Guide
-- **guide**:
-  - id: octopus; title: Octopus; fact: Octopuses have three hearts. Two pump blood to the gills, and one pumps it to the rest of the body.; source: NOAA Ocean Service; url: https://oceanservice.noaa.gov/news/feb26/undersea-creatures-valentines-day.html
-  - id: sharks; title: Sharks; fact: Sharks, skates, and rays are fish with skeletons made of cartilage instead of bone.; source: NOAA National Marine Sanctuaries; url: https://sanctuaries.noaa.gov/education/teachers/sharks/background.html
-  - id: bluewhale; title: Blue whale; fact: The blue whale is the largest animal on Earth. It is a mammal (class Mammalia).; source: NOAA Fisheries; url: https://www.fisheries.noaa.gov/species/blue-whale
-  - id: whaleshark; title: Whale shark; fact: The whale shark is the largest fish in the world.; source: NOAA National Marine Sanctuaries; url: https://sanctuaries.noaa.gov/education/teachers/whale-sharks.html
-  - id: horseshoe; title: Horseshoe crab; fact: Horseshoe crab blood is blue, and it is copper-based.; source: NOAA Ocean Today; url: https://oceantoday.noaa.gov/fullmoon-bluebloodsbattlebacteria/
+- **guide**: 
+  - (1)
+    - **id**: octopus
+    - **title**: Octopus
+    - **fact**: Octopuses have three hearts. Two pump blood to the gills, and one pumps it to the rest of the body.
+    - **source**: NOAA Ocean Service
+    - **url**: https://oceanservice.noaa.gov/news/feb26/undersea-creatures-valentines-day.html
+  - (2)
+    - **id**: sharks
+    - **title**: Sharks
+    - **fact**: Sharks, skates, and rays are fish with skeletons made of cartilage instead of bone.
+    - **source**: NOAA National Marine Sanctuaries
+    - **url**: https://sanctuaries.noaa.gov/education/teachers/sharks/background.html
+  - (3)
+    - **id**: bluewhale
+    - **title**: Blue whale
+    - **fact**: The blue whale is the largest animal on Earth. It is a mammal (class Mammalia).
+    - **source**: NOAA Fisheries
+    - **url**: https://www.fisheries.noaa.gov/species/blue-whale
+  - (4)
+    - **id**: whaleshark
+    - **title**: Whale shark
+    - **fact**: The whale shark is the largest fish in the world.
+    - **source**: NOAA National Marine Sanctuaries
+    - **url**: https://sanctuaries.noaa.gov/education/teachers/whale-sharks.html
+  - (5)
+    - **id**: horseshoe
+    - **title**: Horseshoe crab
+    - **fact**: Horseshoe crab blood is blue, and it is copper-based.
+    - **source**: NOAA Ocean Today
+    - **url**: https://oceantoday.noaa.gov/fullmoon-bluebloodsbattlebacteria/
 - **check**: Check my answers
 - **score**: You got {n} of {total} right.
 - **lesson**: Pip was 99% sure every time, even when it was wrong. Sounding sure is not the same as being right.
@@ -174,16 +348,71 @@ Token splits and word probabilities are never written here: the app computes the
 - **AI4K12 Big Idea**: Representation and Reasoning
 - **What is real**: The calculator really calculates. The weather tool is pretend, so the app never goes online.
 - **task**: Pip has four jobs. Give Pip the right tool for each one. Drag a tool onto a job, or press a tool button.
-- **tools**:
-  - id: calc; label: Calculator; icon: 🧮; about: Does exact math.
-  - id: weather; label: Weather; icon: 🌦️; about: Looks up the weather.
-  - id: skill; label: Skill card; icon: 📋; about: Saved instructions, like the station's report format.
-  - id: none; label: No tool; icon: 💬; about: Pip just writes.
-- **jobs**:
-  - id: math; text: What is 4,839 x 27?; a: 4839; b: 27; tool: calc; answers: [object Object]; wrongWhy: Close, but wrong! Without a calculator, Pip guesses big numbers one piece at a time, and a digit can slip.
-  - id: weather; text: What's the weather at the beach today?; tool: weather; answers: [object Object]; rightNote: In this game the weather tool is pretend. Real weather tools look up live data.; wrongWhy: Pip made that up. Without a tool, it has no way to know today's weather.
-  - id: report; text: Write today's lab report in the station's format.; tool: skill; answers: [object Object]; wrongWhy: Pip did not know the station's format. A skill card is saved instructions Pip can follow every time.
-  - id: joke; text: Tell me a crab joke.; tool: none; answers: [object Object]; wrongWhy: This job did not need a tool. The wrong tool just got in the way.
+- **tools**: 
+  - (1)
+    - **id**: calc
+    - **label**: Calculator
+    - **icon**: 🧮
+    - **about**: Does exact math.
+  - (2)
+    - **id**: weather
+    - **label**: Weather
+    - **icon**: 🌦️
+    - **about**: Looks up the weather.
+  - (3)
+    - **id**: skill
+    - **label**: Skill card
+    - **icon**: 📋
+    - **about**: Saved instructions, like the station's report format.
+  - (4)
+    - **id**: none
+    - **label**: No tool
+    - **icon**: 💬
+    - **about**: Pip just writes.
+- **jobs**: 
+  - (1)
+    - **id**: math
+    - **text**: What is 4,839 x 27?
+    - **a**: 4839
+    - **b**: 27
+    - **tool**: calc
+    - **answers**: 
+      - **calc**: {product}. The calculator does it exactly.
+      - **none**: 4,839 x 27 is 130,563.
+      - **weather**: Sunny and 78 degrees.
+      - **skill**: LAB REPORT. Topic: a big number.
+    - **wrongWhy**: Close, but wrong! Without a calculator, Pip guesses big numbers one piece at a time, and a digit can slip.
+  - (2)
+    - **id**: weather
+    - **text**: What's the weather at the beach today?
+    - **tool**: weather
+    - **answers**: 
+      - **weather**: The beach sensor says 78 degrees, sunny, light wind.
+      - **none**: It is probably sunny and 72 degrees!
+      - **calc**: The weather is 0.
+      - **skill**: LAB REPORT. Weather: unknown.
+    - **rightNote**: In this game the weather tool is pretend. Real weather tools look up live data.
+    - **wrongWhy**: Pip made that up. Without a tool, it has no way to know today's weather.
+  - (3)
+    - **id**: report
+    - **text**: Write today's lab report in the station's format.
+    - **tool**: skill
+    - **answers**: 
+      - **skill**: STATION LAB REPORT | Day 12 | What we saw: 3 octopuses by the reef | What it means: the reef is healthy
+      - **none**: Today we saw some octopuses and it was cool.
+      - **calc**: 3
+      - **weather**: Sunny.
+    - **wrongWhy**: Pip did not know the station's format. A skill card is saved instructions Pip can follow every time.
+  - (4)
+    - **id**: joke
+    - **text**: Tell me a crab joke.
+    - **tool**: none
+    - **answers**: 
+      - **none**: Why don't crabs share? Because they're shellfish!
+      - **calc**: Crab joke = 0.5
+      - **weather**: Partly crabby, 70 degrees.
+      - **skill**: LAB REPORT. Joke: crab.
+    - **wrongWhy**: This job did not need a tool. The wrong tool just got in the way.
 - **right**: Right tool!
 - **wrong**: Wrong tool.
 - **agentTitle**: Agent mode
@@ -191,11 +420,23 @@ Token splits and word probabilities are never written here: the app computes the
 - **agentAsk**: Pip wants to take these steps. Say yes or no to each one.
 - **divers**: 3
 - **price**: 4
-- **steps**:
-  - tool: weather; text: Use Weather to check the beach.; ok: true
-  - tool: calc; text: Use Calculator: {divers} x ${price} for snacks.; ok: true
-  - tool: skill; text: Use the Skill card to write the lab report.; ok: true
-  - tool: send; text: Send the report to everyone in the station.; ok: false
+- **steps**: 
+  - (1)
+    - **tool**: weather
+    - **text**: Use Weather to check the beach.
+    - **ok**: true
+  - (2)
+    - **tool**: calc
+    - **text**: Use Calculator: {divers} x ${price} for snacks.
+    - **ok**: true
+  - (3)
+    - **tool**: skill
+    - **text**: Use the Skill card to write the lab report.
+    - **ok**: true
+  - (4)
+    - **tool**: send
+    - **text**: Send the report to everyone in the station.
+    - **ok**: false
 - **yes**: Yes
 - **no**: No
 - **sendWhy**: You never asked Pip to send anything. Agents can take real actions, so a person should check each step.
@@ -220,7 +461,7 @@ Token splits and word probabilities are never written here: the app computes the
 - **goal**: 5
 - **win**: You did it! Pip talks about animals because it read books full of animals.
 - **why**: Pip is not choosing to like animals. It repeats what it read most. Real chatbots read huge piles of text, and whatever is missing or too common in that pile shows up in their answers.
-- **animals**:
+- **animals**: 
   - fox
   - lion
   - wolf
@@ -285,18 +526,54 @@ Token splits and word probabilities are never written here: the app computes the
 - **Intro**: A chat can feel private, but it is not a diary. What you type can be saved by the company that runs the chatbot. Sort each card: fine to share, or keep private?
 - **AI4K12 Big Idea**: Societal Impact
 - **What is real**: Nothing here is sent anywhere. The cards are sorted right on this page.
-- **choices**:
-  - id: ok; label: Fine to share
-  - id: private; label: Keep private
-- **cards**: **[CHECK: Pet's name is marked private because of security questions. OK, or should it be "fine"?]**
-  - id: color; text: Your favorite color; answer: ok; why: Fine. Nobody can find you with your favorite color.
-  - id: address; text: Your home address; answer: private; why: Keep it private. It tells someone exactly where you live.
-  - id: password; text: Your password; answer: private; why: Never share a password with anyone, not even a chatbot.
-  - id: pet; text: Your pet's name; answer: private; why: Surprise! Lots of people use a pet's name in passwords and secret questions, so keep it to yourself.
-  - id: joke; text: A joke you made up; answer: ok; why: Fine. Jokes are for sharing.
-  - id: school; text: Your full name and school; answer: private; why: Keep it private. Together they can lead a stranger to you.
-  - id: animal; text: Your favorite sea animal; answer: ok; why: Fine. Tell everyone about octopuses!
-  - id: phone; text: Your phone number; answer: private; why: Keep it private. A phone number lets people reach you.
+- **choices**: 
+  - (1)
+    - **id**: ok
+    - **label**: Fine to share
+  - (2)
+    - **id**: private
+    - **label**: Keep private
+- **cards**:  **[CHECK: Pet's name is marked private because of security questions. OK, or should it be "fine"?]**
+  - (1)
+    - **id**: color
+    - **text**: Your favorite color
+    - **answer**: ok
+    - **why**: Fine. Nobody can find you with your favorite color.
+  - (2)
+    - **id**: address
+    - **text**: Your home address
+    - **answer**: private
+    - **why**: Keep it private. It tells someone exactly where you live.
+  - (3)
+    - **id**: password
+    - **text**: Your password
+    - **answer**: private
+    - **why**: Never share a password with anyone, not even a chatbot.
+  - (4)
+    - **id**: pet
+    - **text**: Your pet's name
+    - **answer**: private
+    - **why**: Surprise! Lots of people use a pet's name in passwords and secret questions, so keep it to yourself.
+  - (5)
+    - **id**: joke
+    - **text**: A joke you made up
+    - **answer**: ok
+    - **why**: Fine. Jokes are for sharing.
+  - (6)
+    - **id**: school
+    - **text**: Your full name and school
+    - **answer**: private
+    - **why**: Keep it private. Together they can lead a stranger to you.
+  - (7)
+    - **id**: animal
+    - **text**: Your favorite sea animal
+    - **answer**: ok
+    - **why**: Fine. Tell everyone about octopuses!
+  - (8)
+    - **id**: phone
+    - **text**: Your phone number
+    - **answer**: private
+    - **why**: Keep it private. A phone number lets people reach you.
 - **check**: Check my sorting
 - **score**: You sorted {n} of {total} right.
 - **lesson**: Chats can be saved, and people at the company may read them or use them to train new AI. So share ideas, not secrets. **[CHECK: Depends on the app and its settings. Is "may read them or use them to train new AI" fair as a general warning?]**
@@ -305,6 +582,46 @@ Token splits and word probabilities are never written here: the app computes the
 - **help**: WASD or arrow keys to walk. Drag to look around. Walk up to a lab and press E.
 - **enter**: Press E to dive in
 - **license**: Diver's License
+
+## Buttons and labels
+- **back**: Back to the station
+- **lab**: Lab
+- **bonusLab**: Bonus lab
+- **bonusLabs**: Bonus labs
+- **bonus**: Bonus
+- **loadingStation**: Loading the station...
+- **loadingLab**: Loading the lab...
+- **loadingTokenizer**: Loading the real tokenizer...
+- **loadingBooks**: Loading the books...
+- **building**: This lab is still being built.
+- **mapMode**: Map mode
+- **labsDone**: Labs done: {n} of {total}
+- **mapTitle**: Station Map
+- **mapHelp**: Pick a lab. Use Tab to move and Enter to open.
+- **walk3D**: Walk the 3D station
+- **done**: Done
+- **notYet**: Not yet
+- **notFinished**: not finished yet
+- **tryAgain**: Try again
+- **round**: Round {n} of {total}
+- **token**: token
+- **tokens**: tokens
+- **you**: You
+- **pip**: Pip
+- **pipSure**: Pip says it is {sure}.
+- **chat**: Chat
+- **noMessages**: No messages yet.
+- **fellOut**: fell out
+- **tossed**: tossed
+- **right**: Right.
+- **answerIs**: The answer is "{answer}".
+- **temperature**: Temperature:
+- **step**: Step {n}:
+- **animal**: (animal)
+- **station**: Deep Dive Research Station
+- **diver**: Diver:
+- **play**: Read to me
+- **stop**: Stop reading
 
 ## Diver's License
 - **title**: Diver's License

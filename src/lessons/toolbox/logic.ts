@@ -1,7 +1,6 @@
-import { TOOLBOX as T } from '../../content.ts'
+import { fill, TOOLBOX as T } from '../../content.ts'
 
 export type ToolId = (typeof T.tools)[number]['id']
-const fill = (s: string, v: Record<string, string | number>) => s.replace(/\{(\w+)\}/g, (_, k) => String(v[k]))
 
 export const rightTool = (jobId: string) => T.jobs.find((j) => j.id === jobId)!.tool
 

@@ -19,6 +19,49 @@ export const coreDone = (done: ReadonlySet<LessonId>, all: LessonMeta[]) => all.
 // What "Read to me" says for each lab. scripts/narrate.ts turns it into MP3s once.
 export const narration = (l: LessonMeta) => `${l.title}. ${l.rule} ${l.intro.join(' ')}`
 
+// Fills {name} slots in copy, like fill('{n} tokens', { n: 3 }).
+export const fill = (s: string, v: Record<string, string | number>) => s.replace(/\{(\w+)\}/g, (_, k) => String(v[k]))
+
+// Words on shared buttons and labels.
+export const UI = {
+  back: 'Back to the station',
+  lab: 'Lab',
+  bonusLab: 'Bonus lab',
+  bonusLabs: 'Bonus labs',
+  bonus: 'Bonus',
+  loadingStation: 'Loading the station...',
+  loadingLab: 'Loading the lab...',
+  loadingTokenizer: 'Loading the real tokenizer...',
+  loadingBooks: 'Loading the books...',
+  building: 'This lab is still being built.',
+  mapMode: 'Map mode',
+  labsDone: 'Labs done: {n} of {total}',
+  mapTitle: 'Station Map',
+  mapHelp: 'Pick a lab. Use Tab to move and Enter to open.',
+  walk3D: 'Walk the 3D station',
+  done: 'Done',
+  notYet: 'Not yet',
+  notFinished: 'not finished yet',
+  tryAgain: 'Try again',
+  round: 'Round {n} of {total}',
+  token: 'token',
+  tokens: 'tokens',
+  you: 'You',
+  pip: 'Pip',
+  pipSure: 'Pip says it is {sure}.',
+  chat: 'Chat',
+  noMessages: 'No messages yet.',
+  fellOut: 'fell out',
+  tossed: 'tossed',
+  right: 'Right.',
+  answerIs: 'The answer is "{answer}".',
+  temperature: 'Temperature:',
+  step: 'Step {n}:',
+  animal: '(animal)',
+  station: 'Deep Dive Research Station',
+  diver: 'Diver:',
+}
+
 export const READ = { play: 'Read to me', stop: 'Stop reading' }
 
 export const SAFETY = 'No accounts. No chatting with a live AI. Nothing you type leaves this page. Works offline once it loads.'
@@ -186,7 +229,7 @@ export const GUESS = {
   loading: 'The machine is reading three old books...',
   read: 'It just read {words} words from three old books, right here in your browser.',
   prompt: 'The captain looked at the',
-  ask: 'What word comes next? Type one word or pick one.',
+  ask: 'What word comes next? Type a word or pick one.',
   suggestions: ['sea', 'map', 'door', 'sky', 'fish'],
   reveal: 'Show the machine\'s top 5',
   yours: 'The machine gave "{word}" a {p} chance.',

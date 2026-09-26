@@ -1,15 +1,14 @@
 import { useEffect, useState } from 'react'
 import type { GameProps } from '../../App.tsx'
-import { TOKENS as T } from '../../content.ts'
+import { fill, TOKENS as T, UI } from '../../content.ts'
 import { loadEncoder, split, type Encoder } from './logic.ts'
 
 const COLORS = ['bg-coral', 'bg-glow', 'bg-[#ffd166]', 'bg-kelp', 'bg-urchin']
-export const fill = (s: string, v: Record<string, string | number>) => s.replace(/\{(\w+)\}/g, (_, k) => String(v[k]))
 
 export function Chunks({ enc, text }: { enc: Encoder; text: string }) {
   const pieces = split(enc, text)
   return (
-    <ol aria-label={`${pieces.length} ${pieces.length === 1 ? "token" : "tokens"}`} className="flex flex-wrap gap-1.5">
+    <ol aria-label={`${pieces.length} ${pieces.length === 1 ? UI.token : UI.tokens}`} className="flex flex-wrap gap-1.5">
       {pieces.map((p, i) => (
         <li key={i} className={`${COLORS[i % COLORS.length]} flex flex-col items-center rounded-lg px-2 py-1 text-abyss`}>
           <span className="whitespace-pre font-mono text-xl font-bold">{p.text.replaceAll(' ', '·')}</span>
@@ -43,7 +42,7 @@ export default function TokenReef({ onDone }: GameProps) {
     const verdict = guess === n ? T.exact : Math.abs((guess ?? 0) - n) === 1 ? T.close : T.off
     return (
       <section key={round} className="card flex flex-col gap-4">
-        <p className="text-sm font-bold text-glow">Round {round + 1} of {T.rounds.length}</p>
+        <p className="text-sm font-bold text-glow">{fill(UI.round, { n: round + 1, total: T.rounds.length })}</p>
         <p className="text-3xl font-black">"{text}"</p>
         <fieldset className="flex flex-col gap-2">
           <legend className="mb-2 text-lg">{T.ask}</legend>

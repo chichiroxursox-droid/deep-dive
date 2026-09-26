@@ -13,15 +13,19 @@ export function loadEncoder(): Promise<Encoder> {
 }
 
 // The tokenizer's real pieces. One emoji can span several tokens whose bytes only make
-// a character together, so ids are grouped until they decode cleanly.
+// a character together, so ids are grouped until they decode to exactly the next stretch of the
+// original text. (A half-built character decodes to "�", which never matches the source, while
+// a real "�" typed by the kid does, so it can't swallow the words after it.)
 export function split(enc: Encoder, text: string): Piece[] {
   const pieces: Piece[] = []
   let pending: number[] = []
+  let at = 0
   for (const id of enc.encode(text)) {
     pending.push(id)
     const s = enc.decode(pending)
-    if (!s.includes('�')) {
+    if (text.startsWith(s, at)) {
       pieces.push({ text: s, ids: pending })
+      at += s.length
       pending = []
     }
   }

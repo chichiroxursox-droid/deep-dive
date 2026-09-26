@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import type { GameProps } from '../../App.tsx'
-import { BACKPACK as B } from '../../content.ts'
-import { fill } from '../tokens/Lesson.tsx'
+import { BACKPACK as B, fill, UI } from '../../content.ts'
 import { countTokens, loadEncoder, type Encoder } from '../tokens/logic.ts'
 import { add, CAPACITY, empty, pin, toss, used } from './logic.ts'
 
@@ -18,7 +17,7 @@ export default function Backpack({ onDone }: GameProps) {
     loadEncoder().then(setEnc)
   }, [])
 
-  if (!enc) return <p role="status" className="card">Loading the real tokenizer...</p>
+  if (!enc) return <p role="status" className="card">{UI.loadingTokenizer}</p>
 
   const asked = step === ALL.length
   const found = pack.items.some((x) => x.id === 0)
@@ -44,18 +43,18 @@ export default function Backpack({ onDone }: GameProps) {
     <>
       <p className="text-lg">{B.goal} <span className="text-glow">{B.tip}</span></p>
       <div className="grid gap-4 md:grid-cols-2">
-        <section className="card flex flex-col gap-2" aria-label="Chat">
-          <h3 className="text-xl font-black">Chat</h3>
-          {step === 0 && <p className="text-sand/60">No messages yet.</p>}
+        <section className="card flex flex-col gap-2" aria-label={UI.chat}>
+          <h3 className="text-xl font-black">{UI.chat}</h3>
+          {step === 0 && <p className="text-sand/60">{UI.noMessages}</p>}
           <ol className="flex flex-col gap-2">
             {ALL.slice(0, step).map((m, i) => (
               <li
                 key={i}
                 className={`max-w-[85%] rounded-2xl px-3 py-2 ${m.from === 'you' ? 'self-end bg-coral text-abyss' : 'self-start bg-glow text-abyss'} ${inPack.has(i) ? '' : 'opacity-40'}`}
               >
-                <span className="sr-only">{m.from === 'you' ? 'You: ' : 'Pip: '}</span>
+                <span className="sr-only">{m.from === 'you' ? UI.you : UI.pip}: </span>
                 {m.text}
-                {!inPack.has(i) && <span className="block text-xs font-bold">{fell.has(i) ? 'fell out' : 'tossed'}</span>}
+                {!inPack.has(i) && <span className="block text-xs font-bold">{fell.has(i) ? UI.fellOut : UI.tossed}</span>}
               </li>
             ))}
           </ol>
@@ -73,7 +72,7 @@ export default function Backpack({ onDone }: GameProps) {
             {pack.items.map((x) => (
               <li key={x.id} className={`flex flex-wrap items-center gap-2 rounded-xl border-2 p-2 ${pack.pinned === x.id ? 'border-coral' : 'border-line'}`}>
                 <span className="flex-1">{x.text}</span>
-                <span className="rounded-md bg-abyss px-2 text-sm tabular-nums">{x.tokens} tokens</span>
+                <span className="rounded-md bg-abyss px-2 text-sm tabular-nums">{x.tokens} {UI.tokens}</span>
                 <button className="chip text-sm" aria-pressed={pack.pinned === x.id} onClick={() => setPack(pin(pack, x.id))} disabled={asked}>
                   {pack.pinned === x.id ? B.unpin : B.pin}
                 </button>

@@ -1,4 +1,4 @@
-import { CORE, LESSONS, LICENSE, type LessonId } from './content.ts'
+import { CORE, LESSONS, LICENSE, UI, type LessonId } from './content.ts'
 import { Pip } from './App.tsx'
 
 type Props = { done: ReadonlySet<LessonId>; name: string; onName: (n: string) => void }
@@ -13,19 +13,19 @@ export default function Certificate({ done, name, onName }: Props) {
         <div className="flex flex-wrap items-center gap-4">
           <Pip size={64} />
           <div className="flex-1">
-            <p className="text-sm font-bold uppercase tracking-widest text-glow">Deep Dive Research Station</p>
+            <p className="text-sm font-bold uppercase tracking-widest text-glow">{UI.station}</p>
             <h2 id="license-title" className="text-3xl font-black">{LICENSE.title}</h2>
           </div>
           <p className="text-4xl font-black text-coral" aria-label={`${n} of ${CORE.length} labs done`}>{n}/{CORE.length}</p>
         </div>
         <p className="mt-4 text-2xl font-bold">
-          Diver: <span className="text-glow">{name.trim() || '________'}</span>
+          {UI.diver} <span className="text-glow">{name.trim() || '________'}</span>
         </p>
         <ul className="mt-4 flex flex-col gap-2">
           {LESSONS.filter((l) => !l.bonus || done.has(l.id)).map((l) => (
             <li key={l.id} className={done.has(l.id) ? 'text-lg' : 'text-lg text-sand/40'}>
               <span aria-hidden>{done.has(l.id) ? '✓ ' : '○ '}</span>
-              <b>{l.bonus ? 'Bonus: ' : ''}{l.title}:</b> {done.has(l.id) ? l.rule : 'not finished yet'}
+              <b>{l.bonus ? `${UI.bonus}: ` : ''}{l.title}:</b> {done.has(l.id) ? l.rule : UI.notFinished}
             </li>
           ))}
         </ul>

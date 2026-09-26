@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import type { GameProps } from '../../App.tsx'
-import { FACTS as F } from '../../content.ts'
-import { fill } from '../tokens/Lesson.tsx'
+import { FACTS as F, fill, UI } from '../../content.ts'
 import { grade, guideEntry } from './logic.ts'
 
 export default function FactCheck({ onDone }: GameProps) {
@@ -35,12 +34,12 @@ export default function FactCheck({ onDone }: GameProps) {
           return (
             <li key={c.id} className="card flex flex-col gap-2">
               <fieldset className="flex flex-col gap-2" disabled={checked}>
-                <legend className="text-xl font-bold">Pip: "{c.text}"</legend>
+                <legend className="text-xl font-bold">{UI.pip}: "{c.text}"</legend>
                 <div className="flex items-center gap-2 text-sm" aria-hidden>
                   <span className="h-3 w-40 rounded-full bg-abyss"><span className="block h-3 w-[99%] rounded-full bg-coral" /></span>
                   <span className="font-bold text-coral">{F.sure}</span>
                 </div>
-                <p className="sr-only">Pip says it is {F.sure}.</p>
+                <p className="sr-only">{fill(UI.pipSure, { sure: F.sure })}</p>
                 <div className="flex flex-wrap gap-2">
                   {F.choices.map((ch) => (
                     <label key={ch.id} className="chip cursor-pointer has-checked:border-coral has-checked:bg-coral has-checked:text-abyss has-focus-visible:outline-3 has-focus-visible:outline-glow">
@@ -52,7 +51,7 @@ export default function FactCheck({ onDone }: GameProps) {
               </fieldset>
               {checked && (
                 <p className={r.ok ? 'text-kelp' : 'text-urchin'}>
-                  <b>{r.ok ? '✓ Right.' : `✗ The answer is "${F.choices.find((ch) => ch.id === c.answer)!.label}".`}</b> {c.why}{' '}
+                  <b>{r.ok ? `✓ ${UI.right}` : `✗ ${fill(UI.answerIs, { answer: F.choices.find((ch) => ch.id === c.answer)!.label })}`}</b> {c.why}{' '}
                   {g && <a className="text-glow underline" href={g.url} target="_blank" rel="noreferrer">{F.source}: {g.source}</a>}
                 </p>
               )}
@@ -76,7 +75,7 @@ export default function FactCheck({ onDone }: GameProps) {
         <section className="card border-2 border-glow" aria-live="polite">
           <p className="text-2xl font-black">{fill(F.score, { n: results.filter((r) => r.ok).length, total: F.claims.length })}</p>
           <p className="text-lg">{F.lesson}</p>
-          <button className="btn-ghost mt-2" onClick={() => { setAnswers({}); setChecked(false) }}>Try again</button>
+          <button className="btn-ghost mt-2" onClick={() => { setAnswers({}); setChecked(false) }}>{UI.tryAgain}</button>
         </section>
       )}
     </>

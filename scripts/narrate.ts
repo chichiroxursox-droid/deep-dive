@@ -1,6 +1,8 @@
 // One-time build step: pre-generates "Read to me" MP3s with ElevenLabs. The app never calls ElevenLabs.
 // Run: node --env-file=.env.local scripts/narrate.ts
-// Skips labs that already have an MP3, so each clip is generated once. Hard cap: 2,000 characters total.
+// src/narration.json is the ledger of what was already paid for: a lab listed there is never generated again,
+// even if its MP3 is deleted, so the 2,000-character cap counts real spend. To re-record a lab on purpose, remove
+// its entry from the ledger by hand and accept that it spends again.
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { LESSONS, narration } from '../src/content.ts'
 
@@ -9,7 +11,7 @@ const dir = new URL('../public/audio/', import.meta.url)
 const manifestUrl = new URL('../src/narration.json', import.meta.url)
 const manifest: Record<string, string> = existsSync(manifestUrl) ? JSON.parse(readFileSync(manifestUrl, 'utf8')) : {}
 
-const todo = LESSONS.filter((l) => !existsSync(new URL(`${l.id}.mp3`, dir)))
+const todo = LESSONS.filter((l) => !(l.id in manifest))
 const spent = Object.values(manifest).reduce((n, t) => n + t.length, 0)
 const needed = todo.reduce((n, l) => n + narration(l).length, 0)
 if (spent + needed > CAP) throw new Error(`Would use ${spent + needed} characters, over the ${CAP} cap`)

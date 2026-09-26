@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react'
 import type { GameProps } from '../../App.tsx'
-import { BOOKS, LIBRARY as L } from '../../content.ts'
-import { fill } from '../tokens/Lesson.tsx'
+import { BOOKS, LIBRARY as L, fill, UI } from '../../content.ts'
 import { generate, loadBooks, seeded, toText, train, words, type Model } from '../guess/logic.ts'
-import { animalsIn, topAfter } from './logic.ts'
+import { animalsIn, topAfter, wins } from './logic.ts'
 
 export default function Library({ onDone }: GameProps) {
   const [texts, setTexts] = useState<string[] | null>(null)
@@ -15,7 +14,7 @@ export default function Library({ onDone }: GameProps) {
     loadBooks(BOOKS.map((b) => b.file)).then(setTexts)
   }, [])
 
-  if (!texts) return <p role="status" className="card">Loading the books...</p>
+  if (!texts) return <p role="status" className="card">{UI.loadingBooks}</p>
 
   const toggle = (i: number) => {
     const next = new Set(picked)
@@ -26,7 +25,7 @@ export default function Library({ onDone }: GameProps) {
     const m = train([...picked].map((i) => texts[i]).join('\n'))
     setModel(m)
     setSeed(1)
-    if (animalsIn(topAfter(m)).length >= L.goal) onDone()
+    if (wins(m)) onDone()
   }
 
   const top = model ? topAfter(model) : []
@@ -58,7 +57,7 @@ export default function Library({ onDone }: GameProps) {
           <ol className="flex flex-wrap gap-2">
             {top.map((w) => (
               <li key={w} className={`rounded-lg px-3 py-1 text-lg font-bold ${animals.has(w) ? 'bg-kelp text-abyss' : 'bg-abyss'}`}>
-                {w}{animals.has(w) && <span className="sr-only"> (animal)</span>}
+                {w}{animals.has(w) && <span className="sr-only"> {UI.animal}</span>}
               </li>
             ))}
           </ol>

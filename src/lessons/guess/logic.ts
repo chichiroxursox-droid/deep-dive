@@ -93,3 +93,7 @@ let books: Promise<string[]> | undefined
 export function loadBooks(files: string[]): Promise<string[]> {
   return (books ??= Promise.all(files.map((f) => fetch(`/books/${f}`).then((r) => r.text()))))
 }
+
+let model: Promise<Model> | undefined
+// The Guessing Machine's model reads all the books. Trained once, then reused every time the lab opens.
+export const loadModel = (files: string[]) => (model ??= loadBooks(files).then((t) => train(t.join('\n'))))

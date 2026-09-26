@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react'
 import type { GameProps } from '../../App.tsx'
-import { BOOKS, GUESS as G } from '../../content.ts'
-import { fill } from '../tokens/Lesson.tsx'
-import { generate, loadBooks, nextWords, seeded, toText, train, words, type Model } from './logic.ts'
+import { BOOKS, GUESS as G, fill, UI } from '../../content.ts'
+import { generate, loadModel, nextWords, seeded, toText, words, type Model } from './logic.ts'
 
 export const pct = (p: number) => (p >= 0.1 ? `${Math.round(p * 100)}%` : `${(p * 100).toFixed(1)}%`)
 
@@ -31,14 +30,14 @@ export default function GuessingMachine({ onDone }: GameProps) {
   const [story, setStory] = useState<string | null>(null)
 
   useEffect(() => {
-    loadBooks(BOOKS.map((b) => b.file)).then((texts) => setModel(train(texts.join('\n'))))
+    loadModel(BOOKS.map((b) => b.file)).then(setModel)
   }, [])
 
   if (!model) return <p role="status" className="card">{G.loading}</p>
 
   const context = words(G.prompt)
   const { dist } = nextWords(model, context)
-  const mine = words(guess)[0] ?? ''
+  const mine = words(guess).find((w) => /[a-z]/.test(w)) ?? ''
   const mineP = dist.find((g) => g.word === mine)?.p
   const ctx = context.slice(-2).join(' ')
   const { t, label } = G.temps[temp]
@@ -65,7 +64,7 @@ export default function GuessingMachine({ onDone }: GameProps) {
         >
           <label className="flex flex-col gap-2">
             <span className="text-lg">{G.ask}</span>
-            <input autoFocus className="max-w-xs rounded-xl border-2 border-line bg-abyss px-3 py-2 text-xl" value={guess} maxLength={20} autoComplete="off" onChange={(e) => { setGuess(e.target.value.replace(/[^a-zA-Z']/g, '')); setShown(false) }} />
+            <input autoFocus className="max-w-xs rounded-xl border-2 border-line bg-abyss px-3 py-2 text-xl" value={guess} maxLength={20} autoComplete="off" onChange={(e) => { setGuess(e.target.value); setShown(false) }} />
           </label>
           <div className="flex flex-wrap gap-2">
             {G.suggestions.map((s) => (
@@ -90,7 +89,7 @@ export default function GuessingMachine({ onDone }: GameProps) {
           <h3 className="text-2xl font-black">{G.storyTitle}</h3>
           <p className="text-lg">{G.story}</p>
           <label className="flex flex-col gap-2">
-            <span className="font-bold">Temperature: <span className="text-coral">{label}</span></span>
+            <span className="font-bold">{UI.temperature} <span className="text-coral">{label}</span></span>
             <input type="range" min={0} max={G.temps.length - 1} step={1} value={temp} aria-valuetext={label} className="max-w-md accent-coral" onChange={(e) => setTemp(Number(e.target.value))} />
             <span className="flex max-w-md justify-between text-sm text-sand/70" aria-hidden>
               <span>{G.temps[0].label}</span>

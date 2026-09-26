@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import type { GameProps } from '../../App.tsx'
-import { HARBOR as H } from '../../content.ts'
-import { fill } from '../tokens/Lesson.tsx'
+import { HARBOR as H, fill, UI } from '../../content.ts'
 import { grade } from './logic.ts'
 
 export default function SafeHarbor({ onDone }: GameProps) {
@@ -37,7 +36,7 @@ export default function SafeHarbor({ onDone }: GameProps) {
         <section className="card border-2 border-glow" aria-live="polite">
           <p className="text-2xl font-black">{fill(H.score, { n: results.filter((r) => r.ok).length, total: H.cards.length })}</p>
           <p className="text-lg">{H.lesson}</p>
-          <button className="btn-ghost mt-2" onClick={() => { setAnswers({}); setChecked(false) }}>Try again</button>
+          <button className="btn-ghost mt-2" onClick={() => { setAnswers({}); setChecked(false) }}>{UI.tryAgain}</button>
         </section>
       )}
     </>

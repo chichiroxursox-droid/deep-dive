@@ -4,13 +4,17 @@ import * as C from '../src/content.ts'
 
 const perLesson: Record<string, unknown> = { tokens: C.TOKENS, guess: C.GUESS, backpack: C.BACKPACK, chef: C.CHEF, factcheck: C.FACTS, toolbox: C.TOOLBOX, library: C.LIBRARY, harbor: C.HARBOR }
 
-const line = (v: unknown): string =>
-  typeof v === 'object' && v !== null ? Object.entries(v).map(([k, x]) => `${k}: ${Array.isArray(x) ? x.join(', ') : String(x)}`).join('; ') : String(v)
-
-function block(obj: unknown, id = ''): string {
-  const flag = (k: string) => (C.CHECK[`${id}.${k}`] ? ` **[CHECK: ${C.CHECK[`${id}.${k}`]}]**` : '')
+// Nested bullets for copy of any shape, so no string hides inside an object.
+function block(obj: unknown, id = '', depth = 0): string {
+  const pad = '  '.repeat(depth)
+  const flag = (k: string) => (depth === 0 && C.CHECK[`${id}.${k}`] ? ` **[CHECK: ${C.CHECK[`${id}.${k}`]}]**` : '')
+  const list = Array.isArray(obj)
   return Object.entries(obj as object)
-    .map(([k, v]) => (Array.isArray(v) ? `- **${k}**:${flag(k)}\n${v.map((x) => `  - ${line(x)}`).join('\n')}` : `- **${k}**: ${line(v)}${flag(k)}`))
+    .map(([k, v]) => {
+      const label = list ? '' : `**${k}**: `
+      if (v === null || typeof v !== 'object') return `${pad}- ${label}${v}${flag(k)}`
+      return `${pad}- ${label || `(${Number(k) + 1})`}${flag(k)}\n${block(v, id, depth + 1)}`
+    })
     .join('\n')
 }
 
@@ -35,6 +39,9 @@ const out = [
   ]),
   '## 3D hall',
   block(C.HALL),
+  '',
+  '## Buttons and labels',
+  block({ ...C.UI, ...C.READ }),
   '',
   "## Diver's License",
   block(C.LICENSE),

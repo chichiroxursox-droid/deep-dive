@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import type { GameProps } from '../../App.tsx'
-import { TOOLBOX as T } from '../../content.ts'
-import { fill } from '../tokens/Lesson.tsx'
+import { TOOLBOX as T, fill, UI } from '../../content.ts'
 import { answer, judge, snackTotal, type ToolId } from './logic.ts'
 
 const vars = { divers: T.divers, price: T.price, total: snackTotal() }
@@ -60,7 +59,7 @@ export default function Toolbox({ onDone }: GameProps) {
               </div>
               {a && (
                 <div aria-live="polite" className="flex flex-col gap-1">
-                  <p className="rounded-xl bg-abyss p-2">Pip: {a.text}</p>
+                  <p className="rounded-xl bg-abyss p-2">{UI.pip}: {a.text}</p>
                   <p className={a.right ? 'font-bold text-kelp' : 'font-bold text-urchin'}>
                     {a.right ? T.right : T.wrong} <span className="font-normal text-sand/85">{a.right ? ('rightNote' in j ? j.rightNote : '') : j.wrongWhy}</span>
                   </p>
@@ -79,7 +78,7 @@ export default function Toolbox({ onDone }: GameProps) {
           <ol className="flex flex-col gap-2">
             {T.steps.map((s, i) => (
               <li key={i} className={`flex flex-wrap items-center gap-2 rounded-xl border-2 p-2 ${decided && !verdicts[i] ? 'border-urchin' : 'border-line'}`}>
-                <span className="flex-1 text-lg">Step {i + 1}: {fill(s.text, vars)}</span>
+                <span className="flex-1 text-lg">{fill(UI.step, { n: i + 1 })} {fill(s.text, vars)}</span>
                 <button className="chip" aria-pressed={steps[i] === true} onClick={() => decide(i, true)}>{T.yes}</button>
                 <button className="chip" aria-pressed={steps[i] === false} onClick={() => decide(i, false)}>{T.no}</button>
                 {s.tool === 'send' && steps[i] !== undefined && <span className="w-full text-sand/85">{T.sendWhy}</span>}

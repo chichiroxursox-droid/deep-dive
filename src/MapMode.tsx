@@ -1,4 +1,4 @@
-import { CORE, LESSONS, LICENSE, SAFETY, START, type LessonId, type LessonMeta } from './content.ts'
+import { CORE, fill, LESSONS, LICENSE, SAFETY, START, UI, type LessonId, type LessonMeta } from './content.ts'
 import type { Station } from './world/World.tsx'
 import { Pip } from './App.tsx'
 
@@ -11,10 +11,10 @@ export default function MapMode({ done, onOpen, on3D }: Props) {
       <header className="flex flex-wrap items-center gap-4">
         <Pip size={56} />
         <div className="flex-1">
-          <h1 className="text-3xl font-black text-glow">{START.title}: Station Map</h1>
-          <p>Pick a lab. Use Tab to move and Enter to open.</p>
+          <h1 className="text-3xl font-black text-glow">{START.title}: {UI.mapTitle}</h1>
+          <p>{UI.mapHelp}</p>
         </div>
-        {on3D && <button className="btn-ghost" onClick={on3D}>Walk the 3D station</button>}
+        {on3D && <button className="btn-ghost" onClick={on3D}>{UI.walk3D}</button>}
       </header>
       <ol className="flex flex-col gap-3">
         {CORE.map((l) => <Row key={l.id} l={l} done={done.has(l.id)} onOpen={onOpen} />)}
@@ -23,14 +23,14 @@ export default function MapMode({ done, onOpen, on3D }: Props) {
             <span className="grid size-12 shrink-0 place-items-center rounded-full bg-glow text-2xl text-abyss" aria-hidden>{'\u2605'}</span>
             <span className="flex-1">
               <span className="block text-xl font-bold">{LICENSE.title}</span>
-              <span className="block text-sand/80">Labs done: {CORE.filter((l) => done.has(l.id)).length} of {CORE.length}</span>
+              <span className="block text-sand/80">{fill(UI.labsDone, { n: CORE.filter((l) => done.has(l.id)).length, total: CORE.length })}</span>
             </span>
           </button>
         </li>
       </ol>
       {LESSONS.some((l) => l.bonus) && (
         <>
-          <h2 className="text-2xl font-black text-glow">Bonus labs</h2>
+          <h2 className="text-2xl font-black text-glow">{UI.bonusLabs}</h2>
           <ol className="flex flex-col gap-3">
             {LESSONS.filter((l) => l.bonus).map((l) => <Row key={l.id} l={l} done={done.has(l.id)} onOpen={onOpen} />)}
           </ol>
@@ -47,10 +47,10 @@ function Row({ l, done, onOpen }: { l: LessonMeta; done: boolean; onOpen: (s: St
       <button className="card flex w-full items-center gap-4 border-2 border-line text-left hover:border-glow" onClick={() => onOpen(l.id)}>
         <span className="grid size-12 shrink-0 place-items-center rounded-full bg-coral text-2xl font-black text-abyss" aria-hidden>{l.num}</span>
         <span className="flex-1">
-          <span className="block text-xl font-bold">{l.bonus ? 'Bonus lab' : 'Lab'} {l.num}: {l.title}</span>
+          <span className="block text-xl font-bold">{l.bonus ? UI.bonusLab : UI.lab} {l.num}: {l.title}</span>
           <span className="block text-sand/80">{l.rule}</span>
         </span>
-        <span className={done ? 'font-bold text-kelp' : 'text-sand/60'}>{done ? '\u2713 Done' : 'Not yet'}</span>
+        <span className={done ? 'font-bold text-kelp' : 'text-sand/60'}>{done ? `\u2713 ${UI.done}` : UI.notYet}</span>
       </button>
     </li>
   )

@@ -5,7 +5,7 @@ import { Html, KeyboardControls } from '@react-three/drei'
 import Hall from './Hall.tsx'
 import Bay, { PROPS } from './Bay.tsx'
 import Diver from './Diver.tsx'
-import { coreDone, HALL, LESSONS, LICENSE, type LessonId } from '../content.ts'
+import { coreDone, HALL, LESSONS, LICENSE, UI, type LessonId } from '../content.ts'
 
 export type Station = LessonId | 'license'
 
@@ -54,7 +54,7 @@ export default function World({ paused, done, onOpen }: Props) {
                   key={l.id}
                   position={[Math.sin(a) * RING, 0, Math.cos(a) * RING]}
                   rotationY={a + Math.PI}
-                  label={`${l.bonus ? 'Bonus ' : ''}Lab ${l.num}: ${l.title}`}
+                  label={`${l.bonus ? UI.bonusLab : UI.lab} ${l.num}: ${l.title}`}
                   color={COLORS[i]}
                   done={done.has(l.id)}
                   prop={PROPS[l.id]}
