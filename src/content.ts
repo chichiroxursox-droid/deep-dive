@@ -16,6 +16,11 @@ export type LessonMeta = {
 
 export const coreDone = (done: ReadonlySet<LessonId>, all: LessonMeta[]) => all.filter((l) => !l.bonus).every((l) => done.has(l.id))
 
+// What "Read to me" says for each lab. scripts/narrate.ts turns it into MP3s once.
+export const narration = (l: LessonMeta) => `${l.title}. ${l.rule} ${l.intro.join(' ')}`
+
+export const READ = { play: 'Read to me', stop: 'Stop reading' }
+
 export const SAFETY = 'No accounts. No chatting with a live AI. Nothing you type leaves this page. Works offline once it loads.'
 
 export const START = {

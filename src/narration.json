@@ -1,0 +1,10 @@
+{
+  "tokens": "Token Reef. AI reads text in chunks called tokens. A chatbot does not read letter by letter. It cuts text into chunks called tokens, and every AI cuts a little differently. The chunks you see here are real. They come from the tokenizer GPT-4o uses.",
+  "guess": "Guessing Machine. A language model guesses the next word. A chatbot writes one token at a time. Each time, it guesses what should come next. This machine is a tiny language model, a great-great-grandparent of ChatGPT: same job, way smaller.",
+  "backpack": "Backpack. AI can only hold so much of a chat at once. That's its context window. A chatbot carries your chat in a backpack. The backpack only holds so many tokens. That space is called the context window. When it gets full, something has to go.",
+  "chef": "Robot Chef. Say exactly what you want. The message you give a chatbot is called a prompt. If you leave something out, the chatbot has to guess it. Build a prompt from cards and see how close Pip gets.",
+  "factcheck": "Fact Check Lagoon. AI can sound sure and still be wrong. Check facts that matter. Chatbots can say wrong things in a very sure voice. People call this a hallucination. Pip is 99% sure about every fact below. Use the Field Guide to check each one.",
+  "toolbox": "Toolbox. Tools make AI more reliable. An agent picks its own tools. A chatbot only writes words, so it can slip on exact math or today's news. Tools fix that. A calculator does exact math. A weather tool looks things up. An agent is an AI that picks its own tools and takes steps on its own.",
+  "library": "Library. AI only knows what it read. A language model learns only from the text it reads. Pick the books Pip reads. Then see how it finishes a story. If it reads only one kind of book, it only talks one way. That is a kind of bias.",
+  "harbor": "Safe Harbor. Some things you never tell a chatbot. A chat can feel private, but it is not a diary. What you type can be saved by the company that runs the chatbot. Sort each card: fine to share, or keep private?"
+}

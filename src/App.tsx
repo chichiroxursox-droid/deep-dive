@@ -1,5 +1,6 @@
 import { lazy, Suspense, useCallback, useEffect, useRef, useState, type ComponentType, type ReactNode } from 'react'
-import { BOOKS, CORE, HALL, LESSONS, SAFETY, START, type LessonId } from './content.ts'
+import { BOOKS, CORE, HALL, LESSONS, narration, READ, SAFETY, START, type LessonId, type LessonMeta } from './content.ts'
+import NARRATED from './narration.json'
 import MapMode from './MapMode.tsx'
 import Certificate from './Certificate.tsx'
 import type { Station } from './world/World.tsx'
@@ -133,6 +134,7 @@ function Lesson({ id, onDone }: { id: LessonId; onDone: () => void }) {
           <h2 className="text-3xl font-black">{meta.title}</h2>
           <p className="mt-1 text-xl font-bold text-coral">{meta.rule}</p>
           <div className="mt-2 space-y-1 text-lg">{meta.intro.map((s) => <p key={s}>{s}</p>)}</div>
+          <ReadAloud meta={meta} />
         </div>
       </header>
       {Game ? (
@@ -157,5 +159,41 @@ export function Pip({ size = 48 }: { size?: number }) {
       <circle cx="39" cy="32" r="4.5" fill="#5ef2e6" />
       <path d="M26 47 q6 4 12 0" stroke="#04182b" strokeWidth="3" fill="none" strokeLinecap="round" />
     </svg>
+  )
+}
+
+// Plays the pre-made ElevenLabs clip. If the copy changed since it was made, or the clip can't load (offline), the browser reads it instead.
+function ReadAloud({ meta }: { meta: LessonMeta }) {
+  const [on, setOn] = useState(false)
+  const audio = useRef<HTMLAudioElement | null>(null)
+  const canSpeak = 'speechSynthesis' in window
+  useEffect(() => () => {
+    audio.current?.pause()
+    if (canSpeak) speechSynthesis.cancel()
+  }, [canSpeak])
+
+  const text = narration(meta)
+  const speak = () => {
+    if (!canSpeak) return setOn(false)
+    const u = new SpeechSynthesisUtterance(text)
+    u.onend = () => setOn(false)
+    speechSynthesis.speak(u)
+  }
+  const toggle = () => {
+    if (on) {
+      audio.current?.pause()
+      if (canSpeak) speechSynthesis.cancel()
+      return setOn(false)
+    }
+    setOn(true)
+    if ((NARRATED as Record<string, string>)[meta.id] !== text) return speak()
+    const a = (audio.current = new Audio(`/audio/${meta.id}.mp3`))
+    a.onended = () => setOn(false)
+    a.play().catch(speak)
+  }
+  return (
+    <button className="btn-ghost mt-3 text-sm" aria-pressed={on} onClick={toggle}>
+      <span aria-hidden>{on ? '\u25A0' : '\u25B6'}</span> {on ? READ.stop : READ.play}
+    </button>
   )
 }
