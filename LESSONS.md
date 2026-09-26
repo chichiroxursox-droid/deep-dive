@@ -578,10 +578,54 @@ Token splits and word probabilities are never written here: the app computes the
 - **score**: You sorted {n} of {total} right.
 - **lesson**: Chats can be saved, and people at the company may read them or use them to train new AI. So share ideas, not secrets. **[CHECK: Depends on the app and its settings. Is "may read them or use them to train new AI" fair as a general warning?]**
 
-## 3D hall
-- **help**: WASD or arrow keys to walk. Drag to look around. Walk up to a lab and press E.
+## 3D station: HUD
+- **help**: WASD to walk, Shift to run, drag to look around, E to use, F to kick a ball.
 - **enter**: Press E to dive in
 - **license**: Diver's License
+- **quality**: Graphics
+- **high**: High
+- **low**: Low
+
+## 3D station: signs and Pip
+- **station**: DEEP DIVE STATION
+- **welcome**: 
+  - Welcome, diver!
+  - Swim inside and pick any lab.
+  - Each glowing console teaches one idea about AI.
+  - Walk up to it and press E.
+- **areas**: 
+  - **sea**: 
+    - Sea Floor
+    - Swim into the station to start
+  - **lobby**: 
+    - Lobby
+    - Pick any lab. Press F near a ball to kick it.
+  - **corridor**: 
+    - Main Corridor
+    - Labs on both sides
+  - **deck**: 
+    - Captain's Deck
+    - Your Diver's License is here
+  - **lab**: Press E at the glowing console
+- **mapTitle**: Station Map
+- **mapLeft**: Left side
+- **mapRight**: Right side
+- **consolePress**: Press E
+- **consoleDone**: Done!
+- **pipTips**: 
+  - Hi, I'm Pip! Every lab has a glowing console.
+  - Walk up to a console and press E.
+  - Finish Labs 1 to 5 for your Diver's License.
+  - Press F near a ball to kick it. Just for fun!
+- **machineTitle**: Next Word Machine
+- **machinePrompt**: The captain looked at the ___
+- **machineHow**: Each ball is one guess. It picks from the top 5 words using the real odds, so bigger chances fill up faster.
+- **beltTitle**: Backpack: 60 tokens
+- **beltHow**: Each block is one chat message. Its length is its real token count. When the backpack is full, the oldest message falls out.
+- **tokenScreen**: How the AI cuts "strawberry"
+- **kitchen**: Recipe for a great prompt: task, who, details, length, tone, example.
+- **guide**: Field Guide
+- **tools**: Tool Wall
 
 ## Buttons and labels
 - **back**: Back to the station

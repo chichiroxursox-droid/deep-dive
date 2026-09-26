@@ -61,15 +61,8 @@ export default function App() {
       {mode === 'hall' && (
         <>
           <Suspense fallback={<p className="p-8 text-xl">{UI.loadingStation}</p>}>
-            <World paused={open !== null} done={done} onOpen={setOpen} />
+            <World paused={open !== null} done={done} onOpen={setOpen} onMap={() => setMode('map')} />
           </Suspense>
-          <div className="pointer-events-none fixed inset-x-0 top-0 flex flex-wrap items-start justify-between gap-2 p-3">
-            <p className="rounded-xl bg-abyss/80 px-3 py-2 text-sm">{HALL.help}</p>
-            <div className="pointer-events-auto flex gap-2">
-              <span className="rounded-xl bg-abyss/80 px-3 py-2 text-sm">{fill(UI.labsDone, { n: CORE.filter((l) => done.has(l.id)).length, total: CORE.length })}</span>
-              <button className="btn-ghost bg-abyss/80" onClick={() => setMode('map')}>{UI.mapMode}</button>
-            </div>
-          </div>
         </>
       )}
       {mode === 'map' && <MapMode done={done} onOpen={setOpen} on3D={hasWebGL ? () => setMode('hall') : undefined} />}
