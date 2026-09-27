@@ -26,6 +26,141 @@ dialog::backdrop { background: rgb(2 12 24 / 0.7); }
 @utility chip { @apply rounded-lg border-2 border-line px-3 py-1 font-semibold hover:border-glow aria-pressed:border-coral aria-pressed:bg-coral aria-pressed:text-abyss; }
 @utility card { @apply rounded-2xl bg-panel p-4; }
 
+/* Start and loading screens: the inside of a sub, riveted hull panels around a brass porthole. */
+/* in the components layer so Tailwind utilities (absolute, padding...) can still override these */
+@layer components {
+.hull {
+  background-color: var(--color-deep);
+  /* hull plates: a seam every 150px with a row of rivets just below it */
+  background-image:
+    radial-gradient(circle, rgb(255 244 224 / 0.16) 0 1.8px, transparent 2.6px),
+    linear-gradient(to bottom, rgb(4 24 43 / 0.6) 0 2px, rgb(255 255 255 / 0.04) 2px 3px, transparent 3px),
+    radial-gradient(110% 90% at 68% 45%, var(--color-panel) 0%, var(--color-deep) 45%, var(--color-abyss) 100%);
+  background-size: 26px 150px, 100% 150px, 100% 100%;
+  background-position: 13px -66px, 0 0, 0 0;
+}
+
+.porthole {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 9999px;
+  padding: 7%;
+  background: conic-gradient(from 210deg, #f6d98b, #b8862f 16%, #e8b04a 30%, #fff0c2 42%, #a8781f 58%, #e8b04a 76%, #f6d98b);
+  box-shadow: 0 34px 60px -24px rgb(0 0 0 / 0.75), inset 0 0 0 3px #8a6420, inset 0 -6px 14px rgb(90 58 10 / 0.5);
+}
+.porthole-glass {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 9999px;
+  box-shadow: 0 0 0 4px #6b4a14;
+}
+.porthole-glass::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(60% 40% at 30% 18%, rgb(255 255 255 / 0.22), transparent 70%);
+  box-shadow: inset 0 10px 40px 8px rgb(2 12 24 / 0.65);
+  pointer-events: none;
+}
+.porthole-bolt { position: absolute; inset: 0; pointer-events: none; }
+.porthole-bolt::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 1.6%;
+  width: 3.6%;
+  aspect-ratio: 1;
+  translate: -50% 0;
+  border-radius: 9999px;
+  background: radial-gradient(circle at 35% 30%, #fff3cc, #c89637 45%, #6b4a14);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.5);
+}
+
+.pip-bubble {
+  position: relative;
+  border: 3px solid var(--color-glow);
+  border-radius: 1.25rem;
+  background: var(--color-sand);
+  color: var(--color-abyss);
+  padding: 0.7rem 1rem;
+  font-weight: 700;
+  box-shadow: 0 12px 28px -12px rgb(0 0 0 / 0.6);
+}
+.plaque {
+  position: relative;
+  border: 1px solid var(--color-line);
+  border-radius: 1rem;
+  background: linear-gradient(180deg, rgb(15 54 87 / 0.95), rgb(10 42 69 / 0.95));
+  box-shadow: 0 16px 34px -18px rgb(0 0 0 / 0.8), inset 0 1px 0 rgb(255 255 255 / 0.06);
+}
+.plaque-rivet { position: absolute; width: 8px; height: 8px; border-radius: 9999px; background: radial-gradient(circle at 35% 30%, #cfe0ea, #5d7483); }
+/* hatch controls: a heavy bottom edge that presses down, like the key caps */
+.hatch { border-bottom: 5px solid rgb(0 0 0 / 0.3); box-shadow: 0 10px 22px -12px rgb(0 0 0 / 0.7), inset 0 2px 0 rgb(255 255 255 / 0.25); }
+.hatch:active { translate: 0 3px; border-bottom-width: 2px; }
+.keycap {
+  display: inline-grid;
+  place-items: center;
+  min-width: 2rem;
+  height: 2rem;
+  padding: 0 0.5rem;
+  border-radius: 0.5rem;
+  border: 2px solid var(--color-line);
+  border-bottom-width: 4px;
+  background: var(--color-panel);
+  color: var(--color-sand);
+  font: 800 0.95rem var(--font-sans);
+}
+.mini-porthole {
+  position: relative;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex: none;
+  overflow: hidden;
+  border-radius: 9999px;
+  border: 4px solid #e8b04a;
+  background: linear-gradient(#2b8fbc, #0d527a);
+}
+.mini-porthole i {
+  position: absolute;
+  bottom: -6px;
+  width: 7px;
+  height: 7px;
+  border-radius: 9999px;
+  border: 1.5px solid rgb(255 255 255 / 0.8);
+  animation: pw-rise-mini 1.4s ease-in infinite;
+}
+.mini-porthole i:nth-child(1) { left: 20%; }
+.mini-porthole i:nth-child(2) { left: 48%; animation-delay: 0.45s; }
+.mini-porthole i:nth-child(3) { left: 70%; animation-delay: 0.9s; }
+}
+
+/* the scene's motion: water that keeps moving while you decide */
+.pw-kelp { animation: pw-sway 5s ease-in-out infinite alternate; }
+.pw-bubble { animation: pw-rise 6s linear infinite; }
+.pw-fish { animation: pw-swim 22s linear infinite; }
+.pw-rays { animation: pw-shimmer 7s ease-in-out infinite alternate; }
+.pw-pip { animation: pw-bob 3.2s ease-in-out infinite; }
+.pw-wave { transform-box: fill-box; transform-origin: 0% 50%; animation: pw-wave 1.6s ease-in-out infinite; }
+.pw-beacon { animation: pw-blink 1.8s steps(2, jump-none) infinite; }
+.sinking .pw-scene { animation: pw-sink 6s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.sinking .pw-deeper { animation: pw-darken 6s ease-out both; }
+.sinking .pw-bubble { animation-duration: 1.7s; }
+.pw-fade { animation: pw-fade 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+
+@keyframes pw-sway { from { transform: rotate(-4deg); } to { transform: rotate(4deg); } }
+@keyframes pw-rise { from { transform: translateY(0); opacity: 0; } 8% { opacity: 1; } to { transform: translateY(-400px); opacity: 0.2; } }
+@keyframes pw-rise-mini { from { transform: translateY(0); opacity: 0; } 20% { opacity: 1; } to { transform: translateY(-3rem); opacity: 0; } }
+@keyframes pw-swim { from { transform: translateX(-310px); } to { transform: translateX(210px); } }
+@keyframes pw-shimmer { from { opacity: 0.6; transform: translateX(-8px); } to { opacity: 1; transform: translateX(8px); } }
+@keyframes pw-bob { 50% { transform: translateY(-5px); } }
+@keyframes pw-wave { 50% { transform: rotate(-35deg); } }
+@keyframes pw-blink { 50% { opacity: 0.25; } }
+@keyframes pw-sink { from { transform: translateY(110px); } to { transform: translateY(0); } }
+@keyframes pw-darken { from { opacity: 0; } to { opacity: 0.3; } }
+@keyframes pw-fade { from { opacity: 0; transform: translateY(6px); } }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }

@@ -261,8 +261,9 @@ function Outside() {
       {/* welcome sign on posts, turned toward the diver */}
       <group position={[-4.2, 0, 8.5]} rotation={[0, 0.45, 0]}>
         {[-1.4, 1.4].map((x) => <Solid key={x} p={[x, 0.9, -0.05]} s={[0.12, 1.8, 0.12]} m={pillar} />)}
-        <Solid p={[0, 1.7, -0.04]} s={[3.2, 1.75, 0.08]} m={pillar} />
-        <Board p={[0, 1.7, 0.01]} w={3.2} h={1.75} tex={welcome} />
+        {/* the board sits in front of the posts (their fronts end at z 0.01) so no faces share a plane and flicker */}
+        <Solid p={[0, 1.7, 0.06]} s={[3.2, 1.75, 0.08]} m={pillar} />
+        <Board p={[0, 1.7, 0.11]} w={3.2} h={1.75} tex={welcome} />
       </group>
       {/* lamp posts */}
       {[-4, 4].map((x) => (

@@ -14,6 +14,9 @@ Token splits and word probabilities are never written here: the app computes the
 - **noWebGL**: This computer can't show 3D, so Map mode has every lab.
 - **touch**: On a phone or tablet, use Map mode. Walking the 3D station needs a keyboard.
 - **calm**: Your computer asks for less motion, so Map mode is a calm pick. It has every lab.
+- **pip**: Hi, I'm Pip! Eight labs are waiting down there.
+- **scene**: Deep Dive Station glowing on the sea floor, seen through a round window, with Pip the robot waving
+- **teacherBox**: For teachers and parents
 - **safety**: No accounts. No chatting with a live AI. Nothing you type leaves this page. Map mode works offline once it loads.
 
 ## Lab 1: Token Reef
@@ -582,6 +585,26 @@ Token splits and word probabilities are never written here: the app computes the
 ## 3D station: HUD
 - **help**: WASD to walk, Shift to run, drag to look around, E to use, F to kick a ball, T for token goggles.
 - **goggles**: Token goggles
+- **keys**: 
+  - (1)
+    - **keys**: 
+      - W
+      - A
+      - S
+      - D
+    - **does**: walk
+  - (2)
+    - **keys**: 
+      - Shift
+    - **does**: run
+  - (3)
+    - **keys**: 
+      - E
+    - **does**: use a console
+  - (4)
+    - **keys**: 
+      - T
+    - **does**: token goggles
 - **gogglesOn**: Token goggles on! Every sign is split into tokens, the way a chatbot reads it.
 - **enter**: Press E to dive in
 - **license**: Diver's License
@@ -637,7 +660,7 @@ Token splits and word probabilities are never written here: the app computes the
 - **bonusLab**: Bonus lab
 - **bonusLabs**: Bonus labs
 - **bonus**: Bonus
-- **loadingStation**: Loading the station...
+- **loadingStation**: Diving to the station...
 - **loadingLab**: Loading the lab...
 - **loadFailed**: This part could not load. Check the internet, then reload the page.
 - **loadingTokenizer**: Loading the real tokenizer...

@@ -3,6 +3,7 @@ import { BOOKS, CORE, fill, HALL, LESSONS, narration, READ, SAFETY, START, UI, t
 import NARRATED from './narration.json'
 import MapMode from './MapMode.tsx'
 import Certificate from './Certificate.tsx'
+import { Loading, LoadingLab, Porthole } from './Porthole.tsx'
 import type { Station } from './world/World.tsx'
 
 export type GameProps = { onDone: () => void }
@@ -72,7 +73,7 @@ export default function App() {
       {mode === 'start' && <Start onPick={setMode} />}
       {mode === 'hall' && (
         <>
-          <Suspense fallback={<p className="p-8 text-xl">{UI.loadingStation}</p>}>
+          <Suspense fallback={<Loading label={START.scene} />}>
             <World paused={open !== null} done={done} onOpen={setOpen} onMap={() => setMode('map')} />
           </Suspense>
         </>
@@ -91,26 +92,66 @@ export default function App() {
   )
 }
 
+// A porthole onto the station: the kid sees where they are going before they choose how to get there.
 function Start({ onPick }: { onPick: (m: 'hall' | 'map') => void }) {
+  const hint = !hasWebGL ? START.noWebGL : touch ? START.touch : reducedMotion ? START.calm : START.mapHint
+  // Phones and computers without 3D get Map mode as the big coral button.
+  const mapFirst = touch || !hasWebGL
+  const main = 'btn-main hatch'
+  const ghost = 'btn-ghost hatch border-b-[5px] bg-abyss active:border-b-2'
   return (
-    <main className="mx-auto flex min-h-full max-w-2xl flex-col justify-center gap-6 p-6">
-      <div className="flex items-center gap-4">
-        <Pip size={72} />
-        <div>
-          <h1 className="text-5xl font-black tracking-tight text-glow">{START.title}</h1>
-          <p className="text-xl">{START.tagline}</p>
+    <main className="hull min-h-full">
+      <div className="mx-auto grid min-h-dvh max-w-7xl content-center items-center gap-8 px-5 py-8 sm:px-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-14">
+        <div className="relative order-1 mx-auto w-[min(84vw,44vh)] pt-10 lg:order-2 lg:w-[min(100%,74vh)] lg:pt-0">
+          <Porthole label={START.scene} />
+          <p className="pip-bubble absolute top-0 left-[-2%] max-w-[13rem] text-sm sm:text-base lg:top-[4%] lg:left-[-6%] lg:max-w-[16rem] lg:text-lg">
+            {START.pip}
+            <span className="absolute -bottom-[11px] left-[38%] size-4 rotate-45 border-r-3 border-b-3 border-glow bg-sand" aria-hidden />
+          </p>
+        </div>
+        <div className="order-2 flex flex-col gap-6 lg:order-1">
+          <div className="flex flex-col gap-3">
+            <h1 className="text-[clamp(3.75rem,9vw,6rem)] leading-[0.9] font-black tracking-[-0.03em] text-balance">{START.title}</h1>
+            <p className="max-w-[26ch] text-xl text-sand/90 sm:text-2xl">{START.tagline}</p>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <button className={`${mapFirst ? ghost : main} flex-1 px-7 py-4 text-xl whitespace-nowrap sm:flex-none sm:text-2xl`} disabled={!hasWebGL} onClick={() => onPick('hall')} autoFocus={hasWebGL && !reducedMotion && !touch}>
+              <DiveIcon />
+              {START.dive}
+            </button>
+            <button className={`${mapFirst ? main : ghost} flex-1 px-7 py-4 text-xl whitespace-nowrap sm:flex-none sm:text-2xl`} onClick={() => onPick('map')} autoFocus={!hasWebGL || reducedMotion || touch}>
+              <MapIcon />
+              {START.map}
+            </button>
+          </div>
+          <p className="max-w-[60ch] text-sand/80">{hint}</p>
+          <section className="plaque max-w-xl px-6 py-5" aria-label={START.teacherBox}>
+            {['top-2 left-2', 'top-2 right-2', 'bottom-2 left-2', 'bottom-2 right-2'].map((c) => <span key={c} className={`plaque-rivet ${c}`} aria-hidden />)}
+            <p className="font-bold text-glow">{SAFETY}</p>
+            <p className="mt-1 text-sand/80">{START.teachers}</p>
+          </section>
         </div>
       </div>
-      <div className="flex flex-wrap gap-3">
-        <button className="btn-main text-xl" disabled={!hasWebGL} onClick={() => onPick('hall')} autoFocus={hasWebGL && !reducedMotion && !touch}>{START.dive}</button>
-        <button className="btn-ghost text-xl" onClick={() => onPick('map')} autoFocus={!hasWebGL || reducedMotion || touch}>{START.map}</button>
-      </div>
-      <p className="text-sand/80">{!hasWebGL ? START.noWebGL : touch ? START.touch : reducedMotion ? START.calm : START.mapHint}</p>
-      <section className="card border-2 border-line" aria-label="For teachers and parents">
-        <p className="font-bold text-glow">{SAFETY}</p>
-        <p className="mt-1 text-sand/80">{START.teachers}</p>
-      </section>
     </main>
+  )
+}
+
+// A diver's arrow going down through the waves.
+function DiveIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="size-6 shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <path d="M2 6c2.5-2 4.5 2 7 0s4.5-2 7 0 4.5 2 6 0" />
+      <path d="M12 10v11M7.5 16.5 12 21l4.5-4.5" />
+    </svg>
+  )
+}
+
+function MapIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="size-6 shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <path d="M3 6.5 9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20z" />
+      <path d="M9 4v13.5M15 6.5V20" />
+    </svg>
   )
 }
 
@@ -145,7 +186,7 @@ function Lesson({ id, onDone }: { id: LessonId; onDone: () => void }) {
         </div>
       </header>
       {Game ? (
-        <Suspense fallback={<p className="card">{UI.loadingLab}</p>}>
+        <Suspense fallback={<LoadingLab />}>
           <Game onDone={onDone} />
         </Suspense>
       ) : (

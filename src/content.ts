@@ -29,7 +29,7 @@ export const UI = {
   bonusLab: 'Bonus lab',
   bonusLabs: 'Bonus labs',
   bonus: 'Bonus',
-  loadingStation: 'Loading the station...',
+  loadingStation: 'Diving to the station...',
   loadingLab: 'Loading the lab...',
   loadFailed: 'This part could not load. Check the internet, then reload the page.',
   loadingTokenizer: 'Loading the real tokenizer...',
@@ -78,11 +78,20 @@ export const START = {
   noWebGL: 'This computer can\'t show 3D, so Map mode has every lab.',
   touch: 'On a phone or tablet, use Map mode. Walking the 3D station needs a keyboard.',
   calm: 'Your computer asks for less motion, so Map mode is a calm pick. It has every lab.',
+  pip: 'Hi, I\'m Pip! Eight labs are waiting down there.',
+  scene: 'Deep Dive Station glowing on the sea floor, seen through a round window, with Pip the robot waving',
+  teacherBox: 'For teachers and parents',
 }
 
 export const HALL = {
   help: 'WASD to walk, Shift to run, drag to look around, E to use, F to kick a ball, T for token goggles.',
   goggles: 'Token goggles',
+  keys: [
+    { keys: ['W', 'A', 'S', 'D'], does: 'walk' },
+    { keys: ['Shift'], does: 'run' },
+    { keys: ['E'], does: 'use a console' },
+    { keys: ['T'], does: 'token goggles' },
+  ],
   gogglesOn: 'Token goggles on! Every sign is split into tokens, the way a chatbot reads it.',
   enter: 'Press E to dive in',
   license: 'Diver\'s License',

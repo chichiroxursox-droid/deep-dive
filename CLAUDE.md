@@ -26,6 +26,7 @@ Vite + React 19.3 + TypeScript, Tailwind 4, three + @react-three/fiber 9 + drei 
   - `Demos.tsx` Next Word Machine (real model odds), Backpack belt (lesson's `add()`), kickable balls. `Diver.tsx` ecctrl diver + camera.
   - `textures.ts` canvas-painted textures and cached materials (no image downloads). `goggles()` repaints every `sign()` texture as real token chunks (Token goggles, T key). `parts.tsx` `Solid`, `Board`, `StaticBatch`.
   - The camera always faces -z: put screens, signs and machine fronts on far walls facing +z. Mark anything that moves or changes its picture `userData.dynamic` so `StaticBatch` skips it.
+- `src/Porthole.tsx` start-screen porthole scene, the 3D loading screen and the lab loading spinner (inline SVG + CSS in `index.css`). Design system: DESIGN.md; product truth: PRODUCT.md.
 - `src/MapMode.tsx` keyboard-only list of every lesson, same overlays. Never cut.
 - `src/Certificate.tsx` Diver's License ending.
 - `scripts/lessons-md.ts` content.ts to LESSONS.md.

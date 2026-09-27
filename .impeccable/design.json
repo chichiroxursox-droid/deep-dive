@@ -1,0 +1,525 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-27T02:30:00Z",
+  "title": "Design System: Deep Dive",
+  "extensions": {
+    "colorMeta": {
+      "abyss": {
+        "role": "neutral",
+        "displayName": "Abyss",
+        "canonical": "#04182b",
+        "tonalRamp": [
+          "oklch(15.0% 0.047 248.9)",
+          "oklch(26.4% 0.047 248.9)",
+          "oklch(37.9% 0.047 248.9)",
+          "oklch(49.3% 0.047 248.9)",
+          "oklch(60.7% 0.047 248.9)",
+          "oklch(72.1% 0.047 248.9)",
+          "oklch(83.6% 0.047 248.9)",
+          "oklch(95.0% 0.047 248.9)"
+        ]
+      },
+      "deep": {
+        "role": "neutral",
+        "displayName": "Deep Hull",
+        "canonical": "#0a2a45",
+        "tonalRamp": [
+          "oklch(15.0% 0.062 248.0)",
+          "oklch(26.4% 0.062 248.0)",
+          "oklch(37.9% 0.062 248.0)",
+          "oklch(49.3% 0.062 248.0)",
+          "oklch(60.7% 0.062 248.0)",
+          "oklch(72.1% 0.062 248.0)",
+          "oklch(83.6% 0.062 248.0)",
+          "oklch(95.0% 0.062 248.0)"
+        ]
+      },
+      "panel": {
+        "role": "neutral",
+        "displayName": "Panel",
+        "canonical": "#0f3657",
+        "tonalRamp": [
+          "oklch(15.0% 0.073 248.1)",
+          "oklch(26.4% 0.073 248.1)",
+          "oklch(37.9% 0.073 248.1)",
+          "oklch(49.3% 0.073 248.1)",
+          "oklch(60.7% 0.073 248.1)",
+          "oklch(72.1% 0.073 248.1)",
+          "oklch(83.6% 0.073 248.1)",
+          "oklch(95.0% 0.073 248.1)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Seam Line",
+        "canonical": "#1d5580",
+        "tonalRamp": [
+          "oklch(15.0% 0.092 245.6)",
+          "oklch(26.4% 0.092 245.6)",
+          "oklch(37.9% 0.092 245.6)",
+          "oklch(49.3% 0.092 245.6)",
+          "oklch(60.7% 0.092 245.6)",
+          "oklch(72.1% 0.092 245.6)",
+          "oklch(83.6% 0.092 245.6)",
+          "oklch(95.0% 0.092 245.6)"
+        ]
+      },
+      "sand": {
+        "role": "neutral",
+        "displayName": "Sand",
+        "canonical": "#fff4e0",
+        "tonalRamp": [
+          "oklch(15.0% 0.029 82.6)",
+          "oklch(26.4% 0.029 82.6)",
+          "oklch(37.9% 0.029 82.6)",
+          "oklch(49.3% 0.029 82.6)",
+          "oklch(60.7% 0.029 82.6)",
+          "oklch(72.1% 0.029 82.6)",
+          "oklch(83.6% 0.029 82.6)",
+          "oklch(95.0% 0.029 82.6)"
+        ]
+      },
+      "coral": {
+        "role": "primary",
+        "displayName": "Hatch Coral",
+        "canonical": "#ff7a59",
+        "tonalRamp": [
+          "oklch(15.0% 0.170 35.1)",
+          "oklch(26.4% 0.170 35.1)",
+          "oklch(37.9% 0.170 35.1)",
+          "oklch(49.3% 0.170 35.1)",
+          "oklch(60.7% 0.170 35.1)",
+          "oklch(72.1% 0.170 35.1)",
+          "oklch(83.6% 0.170 35.1)",
+          "oklch(95.0% 0.170 35.1)"
+        ]
+      },
+      "coral-light": {
+        "role": "primary",
+        "displayName": "Warm Coral",
+        "canonical": "#ff9577",
+        "tonalRamp": [
+          "oklch(15.0% 0.135 36.6)",
+          "oklch(26.4% 0.135 36.6)",
+          "oklch(37.9% 0.135 36.6)",
+          "oklch(49.3% 0.135 36.6)",
+          "oklch(60.7% 0.135 36.6)",
+          "oklch(72.1% 0.135 36.6)",
+          "oklch(83.6% 0.135 36.6)",
+          "oklch(95.0% 0.135 36.6)"
+        ]
+      },
+      "glow": {
+        "role": "secondary",
+        "displayName": "Pip Aqua",
+        "canonical": "#5ef2e6",
+        "tonalRamp": [
+          "oklch(15.0% 0.127 187.6)",
+          "oklch(26.4% 0.127 187.6)",
+          "oklch(37.9% 0.127 187.6)",
+          "oklch(49.3% 0.127 187.6)",
+          "oklch(60.7% 0.127 187.6)",
+          "oklch(72.1% 0.127 187.6)",
+          "oklch(83.6% 0.127 187.6)",
+          "oklch(95.0% 0.127 187.6)"
+        ]
+      },
+      "brass": {
+        "role": "tertiary",
+        "displayName": "Porthole Brass",
+        "canonical": "#e8b04a",
+        "tonalRamp": [
+          "oklch(15.0% 0.134 79.5)",
+          "oklch(26.4% 0.134 79.5)",
+          "oklch(37.9% 0.134 79.5)",
+          "oklch(49.3% 0.134 79.5)",
+          "oklch(60.7% 0.134 79.5)",
+          "oklch(72.1% 0.134 79.5)",
+          "oklch(83.6% 0.134 79.5)",
+          "oklch(95.0% 0.134 79.5)"
+        ]
+      },
+      "sun": {
+        "role": "tertiary",
+        "displayName": "Sun Yellow",
+        "canonical": "#ffd166",
+        "tonalRamp": [
+          "oklch(15.0% 0.135 86.1)",
+          "oklch(26.4% 0.135 86.1)",
+          "oklch(37.9% 0.135 86.1)",
+          "oklch(49.3% 0.135 86.1)",
+          "oklch(60.7% 0.135 86.1)",
+          "oklch(72.1% 0.135 86.1)",
+          "oklch(83.6% 0.135 86.1)",
+          "oklch(95.0% 0.135 86.1)"
+        ]
+      },
+      "kelp": {
+        "role": "tertiary",
+        "displayName": "Kelp Green",
+        "canonical": "#7ddc8a",
+        "tonalRamp": [
+          "oklch(15.0% 0.146 147.2)",
+          "oklch(26.4% 0.146 147.2)",
+          "oklch(37.9% 0.146 147.2)",
+          "oklch(49.3% 0.146 147.2)",
+          "oklch(60.7% 0.146 147.2)",
+          "oklch(72.1% 0.146 147.2)",
+          "oklch(83.6% 0.146 147.2)",
+          "oklch(95.0% 0.146 147.2)"
+        ]
+      },
+      "urchin": {
+        "role": "tertiary",
+        "displayName": "Urchin Pink",
+        "canonical": "#ff7aa0",
+        "tonalRamp": [
+          "oklch(15.0% 0.165 3.9)",
+          "oklch(26.4% 0.165 3.9)",
+          "oklch(37.9% 0.165 3.9)",
+          "oklch(49.3% 0.165 3.9)",
+          "oklch(60.7% 0.165 3.9)",
+          "oklch(72.1% 0.165 3.9)",
+          "oklch(83.6% 0.165 3.9)",
+          "oklch(95.0% 0.165 3.9)"
+        ]
+      },
+      "sea-top": {
+        "role": "tertiary",
+        "displayName": "Shallow Water",
+        "canonical": "#2b8fbc",
+        "tonalRamp": [
+          "oklch(15.0% 0.112 232.7)",
+          "oklch(26.4% 0.112 232.7)",
+          "oklch(37.9% 0.112 232.7)",
+          "oklch(49.3% 0.112 232.7)",
+          "oklch(60.7% 0.112 232.7)",
+          "oklch(72.1% 0.112 232.7)",
+          "oklch(83.6% 0.112 232.7)",
+          "oklch(95.0% 0.112 232.7)"
+        ]
+      },
+      "sea-mid": {
+        "role": "tertiary",
+        "displayName": "Mid Water",
+        "canonical": "#0d527a",
+        "tonalRamp": [
+          "oklch(15.0% 0.092 241.1)",
+          "oklch(26.4% 0.092 241.1)",
+          "oklch(37.9% 0.092 241.1)",
+          "oklch(49.3% 0.092 241.1)",
+          "oklch(60.7% 0.092 241.1)",
+          "oklch(72.1% 0.092 241.1)",
+          "oklch(83.6% 0.092 241.1)",
+          "oklch(95.0% 0.092 241.1)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The start screen title only."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Lab titles, Map mode title, license title, a lab's big prompt line, the loading status."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Section headings inside a lab; Bonus labs."
+      },
+      "subtitle": {
+        "displayName": "Subtitle",
+        "purpose": "The lesson rule line, Map row titles, verdicts, start hatches."
+      },
+      "body-large": {
+        "displayName": "Body Large",
+        "purpose": "Lab intro and most lab text."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Hints, plaque teacher line, Map row subtitles."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Aqua counters and captions."
+      },
+      "token": {
+        "displayName": "Token",
+        "purpose": "Token chunks only, spaces shown as middle dots."
+      }
+    },
+    "shadows": [
+      {
+        "name": "porthole-drop",
+        "value": "0 34px 60px -24px rgb(0 0 0 / 0.75), inset 0 0 0 3px #8a6420, inset 0 -6px 14px rgb(90 58 10 / 0.5)",
+        "purpose": "The brass rim only."
+      },
+      {
+        "name": "glass-vignette",
+        "value": "inset 0 10px 40px 8px rgb(2 12 24 / 0.65)",
+        "purpose": "The porthole glass, with a white radial glare at 30% 18%."
+      },
+      {
+        "name": "plaque",
+        "value": "0 16px 34px -18px rgb(0 0 0 / 0.8), inset 0 1px 0 rgb(255 255 255 / 0.06)",
+        "purpose": "The riveted safety plaque."
+      },
+      {
+        "name": "bubble",
+        "value": "0 12px 28px -12px rgb(0 0 0 / 0.6)",
+        "purpose": "Pip's speech bubble."
+      },
+      {
+        "name": "hatch",
+        "value": "0 10px 22px -12px rgb(0 0 0 / 0.7), inset 0 2px 0 rgb(255 255 255 / 0.25)",
+        "purpose": "Start screen hatches, over a 5px bottom edge."
+      },
+      {
+        "name": "bolt",
+        "value": "0 1px 2px rgb(0 0 0 / 0.5)",
+        "purpose": "Each of the 12 rim bolts."
+      },
+      {
+        "name": "focus-ring",
+        "value": "outline: 3px solid #5ef2e6; outline-offset: 3px",
+        "purpose": "Global keyboard focus (an outline, not a shadow)."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-sink",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Arrivals: the station rising on the loading screen, Pip's bubble line swap."
+      },
+      {
+        "name": "ease-control",
+        "value": "150ms cubic-bezier(0.4, 0, 0.2, 1)",
+        "purpose": "Button and chip color transitions."
+      },
+      {
+        "name": "pw-sway",
+        "value": "5s ease-in-out infinite alternate, rotate -4deg to 4deg",
+        "purpose": "Kelp, each strand offset."
+      },
+      {
+        "name": "pw-rise",
+        "value": "6s linear infinite, up 400px (1.7s while sinking)",
+        "purpose": "Bubbles in the porthole."
+      },
+      {
+        "name": "pw-swim",
+        "value": "22s linear infinite",
+        "purpose": "The fish school crossing the glass."
+      },
+      {
+        "name": "pw-shimmer",
+        "value": "7s ease-in-out infinite alternate",
+        "purpose": "Light rays."
+      },
+      {
+        "name": "pw-bob",
+        "value": "3.2s ease-in-out infinite, 5px",
+        "purpose": "Pip floating."
+      },
+      {
+        "name": "pw-wave",
+        "value": "1.6s ease-in-out infinite, to -35deg",
+        "purpose": "Pip's waving arm."
+      },
+      {
+        "name": "pw-blink",
+        "value": "1.8s steps(2, jump-none) infinite",
+        "purpose": "The station beacon."
+      },
+      {
+        "name": "pw-sink",
+        "value": "6s ease-sink both, station rises 110px",
+        "purpose": "Loading screen descent."
+      },
+      {
+        "name": "pw-darken",
+        "value": "6s ease-out both, to abyss at 30%",
+        "purpose": "Water deepening while sinking."
+      },
+      {
+        "name": "pw-fade",
+        "value": "0.5s ease-sink, from 6px below and transparent",
+        "purpose": "Pip's bubble changing lines."
+      },
+      {
+        "name": "pw-rise-mini",
+        "value": "1.4s ease-in infinite, staggered 0.45s",
+        "purpose": "Mini porthole bubbles."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "animation: none; transition: none (all elements)",
+        "purpose": "prefers-reduced-motion: reduce stops everything; scenes must read frozen."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Coral action inside labs and dialogs: Show me, Next, Print.",
+      "html": "<button class=\"ds-btn-main\">Show me</button>",
+      "css": ".ds-btn-main { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; border-radius: 0.75rem; padding: 0.5rem 1rem; font: 700 1rem/1.5 var(--font-sans, ui-rounded, \"SF Pro Rounded\", \"Nunito\", \"Segoe UI\", system-ui, sans-serif); cursor: pointer; transition: background-color 150ms cubic-bezier(0.4,0,0.2,1), border-color 150ms cubic-bezier(0.4,0,0.2,1); background: var(--color-coral, #ff7a59); color: var(--color-abyss, #04182b); border: 0; } .ds-btn-main:hover { background: var(--color-coral-light, #ff9577); } .ds-btn-main:focus-visible { outline: 3px solid var(--color-glow, #5ef2e6); outline-offset: 3px; } .ds-btn-main:disabled { opacity: 0.4; cursor: default; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Secondary action: Back, Read to me, Walk in 3D.",
+      "html": "<button class=\"ds-btn-ghost\">Back</button>",
+      "css": ".ds-btn-ghost { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; border-radius: 0.75rem; padding: 0.5rem 1rem; font: 700 1rem/1.5 var(--font-sans, ui-rounded, \"SF Pro Rounded\", \"Nunito\", \"Segoe UI\", system-ui, sans-serif); cursor: pointer; transition: background-color 150ms cubic-bezier(0.4,0,0.2,1), border-color 150ms cubic-bezier(0.4,0,0.2,1); background: transparent; color: var(--color-sand, #fff4e0); border: 2px solid var(--color-line, #1d5580); } .ds-btn-ghost:hover { border-color: var(--color-glow, #5ef2e6); } .ds-btn-ghost:focus-visible { outline: 3px solid var(--color-glow, #5ef2e6); outline-offset: 3px; }"
+    },
+    {
+      "name": "Hatch Buttons",
+      "kind": "button",
+      "refersTo": "button-hatch-primary",
+      "description": "The start screen's two physical hatches; the coral one is Dive in, or Map mode on touch and no-WebGL devices.",
+      "html": "<div class=\"ds-hatch-row\"><button class=\"ds-hatch ds-hatch-main\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M2 6c2.5-2 4.5 2 7 0s4.5-2 7 0 4.5 2 6 0\"/><path d=\"M12 10v11M7.5 16.5 12 21l4.5-4.5\"/></svg>Dive in (3D)</button><button class=\"ds-hatch ds-hatch-ghost\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 6.5 9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20z\"/><path d=\"M9 4v13.5M15 6.5V20\"/></svg>Map mode (no 3D)</button></div>",
+      "css": ".ds-hatch-row { display: flex; flex-wrap: wrap; gap: 0.75rem; padding: 1rem; background: var(--color-deep, #0a2a45); } .ds-hatch { display: inline-flex; align-items: center; gap: 0.5rem; border-radius: 0.75rem; padding: 1rem 1.75rem; font: 700 1.5rem/1.33 var(--font-sans, ui-rounded, \"SF Pro Rounded\", \"Nunito\", \"Segoe UI\", system-ui, sans-serif); white-space: nowrap; cursor: pointer; box-shadow: 0 10px 22px -12px rgb(0 0 0 / 0.7), inset 0 2px 0 rgb(255 255 255 / 0.25); } .ds-hatch-main { background: var(--color-coral, #ff7a59); color: var(--color-abyss, #04182b); border: 0; border-bottom: 5px solid rgb(0 0 0 / 0.3); } .ds-hatch-main:hover { background: var(--color-coral-light, #ff9577); } .ds-hatch-ghost { background: var(--color-abyss, #04182b); color: var(--color-sand, #fff4e0); border: 2px solid var(--color-line, #1d5580); border-bottom-width: 5px; } .ds-hatch-ghost:hover { border-color: var(--color-glow, #5ef2e6); } .ds-hatch:active { translate: 0 3px; border-bottom-width: 2px; } .ds-hatch:focus-visible { outline: 3px solid var(--color-glow, #5ef2e6); outline-offset: 3px; }"
+    },
+    {
+      "name": "Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Pick one answer; aria-pressed fills it coral.",
+      "html": "<div class=\"ds-chip-row\"><button class=\"ds-chip\">2</button><button class=\"ds-chip\" aria-pressed=\"true\">3</button><button class=\"ds-chip\">4</button></div>",
+      "css": ".ds-chip-row { display: flex; gap: 0.5rem; } .ds-chip { border-radius: 0.5rem; border: 2px solid var(--color-line, #1d5580); background: transparent; color: var(--color-sand, #fff4e0); padding: 0.25rem 0.75rem; font: 600 1.25rem/1.4 var(--font-sans, ui-rounded, \"SF Pro Rounded\", \"Nunito\", \"Segoe UI\", system-ui, sans-serif); cursor: pointer; } .ds-chip:hover { border-color: var(--color-glow, #5ef2e6); } .ds-chip[aria-pressed=true] { background: var(--color-coral, #ff7a59); border-color: var(--color-coral, #ff7a59); color: var(--color-abyss, #04182b); } .ds-chip:focus-visible { outline: 3px solid var(--color-glow, #5ef2e6); outline-offset: 3px; }"
+    },
+    {
+      "name": "Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Flat panel that holds each lab's game; the payoff variant adds an aqua border.",
+      "html": "<div class=\"ds-card\"><p class=\"ds-card-label\">Round 1 of 4</p><p class=\"ds-card-prompt\">\"strawberry\"</p></div>",
+      "css": ".ds-card { background: var(--color-panel, #0f3657); color: var(--color-sand, #fff4e0); border-radius: 1rem; padding: 1rem; display: flex; flex-direction: column; gap: 1rem; font-family: var(--font-sans, ui-rounded, \"SF Pro Rounded\", \"Nunito\", \"Segoe UI\", system-ui, sans-serif); } .ds-card p { margin: 0; } .ds-card-label { color: var(--color-glow, #5ef2e6); font-size: 0.875rem; font-weight: 700; } .ds-card-prompt { font-size: 1.875rem; font-weight: 900; line-height: 1.2; } .ds-card-ok { color: var(--color-kelp, #7ddc8a); font-size: 1.25rem; font-weight: 700; }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Labeled field on an abyss well; focus is the global aqua ring.",
+      "html": "<label class=\"ds-field\"><span>Your name</span><input class=\"ds-input\" autocomplete=\"off\" /></label>",
+      "css": ".ds-field { display: flex; flex-direction: column; gap: 0.5rem; color: var(--color-sand, #fff4e0); font: 700 1.25rem/1.4 var(--font-sans, ui-rounded, \"SF Pro Rounded\", \"Nunito\", \"Segoe UI\", system-ui, sans-serif); } .ds-input { max-width: 24rem; background: var(--color-abyss, #04182b); color: var(--color-sand, #fff4e0); border: 2px solid var(--color-line, #1d5580); border-radius: 0.75rem; padding: 0.5rem 0.75rem; font: 400 1.25rem/1.4 var(--font-sans, ui-rounded, \"SF Pro Rounded\", \"Nunito\", \"Segoe UI\", system-ui, sans-serif); } .ds-input:focus-visible { outline: 3px solid var(--color-glow, #5ef2e6); outline-offset: 3px; }"
+    },
+    {
+      "name": "Map Row",
+      "kind": "nav",
+      "refersTo": "lab-badge",
+      "description": "Map mode's navigation: one full-width card button per lab with a coral number badge and a worded status.",
+      "html": "<button class=\"ds-map-row\"><span class=\"ds-badge\" aria-hidden=\"true\">1</span><span class=\"ds-map-text\"><span class=\"ds-map-title\">Lab 1: Token Reef</span><span class=\"ds-map-rule\">AI reads text in chunks called tokens.</span></span><span class=\"ds-map-done\">Done</span></button>",
+      "css": ".ds-map-row { display: flex; width: 100%; align-items: center; gap: 1rem; text-align: left; background: var(--color-panel, #0f3657); color: var(--color-sand, #fff4e0); border: 2px solid var(--color-line, #1d5580); border-radius: 1rem; padding: 1rem; font-family: var(--font-sans, ui-rounded, \"SF Pro Rounded\", \"Nunito\", \"Segoe UI\", system-ui, sans-serif); cursor: pointer; } .ds-map-row:hover { border-color: var(--color-glow, #5ef2e6); } .ds-map-row:focus-visible { outline: 3px solid var(--color-glow, #5ef2e6); outline-offset: 3px; } .ds-badge { display: grid; place-items: center; flex: none; width: 3rem; height: 3rem; border-radius: 9999px; background: var(--color-coral, #ff7a59); color: var(--color-abyss, #04182b); font-size: 1.5rem; font-weight: 900; } .ds-map-text { flex: 1; } .ds-map-title { display: block; font-size: 1.25rem; font-weight: 700; } .ds-map-rule { display: block; opacity: 0.8; } .ds-map-done { color: var(--color-kelp, #7ddc8a); font-weight: 700; }"
+    },
+    {
+      "name": "Pip's Bubble",
+      "kind": "custom",
+      "refersTo": "pip-bubble",
+      "description": "Pip speaking: sand bubble, aqua border, a rotated-square tail aimed at Pip.",
+      "html": "<div class=\"ds-bubble-wrap\"><p class=\"ds-bubble\">Hi, I&#39;m Pip! Eight labs are waiting down there.<span class=\"ds-bubble-tail\" aria-hidden=\"true\"></span></p></div>",
+      "css": ".ds-bubble-wrap { padding: 1rem 1rem 1.5rem; background: var(--color-deep, #0a2a45); } .ds-bubble { position: relative; margin: 0; max-width: 16rem; border: 3px solid var(--color-glow, #5ef2e6); border-radius: 1.25rem; background: var(--color-sand, #fff4e0); color: var(--color-abyss, #04182b); padding: 0.7rem 1rem; font: 700 1.125rem/1.4 var(--font-sans, ui-rounded, \"SF Pro Rounded\", \"Nunito\", \"Segoe UI\", system-ui, sans-serif); box-shadow: 0 12px 28px -12px rgb(0 0 0 / 0.6); } .ds-bubble-tail { position: absolute; bottom: -11px; left: 38%; width: 1rem; height: 1rem; rotate: 45deg; background: var(--color-sand, #fff4e0); border-right: 3px solid var(--color-glow, #5ef2e6); border-bottom: 3px solid var(--color-glow, #5ef2e6); }"
+    },
+    {
+      "name": "Safety Plaque",
+      "kind": "card",
+      "refersTo": "plaque",
+      "description": "The riveted plaque a teacher reads: safety line in aqua, teacher line in sand.",
+      "html": "<section class=\"ds-plaque\"><span class=\"ds-rivet\" style=\"top:.5rem;left:.5rem\"></span><span class=\"ds-rivet\" style=\"top:.5rem;right:.5rem\"></span><span class=\"ds-rivet\" style=\"bottom:.5rem;left:.5rem\"></span><span class=\"ds-rivet\" style=\"bottom:.5rem;right:.5rem\"></span><p class=\"ds-plaque-safe\">No accounts. No chatting with a live AI. Nothing you type leaves this page. Map mode works offline once it loads.</p><p class=\"ds-plaque-note\">For teachers: about 20 minutes, ages 10 to 14, no sign-up.</p></section>",
+      "css": ".ds-plaque { position: relative; max-width: 36rem; border: 1px solid var(--color-line, #1d5580); border-radius: 1rem; background: linear-gradient(180deg, rgb(15 54 87 / 0.95), rgb(10 42 69 / 0.95)); box-shadow: 0 16px 34px -18px rgb(0 0 0 / 0.8), inset 0 1px 0 rgb(255 255 255 / 0.06); padding: 1.25rem 1.5rem; font-family: var(--font-sans, ui-rounded, \"SF Pro Rounded\", \"Nunito\", \"Segoe UI\", system-ui, sans-serif); } .ds-plaque p { margin: 0; } .ds-rivet { position: absolute; width: 8px; height: 8px; border-radius: 9999px; background: radial-gradient(circle at 35% 30%, #cfe0ea, #5d7483); } .ds-plaque-safe { color: var(--color-glow, #5ef2e6); font-weight: 700; } .ds-plaque-note { margin-top: 0.25rem !important; color: var(--color-sand, #fff4e0); opacity: 0.8; }"
+    },
+    {
+      "name": "Porthole",
+      "kind": "custom",
+      "refersTo": "porthole",
+      "description": "The signature frame: brass conic rim, 12 bolts, vignetted glass onto the sea.",
+      "html": "<div class=\"ds-porthole\" role=\"img\" aria-label=\"A porthole looking out at the sea\"><div class=\"ds-porthole-glass\"></div><span class=\"ds-porthole-bolt\" style=\"transform: rotate(0deg)\"></span><span class=\"ds-porthole-bolt\" style=\"transform: rotate(30deg)\"></span><span class=\"ds-porthole-bolt\" style=\"transform: rotate(60deg)\"></span><span class=\"ds-porthole-bolt\" style=\"transform: rotate(90deg)\"></span><span class=\"ds-porthole-bolt\" style=\"transform: rotate(120deg)\"></span><span class=\"ds-porthole-bolt\" style=\"transform: rotate(150deg)\"></span><span class=\"ds-porthole-bolt\" style=\"transform: rotate(180deg)\"></span><span class=\"ds-porthole-bolt\" style=\"transform: rotate(210deg)\"></span><span class=\"ds-porthole-bolt\" style=\"transform: rotate(240deg)\"></span><span class=\"ds-porthole-bolt\" style=\"transform: rotate(270deg)\"></span><span class=\"ds-porthole-bolt\" style=\"transform: rotate(300deg)\"></span><span class=\"ds-porthole-bolt\" style=\"transform: rotate(330deg)\"></span></div>",
+      "css": ".ds-porthole { position: relative; width: 14rem; aspect-ratio: 1; border-radius: 9999px; padding: 7%; background: conic-gradient(from 210deg, #f6d98b, #b8862f 16%, var(--color-brass, #e8b04a) 30%, #fff0c2 42%, #a8781f 58%, var(--color-brass, #e8b04a) 76%, #f6d98b); box-shadow: 0 34px 60px -24px rgb(0 0 0 / 0.75), inset 0 0 0 3px #8a6420, inset 0 -6px 14px rgb(90 58 10 / 0.5); } .ds-porthole-glass { position: relative; height: 100%; overflow: hidden; border-radius: 9999px; box-shadow: 0 0 0 4px #6b4a14; background: linear-gradient(var(--color-sea-top, #2b8fbc), var(--color-sea-mid, #0d527a) 55%, #062a45); } .ds-porthole-glass::after { content: ''; position: absolute; inset: 0; border-radius: inherit; background: radial-gradient(60% 40% at 30% 18%, rgb(255 255 255 / 0.22), transparent 70%); box-shadow: inset 0 10px 40px 8px rgb(2 12 24 / 0.65); } .ds-porthole-bolt { position: absolute; inset: 0; pointer-events: none; } .ds-porthole-bolt::before { content: ''; position: absolute; left: 50%; top: 1.6%; width: 3.6%; aspect-ratio: 1; translate: -50% 0; border-radius: 9999px; background: radial-gradient(circle at 35% 30%, #fff3cc, #c89637 45%, #6b4a14); box-shadow: 0 1px 2px rgb(0 0 0 / 0.5); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Sub's Porthole",
+    "overview": "Every screen is the inside of a small research sub parked at the bottom of the sea. The walls are deep navy hull plates, riveted along one seam every 150px. The thing you look at is a brass-rimmed porthole with twelve bolts, and through the glass is the lit station you are about to walk into. The palette, the heavy type and Pip (the small aqua robot guide) are the same on the start screen, the loading screen, Map mode, the lab overlays and the canvas-painted signs inside the 3D station, so a kid never feels they left the game to read a menu.\n\nThe world is dark, warm-lit and chunky. Text is warm sand on navy, never white on black. Controls are coral and feel like physical hatches: a heavy bottom edge that sinks 3px when pressed. Aqua belongs to Pip and to whatever Pip is pointing at, including the keyboard focus ring. Depth comes from three stacked navy tones, and real shadows are saved for the objects that are bolted into the sub (the porthole, the plaque, Pip's speech bubble, the hatch buttons). All scene art is inline SVG and CSS gradients; nothing is downloaded, because Chromebooks on school Wi-Fi are the home audience and Map mode must stay tiny.\n\nThe water keeps moving while a kid decides: kelp sways, bubbles rise, a small fish school swims past, the station beacon blinks, Pip bobs and waves. On the loading screen the porthole \"sinks\": bubbles rush up and the station rises 110px into view over 6s. Every one of these stops under `prefers-reduced-motion`. The world must never read as babyish (made for 6 year olds) or as a corporate AI startup landing page.",
+    "keyCharacteristics": [
+      "Riveted navy hull (abyss, deep, panel) as the ground of every full-screen surface.",
+      "Brass porthole with 12 bolts as the signature frame; a 2.75rem mini porthole as the in-lab loader.",
+      "Coral for anything you press; aqua for Pip, focus and the payoff; kelp for right, urchin for wrong.",
+      "Heavy type (900 headings, 700 controls) in the game's own font stack, rounded where the device has a rounded system face.",
+      "Pressable things have a thick bottom edge (5px hatches, 4px keycaps).",
+      "Inline SVG and CSS only; no image or font downloads."
+    ],
+    "rules": [
+      {
+        "name": "The Coral Is the Kid's Hand Rule",
+        "body": "In interface chrome, coral marks what a kid presses, what the kid picked (their guess in the odds bars, the slider's value), the one rule a lab teaches, and their score on the license. Never use it for decoration or section headings. (Scene art may use it: the beacon, a rock, Pip's antenna.)",
+        "section": "colors"
+      },
+      {
+        "name": "The Aqua Is Pip's Rule",
+        "body": "Aqua marks Pip and the station's signposting: Pip's body and bubble, the focus ring, small labels, Map mode headings, the safety line, the payoff card's border. It never fills a button; coral owns pressing.",
+        "section": "colors"
+      },
+      {
+        "name": "The Never-Color-Alone Rule",
+        "body": "Kelp and urchin always travel with words (\"Done\", \"Not yet\", \"Think again\"). A result that is only green or only pink is not finished.",
+        "section": "colors"
+      },
+      {
+        "name": "The Token Rainbow Rule",
+        "body": "Token chunks cycle coral, glow, sun, kelp, urchin in that fixed order with abyss text, in the Token Reef lab and on the canvas signs in the 3D station alike. Keep the order; kids learn to read it.",
+        "section": "colors"
+      },
+      {
+        "name": "The Heavy Voice Rule",
+        "body": "Headings are always 900 and anything pressable is 700. Nothing in the interface is set lighter than 400.",
+        "section": "typography"
+      },
+      {
+        "name": "The One Stack Rule",
+        "body": "DOM text and canvas signs share one font stack. Never add a second display face or download a font to fix how the fallback looks; fix the layout instead.",
+        "section": "typography"
+      },
+      {
+        "name": "The Only-Objects-Cast Rule",
+        "body": "A shadow means \"this is bolted into the sub.\" Porthole, plaque, bubble and hatches cast; interface cards stay flat and separate by tone.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Hull Plate Rule",
+        "body": "The hull is plates, not graph paper: one horizontal seam every 150px (2px dark line, 1px highlight) with a rivet row just below it (26px apart, sand at 16%), over a radial pool of panel light behind the porthole. One axis only. The detector flags it as a line field; it stays because it is the sub's material.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** set every full-screen surface on the riveted hull, or on abyss with sand text, and every lab on panel cards inside the deep dialog.",
+      "**Do** draw new scene art as inline SVG or CSS gradients in the palette above; the start, loading and Map screens download no images and no fonts.",
+      "**Do** give anything pressable a coral fill or a 2px seam-line ghost border, and on physical hatches a 5px bottom edge that drops 3px when pressed.",
+      "**Do** show focus with the 3px aqua ring offset 3px, and keep Map mode a coral primary on touch and no-WebGL devices.",
+      "**Do** pair every kelp or urchin result with words.",
+      "**Do** let the water move (sway, rise, swim, bob, blink) and let `prefers-reduced-motion` stop all of it; every scene must read correctly frozen.",
+      "**Do** cycle token colors coral, glow, sun, kelp, urchin in that order, in the DOM and on canvas."
+    ],
+    "donts": [
+      "**Don't** add a second axis to the hull seams or turn them into a grid.",
+      "**Don't** put shadows on interface cards, chips or the dialog; shadows are for the porthole, plaque, bubble and hatches.",
+      "**Don't** use coral for interface decoration or section headings, and don't fill a button with aqua.",
+      "**Don't** draw Pip in any color but aqua with an abyss visor.",
+      "**Don't** download a web font or swap the stack; the user pinned the game's look.",
+      "**Don't** let a surface read as babyish (made for 6 year olds) or as a corporate AI startup landing page."
+    ]
+  }
+}

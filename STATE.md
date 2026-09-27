@@ -154,3 +154,14 @@ If a checkpoint slips 90 minutes, apply the next scope cut (see CLAUDE.md) and l
 - Verified: 36/36 tests; build; outside colliders traced in the browser; all 8 consoles + license open by walking; license name box stays empty after pressing E twice; full keyboard-only Map mode run offline; zero external requests; 60 fps High and Low on the GPU.
 - Docs: README (goggles section + screenshot, rule, word count, offline wording), DEVPOST (goggles, offline wording, 697 words), DEMO (goggles shot, Token Reef steps), LESSONS.md regenerated.
 - Scope cuts so far: none.
+
+### Sat 11:30PM, sign flicker fix + new start and loading screens (/impeccable)
+- Milestone: hit. Ethan reported the welcome sign's posts flickering and asked for a better start screen and loading screen with /impeccable.
+- Flicker: z-fighting. The sign's new solid back had put the posts' front faces in the same plane as the painted board. Board and back moved in front of the posts.
+- /impeccable: wrote PRODUCT.md (product truth only). Ethan's answers: kids first, keep the game's look, must not feel babyish or corporate. Layout roll picked "Porthole" (candidate 3 of 6), Ethan approved it.
+- Start screen: riveted sub hull, big brass porthole looking out at the station (8 lab windows in each lab's color, kelp, fish, bubbles, Pip waving), Pip's speech bubble on the rim, hatch-style buttons (Map mode becomes the coral primary on touch or no-WebGL), safety/teacher info on a riveted plaque. Inline SVG and CSS only, no downloads.
+- Loading screen (while the 3D chunk downloads): the porthole sinks toward the station, Pip's bubble cycles the 5 core rules, key caps show the controls. Labs get a mini porthole with rising bubbles while their game loads.
+- Review: design detector run once (hull seams advisory kept on purpose); a fresh reviewer agent (the skill's own reviewer type isn't installed, so a general-purpose agent ran its procedure) returned 7 material fixes, all applied; second verdict: all resolved, disposition "ship". DESIGN.md written from the built world.
+- Verified: 36/36 tests, build, keyboard-only Map mode run offline, 3D entry + goggles, zero external requests.
+- Scope cuts so far: none.
+
