@@ -2,10 +2,10 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import * as THREE from 'three'
 import { useFrame } from '@react-three/fiber'
 import { Billboard, RoundedBox } from '@react-three/drei'
-import { CuboidCollider, RigidBody } from '@react-three/rapier'
+import { CuboidCollider, RigidBody, type IntersectionEnterPayload } from '@react-three/rapier'
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js'
 import { Board, calm, Solid, StaticBatch } from './parts.tsx'
-import { LESSONS, LICENSE, WORLD, type LessonId } from '../content.ts'
+import { LESSONS, LICENSE, UI, WORLD, type LessonId } from '../content.ts'
 import { CORRIDOR, DECK, DOOR_W, LICENSE_POS, LOBBY, OUTER_X, ROOMS, segments, WALL_H, walls, type Room, type WallDef } from './layout.ts'
 import { glass, mat, panels, sign, tiles } from './textures.ts'
 import { RoomProps } from './Rooms.tsx'
@@ -133,6 +133,9 @@ function Ceiling() {
   )
 }
 
+// ecctrl names the diver's capsule collider this.
+const isDiver = (e: IntersectionEnterPayload) => e.other.colliderObject?.name === 'character-capsule-collider'
+
 // The glowing console in every lab: walk up and press E.
 export function Console({ p, r, color, lines, onEnter, onLeave }: { p: V3; r: number; color: string; lines: string[]; onEnter: () => void; onLeave: () => void }) {
   const ring = useRef<THREE.Mesh>(null)
@@ -152,7 +155,8 @@ export function Console({ p, r, color, lines, onEnter, onLeave }: { p: V3; r: nu
         <mesh position={[0, 0, 0.056]} material={mat('#ffffff', { map: tex, glow: 0 })} userData={{ dynamic: true }}><planeGeometry args={[1.2, 0.75]} /></mesh>
       </group>
       <RigidBody type="fixed" colliders={false}>
-        <CuboidCollider sensor args={[1.9, 1.5, 1.9]} position={[0, 1.5, 0.4]} onIntersectionEnter={onEnter} onIntersectionExit={onLeave} />
+        {/* only the diver counts: a rolling beach ball shouldn't light up a console */}
+        <CuboidCollider sensor args={[1.9, 1.5, 1.9]} position={[0, 1.5, 0.4]} onIntersectionEnter={(e) => isDiver(e) && onEnter()} onIntersectionExit={(e) => isDiver(e) && onLeave()} />
       </RigidBody>
     </group>
   )
@@ -257,7 +261,8 @@ function Outside() {
       {/* welcome sign on posts, turned toward the diver */}
       <group position={[-4.2, 0, 8.5]} rotation={[0, 0.45, 0]}>
         {[-1.4, 1.4].map((x) => <Solid key={x} p={[x, 0.9, -0.05]} s={[0.12, 1.8, 0.12]} m={pillar} />)}
-        <Board p={[0, 1.7, 0.02]} w={3.2} h={1.75} tex={welcome} />
+        <Solid p={[0, 1.7, -0.04]} s={[3.2, 1.75, 0.08]} m={pillar} />
+        <Board p={[0, 1.7, 0.01]} w={3.2} h={1.75} tex={welcome} />
       </group>
       {/* lamp posts */}
       {[-4, 4].map((x) => (
@@ -272,6 +277,9 @@ function Outside() {
           <cylinderGeometry args={[0.12, 0.12, LOBBY.z1 - CORRIDOR.z0, 12]} />
         </mesh>
       )))}
+      <RigidBody type="fixed" colliders={false}>
+        {[-OUTER_X - 0.35, OUTER_X + 0.35].map((x) => <CuboidCollider key={x} args={[0.12, 1.25, (LOBBY.z1 - CORRIDOR.z0) / 2]} position={[x, 1.55, (LOBBY.z1 + CORRIDOR.z0) / 2]} />)}
+      </RigidBody>
       <mesh position={[0, -0.05, (LOBBY.z1 + DECK.z0) / 2]} material={mat('#8a97a3', { rough: 0.95 })}>
         <boxGeometry args={[OUTER_X * 2 + 1.2, 0.14, LOBBY.z1 - DECK.z0 + 1.2]} />
       </mesh>
@@ -322,7 +330,8 @@ function LabRoom({ room, done, strawberry, near }: { room: Room; done: boolean; 
   const l = LESSONS.find((x) => x.id === room.id)!
   const cx = (room.x0 + room.x1) / 2
   const cz = (room.z0 + room.z1) / 2
-  const doorSign = sign([{ t: `${l.bonus ? 'Bonus lab' : 'Lab'} ${l.num}`, size: 38, bold: true, color: room.color }, { t: l.title, size: 58, bold: true, color: '#fff4e0' }], { w: 640, h: 200, bg: '#04182b', border: room.color })
+  const tag = `${l.bonus ? UI.bonusLab : UI.lab} ${l.num}`
+  const doorSign = sign([{ t: tag, size: 38, bold: true, color: room.color }, { t: l.title, size: 58, bold: true, color: '#fff4e0' }], { w: 640, h: 200, bg: '#04182b', border: room.color })
   return (
     <group>
       <Floor r={room} color={tint(room.color, 0.22)} />
@@ -339,7 +348,7 @@ function LabRoom({ room, done, strawberry, near }: { room: Room; done: boolean; 
         p={[room.console[0], 0, room.console[1]]}
         r={0}
         color={room.color}
-        lines={[`${l.bonus ? 'Bonus lab' : 'Lab'} ${l.num}`, l.title, done ? WORLD.consoleDone : WORLD.consolePress]}
+        lines={[tag, l.title, done ? WORLD.consoleDone : WORLD.consolePress]}
         onEnter={() => near(room.id, true)}
         onLeave={() => near(room.id, false)}
       />

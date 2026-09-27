@@ -8,6 +8,7 @@ import Ocean from './Ocean.tsx'
 import Diver from './Diver.tsx'
 import { Balls, BackpackBelt, NextWordMachine } from './Demos.tsx'
 import { HighQuality } from './parts.tsx'
+import { goggles } from './textures.ts'
 import { areaAt, SPAWN, type Area } from './layout.ts'
 import { BOOKS, CORE, coreDone, fill, GUESS, HALL, LESSONS, LICENSE, UI, WORLD, type LessonId } from '../content.ts'
 import { loadEncoder, split, type Encoder } from '../lessons/tokens/logic.ts'
@@ -97,7 +98,8 @@ function AreaWatcher({ player, onArea, pos }: { player: MutableRefObject<THREE.V
 const Scene = memo(function Scene({ high, done, near, strawberry }: { high: boolean; done: ReadonlySet<LessonId>; near: (s: Station, on: boolean) => void; strawberry: string[] | null }) {
   return (
     <>
-      <Ocean high={high} />
+      {/* remount on a quality change: instanced meshes can't grow in place */}
+      <Ocean key={String(high)} high={high} />
       <Station done={done} ready={coreDone(done, LESSONS)} strawberry={strawberry} near={near} />
     </>
   )
@@ -107,6 +109,7 @@ export default function World({ paused, done, onOpen, onMap }: Props) {
   const [near, setNear] = useState<Station | null>(null)
   const [area, setArea] = useState<Area>('sea')
   const [high, setHigh] = useState(() => (navigator.hardwareConcurrency ?? 8) > 4)
+  const [tokenView, setTokenView] = useState(false)
   const [enc, setEnc] = useState<Encoder | null>(null)
   const [strawberry, setStrawberry] = useState<string[] | null>(null)
   const [top5, setTop5] = useState<Guess[] | null>(null)
@@ -122,13 +125,31 @@ export default function World({ paused, done, onOpen, onMap }: Props) {
     loadModel(BOOKS.map((b) => b.file)).then((m) => setTop5(nextWords(m, words(GUESS.prompt)).dist.slice(0, 5)))
   }, [])
 
+  // Keys held while the window loses focus never get their keyup, so the diver would keep walking. Let go of them all.
+  useEffect(() => {
+    const letGo = () => KEYS.flatMap((k) => k.keys).forEach((code) => window.dispatchEvent(new KeyboardEvent('keyup', { code })))
+    window.addEventListener('blur', letGo)
+    return () => window.removeEventListener('blur', letGo)
+  }, [])
+
+  // Token goggles repaint every sign with the real tokenizer's split.
+  useEffect(() => {
+    goggles(tokenView && enc ? (s) => split(enc, s).map((p) => p.text) : null)
+    return () => goggles(null)
+  }, [tokenView, enc])
+
   const onNear = useCallback((s: Station, on: boolean) => setNear((n) => (on ? s : n === s ? null : n)), [])
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (paused) return
-      if (e.code === 'KeyE' && near) onOpen(near)
+      // preventDefault so the same keystroke doesn't type an 'e' into the box the lab focuses
+      if (e.code === 'KeyE' && near) {
+        e.preventDefault()
+        onOpen(near)
+      }
       if (e.code === 'KeyF') kick.current(player.current)
+      if (e.code === 'KeyT') setTokenView((v) => !v)
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
@@ -174,6 +195,7 @@ export default function World({ paused, done, onOpen, onMap }: Props) {
           <p className="text-lg font-black leading-tight">{title}</p>
           <p className="text-sm">{sub}</p>
         </div>
+        {tokenView && <p className="hidden max-w-sm rounded-2xl bg-abyss/85 px-4 py-2 text-center font-bold text-glow shadow-lg lg:block" role="status">{HALL.gogglesOn}</p>}
         <div className="rounded-2xl bg-sand/95 px-4 py-2 text-abyss shadow-lg" role="img" aria-label={fill(UI.labsDone, { n: stamps, total: CORE.length })}>
           <p className="text-xs font-bold uppercase tracking-wider">{HALL.license}</p>
           <p className="flex gap-1 pt-1" aria-hidden>
@@ -184,9 +206,13 @@ export default function World({ paused, done, onOpen, onMap }: Props) {
         </div>
       </div>
       <p className="pointer-events-none fixed bottom-3 left-3 max-w-md rounded-xl bg-abyss/80 px-3 py-2 text-sm">{HALL.help}</p>
-      <div className="fixed right-3 bottom-3 flex gap-2">
-        <button className="btn-ghost bg-abyss/85 text-sm" onClick={onMap}>{UI.mapMode}</button>
-        <button className="btn-ghost bg-abyss/85 text-sm" aria-pressed={high} onClick={() => setHigh(!high)}>
+      {/* mouse clicks don't focus these buttons, or Space (jump) would press them again */}
+      {/* the goggles' glowing rim */}
+      {tokenView && <div className="pointer-events-none fixed inset-0 shadow-[inset_0_0_140px_30px_rgba(94,242,230,0.45)]" />}
+      <div className="fixed right-3 top-24 flex flex-wrap justify-end gap-2 lg:top-auto lg:bottom-3">
+        <button className={`${tokenView ? 'btn-main' : 'btn-ghost bg-abyss/85'} text-sm`} aria-pressed={tokenView} onMouseDown={(e) => e.preventDefault()} onClick={() => setTokenView(!tokenView)}>{HALL.goggles}</button>
+        <button className="btn-ghost bg-abyss/85 text-sm" onMouseDown={(e) => e.preventDefault()} onClick={onMap}>{UI.mapMode}</button>
+        <button className="btn-ghost bg-abyss/85 text-sm" aria-pressed={high} onMouseDown={(e) => e.preventDefault()} onClick={() => setHigh(!high)}>
           {HALL.quality}: {high ? HALL.high : HALL.low}
         </button>
       </div>

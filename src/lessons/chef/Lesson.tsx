@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import type { GameProps } from '../../App.tsx'
-import { CHEF as C } from '../../content.ts'
+import { CHEF as C, fill, UI } from '../../content.ts'
 import { cook, count, stars, type Line } from './logic.ts'
 
 export default function RobotChef({ onDone }: GameProps) {
@@ -47,7 +47,7 @@ export default function RobotChef({ onDone }: GameProps) {
           <div className="rounded-xl bg-sand p-4 text-xl text-abyss">
             {dish.lines.map((l, i) => <p key={i}>{l.text}</p>)}
           </div>
-          <p className="text-3xl text-[#ffd166]" aria-label={`${n} of ${C.goals.length} stars`}>
+          <p className="text-3xl text-[#ffd166]" role="img" aria-label={fill(UI.stars, { n, total: C.goals.length })}>
             {'★'.repeat(n)}<span className="text-sand/30">{'★'.repeat(C.goals.length - n)}</span>
           </p>
           <ul className="flex flex-col gap-1 text-lg">

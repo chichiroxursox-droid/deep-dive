@@ -9,6 +9,10 @@ let loading: Promise<Encoder> | undefined
 export function loadEncoder(): Promise<Encoder> {
   return (loading ??= Promise.all([import('js-tiktoken/lite'), import('js-tiktoken/ranks/o200k_base')]).then(
     ([{ Tiktoken }, ranks]) => new Tiktoken(ranks.default),
+    (e) => {
+      loading = undefined // let the next lab try again
+      throw e
+    },
   ))
 }
 

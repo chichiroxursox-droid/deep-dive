@@ -10,6 +10,7 @@ Backup: a scripted Map mode run is saved at `~/Desktop/deep-dive-demo.mp4` (58 s
 - Load the page once and wait a few seconds so every lab is prefetched.
 - Progress lives in page memory, so do the whole video in one take without refreshing.
 - Practice the Backpack once: 8 presses of Next message, then Ask.
+- Practice Token Reef once: rounds 1 to 3 go fast if you just press a number, Show me, Next.
 - Sound on if you want the Read to me clip in the video.
 
 ## Shot list
@@ -17,8 +18,9 @@ Backup: a scripted Map mode run is saved at `~/Desktop/deep-dive-demo.mp4` (58 s
 | Time | Screen | What you do | What you say |
 |---|---|---|---|
 | 0:00 to 0:08 | Start screen | Hold on the title and the teacher box. Press Dive in (3D). | "Kids use chatbots every day, and almost none are taught how they work. Deep Dive is 20 minutes a kid can play alone, with no account, where every lesson runs the real mechanism." |
-| 0:08 to 0:20 | Sea floor, lobby | Hold Shift and W: walk past the welcome sign, through the airlock, past Pip. Tap F next to the beach balls. Keep going into the corridor. | "You're a diver visiting an underwater research station. Every room is a lab about one idea." |
-| 0:20 to 0:38 | Lab 1: Token Reef | Turn left (A) into the first room. Point the camera at the wall screen showing st, raw, berry. Walk to the glowing console, press E. Go straight to round 4, "strawberry": guess, Show me, Next. Type your first name. Esc. | "This is the real tokenizer GPT-4o uses. Strawberry is 10 letters but only 3 tokens, which is one reason chatbots trip on counting letters." |
+| 0:08 to 0:16 | Sea floor, lobby | Hold Shift and W: walk past the welcome sign, through the airlock, past Pip, into the corridor. | "You're a diver visiting an underwater research station. Every room is a lab about one idea." |
+| 0:16 to 0:24 | Corridor, token goggles | Stop between the first doors. Press T: every door sign splits into colored tokens. Press T again to turn them off. | "Press T for token goggles, and every sign splits into real tokens, the way a chatbot reads it." |
+| 0:24 to 0:38 | Lab 1: Token Reef | Turn left (A) into the first room. Point the camera at the wall screen showing st, raw, berry. Walk to the glowing console, press E. Click fast through rounds 1 to 3 (any number, Show me, Next), then on round 4, "strawberry": guess, Show me, Next. Esc. | "This is the real tokenizer GPT-4o uses. Strawberry is 10 letters but only 3 tokens, which is one reason chatbots trip on counting letters." |
 | 0:38 to 0:56 | Lab 2: Guessing Machine | Cross the corridor (D) into the room opposite. Let the Next Word Machine fill for two seconds. Press E at the console. Type "door", Enter. Write a story on Ice cold, slide to Red hot, write again. Esc. | "Every ball is one guess from a real language model trained in your browser on three old books. Cold, it repeats itself. Hot, it gets silly." |
 | 0:56 to 1:16 | Lab 3: Backpack | Cross back and go one door further down, on the left. Show the belt pushing a block off the end. Press E. Next message 8 times, Ask: Pip says Max. Try again, Next once, Pin the first message, keep going, Ask: Pip says Biscuit. Esc. | "The backpack is the context window: 60 tokens, weighed by the real tokenizer. When it's full, my dog's name falls out and Pip just guesses. Pin it, and Pip remembers." |
 | 1:16 to 1:32 | Lab 5: Fact Check Lagoon | The next door down on the left. Press E, open the Field Guide, mark the five facts, Check my answers. Esc. | "Pip is 99% sure about every fact. Two are true and surprising. The rest are wrong or made up. Every guide fact links to a NOAA page." |

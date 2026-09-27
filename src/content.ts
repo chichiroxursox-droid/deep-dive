@@ -31,11 +31,13 @@ export const UI = {
   bonus: 'Bonus',
   loadingStation: 'Loading the station...',
   loadingLab: 'Loading the lab...',
+  loadFailed: 'This part could not load. Check the internet, then reload the page.',
   loadingTokenizer: 'Loading the real tokenizer...',
   loadingBooks: 'Loading the books...',
   building: 'This lab is still being built.',
   mapMode: 'Map mode',
   labsDone: 'Labs done: {n} of {total}',
+  stars: '{n} of {total} stars',
   mapTitle: 'Station Map',
   mapHelp: 'Pick a lab. Use Tab to move and Enter to open.',
   walk3D: 'Walk the 3D station',
@@ -64,7 +66,7 @@ export const UI = {
 
 export const READ = { play: 'Read to me', stop: 'Stop reading' }
 
-export const SAFETY = 'No accounts. No chatting with a live AI. Nothing you type leaves this page. Works offline once it loads.'
+export const SAFETY = 'No accounts. No chatting with a live AI. Nothing you type leaves this page. Map mode works offline once it loads.'
 
 export const START = {
   title: 'Deep Dive',
@@ -79,7 +81,9 @@ export const START = {
 }
 
 export const HALL = {
-  help: 'WASD to walk, Shift to run, drag to look around, E to use, F to kick a ball.',
+  help: 'WASD to walk, Shift to run, drag to look around, E to use, F to kick a ball, T for token goggles.',
+  goggles: 'Token goggles',
+  gogglesOn: 'Token goggles on! Every sign is split into tokens, the way a chatbot reads it.',
   enter: 'Press E to dive in',
   license: 'Diver\'s License',
   quality: 'Graphics',
@@ -108,6 +112,7 @@ export const WORLD = {
     'Walk up to a console and press E.',
     'Finish Labs 1 to 5 for your Diver\'s License.',
     'Press F near a ball to kick it. Just for fun!',
+    'Press T for token goggles. See signs the way a chatbot does!',
   ],
   machineTitle: 'Next Word Machine',
   machinePrompt: 'The captain looked at the ___',
@@ -204,7 +209,7 @@ export const LESSONS: LessonMeta[] = [
     id: 'library',
     num: 7,
     title: 'Library',
-    rule: 'AI only knows what it read.',
+    rule: 'AI only guesses from what it read.',
     intro: [
       'A language model learns only from the text it reads.',
       'Pick the books Pip reads. Then see how it finishes a story.',
@@ -373,11 +378,11 @@ export const CHEF = {
   },
   signoff: { text: 'Love, your friend' },
   goals: [
-    { id: 'card', label: 'It is a birthday card', miss: 'Pip did not know what to make. Try the Task card.' },
-    { id: 'maya', label: 'It is for Maya', miss: 'Pip did not know who it was for.' },
-    { id: 'sharks', label: 'It talks about sharks', miss: 'Pip did not know Maya loves sharks.' },
-    { id: 'short', label: 'It is 3 lines long', miss: 'Pip did not know how long to make it, so it kept going.' },
-    { id: 'funny', label: 'It is funny', miss: 'Pip did not know you wanted it funny.' },
+    { id: 'card', label: 'It is a birthday card', miss: 'Your prompt did not say what to make, so Pip guessed. Try the Task card.' },
+    { id: 'maya', label: 'It is for Maya', miss: 'Your prompt did not say who it was for.' },
+    { id: 'sharks', label: 'It talks about sharks', miss: 'Your prompt did not say Maya loves sharks.' },
+    { id: 'short', label: 'It is 3 lines long', miss: 'Your prompt did not say how long, so Pip kept going.' },
+    { id: 'funny', label: 'It is funny', miss: 'Your prompt did not ask for funny.' },
   ],
   example: 'The Example card shows Pip a style you like. Pip copied the sign-off.',
   win: '5 stars! When you say exactly what you want, you get closer to what you want.',
@@ -449,7 +454,7 @@ export const TOOLBOX = {
         skill: 'LAB REPORT. Weather: unknown.',
       },
       rightNote: 'In this game the weather tool is pretend. Real weather tools look up live data.',
-      wrongWhy: 'Pip made that up. Without a tool, it has no way to know today\'s weather.',
+      wrongWhy: 'Pip made that up. Without a tool, Pip can only guess today\'s weather.',
     },
     {
       id: 'report',
@@ -461,7 +466,7 @@ export const TOOLBOX = {
         calc: '3',
         weather: 'Sunny.',
       },
-      wrongWhy: 'Pip did not know the station\'s format. A skill card is saved instructions Pip can follow every time.',
+      wrongWhy: 'Pip had no card with the station\'s format. A skill card is saved instructions Pip can follow every time.',
     },
     {
       id: 'joke',
@@ -493,7 +498,8 @@ export const TOOLBOX = {
   no: 'No',
   sendWhy: 'You never asked Pip to send anything. Agents can take real actions, so a person should check each step.',
   agentDone: 'Plan ready: sunny beach, snacks cost ${total}, report written. And nothing was sent without asking you.',
-  agentOops: 'Look again at the steps marked in red.',
+  agentOops: 'Some steps say Think again. Look at those.',
+  thinkAgain: 'Think again',
 }
 
 // Lab 7 (bonus). Guesses and stories come from retraining the Lab 2 model on the chosen books.
@@ -540,7 +546,7 @@ export const LICENSE = {
   namePrompt: 'Your first name',
   nameNote: 'Your name stays on this computer. It never leaves this page.',
   locked: 'Finish a lab to add its rule to your license.',
-  done: 'You finished every lab. You know how chatbots really work!',
+  done: 'You finished all 5 main labs. You know how chatbots really work!',
   print: 'Print my license',
 }
 

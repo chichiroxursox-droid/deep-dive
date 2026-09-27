@@ -7,7 +7,7 @@ type Props = { done: ReadonlySet<LessonId>; onOpen: (s: Station) => void; on3D?:
 // Every lab as a plain list: no 3D, keyboard only, same overlays as the hall.
 export default function MapMode({ done, onOpen, on3D }: Props) {
   return (
-    <main className="mx-auto flex max-w-3xl flex-col gap-5 p-5 sm:p-8">
+    <main className="mx-auto flex max-w-3xl flex-col gap-5 p-5 sm:p-8 print:hidden">
       <header className="flex flex-wrap items-center gap-4">
         <Pip size={56} />
         <div className="flex-1">

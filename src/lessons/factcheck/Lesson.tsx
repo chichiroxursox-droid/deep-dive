@@ -73,7 +73,7 @@ export default function FactCheck({ onDone }: GameProps) {
         </button>
       ) : (
         <section className="card border-2 border-glow" aria-live="polite">
-          <p className="text-2xl font-black">{fill(F.score, { n: results.filter((r) => r.ok).length, total: F.claims.length })}</p>
+          <p className="text-2xl font-black" tabIndex={-1} autoFocus>{fill(F.score, { n: results.filter((r) => r.ok).length, total: F.claims.length })}</p>
           <p className="text-lg">{F.lesson}</p>
           <button className="btn-ghost mt-2" onClick={() => { setAnswers({}); setChecked(false) }}>{UI.tryAgain}</button>
         </section>

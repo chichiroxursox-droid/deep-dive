@@ -50,7 +50,7 @@ export default function Backpack({ onDone }: GameProps) {
             {ALL.slice(0, step).map((m, i) => (
               <li
                 key={i}
-                className={`max-w-[85%] rounded-2xl px-3 py-2 ${m.from === 'you' ? 'self-end bg-coral text-abyss' : 'self-start bg-glow text-abyss'} ${inPack.has(i) ? '' : 'opacity-40'}`}
+                className={`max-w-[85%] rounded-2xl px-3 py-2 ${m.from === 'you' ? 'self-end' : 'self-start'} ${!inPack.has(i) ? 'border-2 border-dashed border-sand/60 text-sand' : m.from === 'you' ? 'bg-coral text-abyss' : 'bg-glow text-abyss'}`}
               >
                 <span className="sr-only">{m.from === 'you' ? UI.you : UI.pip}: </span>
                 {m.text}
@@ -101,7 +101,7 @@ export default function Backpack({ onDone }: GameProps) {
 
       {asked && (
         <section className="card flex flex-col gap-2 border-2 border-glow" aria-live="polite">
-          <p className="text-2xl font-black">Pip: {found ? B.right : B.wrong}</p>
+          <p className="text-2xl font-black">{UI.pip}: {found ? B.right : B.wrong}</p>
           <p className="text-lg">{found ? B.rightWhy : B.wrongWhy}</p>
           <p className="text-sand/80">{B.real}</p>
         </section>

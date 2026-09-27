@@ -7,8 +7,9 @@ const COLORS = ['bg-coral', 'bg-glow', 'bg-[#ffd166]', 'bg-kelp', 'bg-urchin']
 
 export function Chunks({ enc, text }: { enc: Encoder; text: string }) {
   const pieces = split(enc, text)
+  const n = pieces.reduce((s, p) => s + p.ids.length, 0)
   return (
-    <ol aria-label={`${pieces.length} ${pieces.length === 1 ? UI.token : UI.tokens}`} className="flex flex-wrap gap-1.5">
+    <ol aria-label={`${n} ${n === 1 ? UI.token : UI.tokens}`} className="flex flex-wrap gap-1.5">
       {pieces.map((p, i) => (
         <li key={i} className={`${COLORS[i % COLORS.length]} flex flex-col items-center rounded-lg px-2 py-1 text-abyss`}>
           <span className="whitespace-pre font-mono text-xl font-bold">{p.text.replaceAll(' ', '·')}</span>

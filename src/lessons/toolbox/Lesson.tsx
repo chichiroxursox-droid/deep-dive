@@ -81,6 +81,7 @@ export default function Toolbox({ onDone }: GameProps) {
                 <span className="flex-1 text-lg">{fill(UI.step, { n: i + 1 })} {fill(s.text, vars)}</span>
                 <button className="chip" aria-pressed={steps[i] === true} onClick={() => decide(i, true)}>{T.yes}</button>
                 <button className="chip" aria-pressed={steps[i] === false} onClick={() => decide(i, false)}>{T.no}</button>
+                {decided && !verdicts[i] && <b className="w-full text-urchin"><span aria-hidden>{'\u2717'} </span>{T.thinkAgain}</b>}
                 {s.tool === 'send' && steps[i] !== undefined && <span className="w-full text-sand/85">{T.sendWhy}</span>}
               </li>
             ))}

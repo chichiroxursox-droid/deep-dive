@@ -1,6 +1,6 @@
 # STATE: Deep Dive
 
-**NEEDED FROM ETHAN: review LESSONS.md** (every word kids read; 2 lines marked [CHECK]). Edit it or leave notes and they get ported into src/content.ts.
+**NEEDED FROM ETHAN: review LESSONS.md** (every word kids read; 4 lines marked [CHECK]). Edit it or leave notes and they get ported into src/content.ts.
 
 Read this first at every session start. Append one entry per milestone, newest at the bottom. Never rewrite old entries.
 
@@ -143,4 +143,14 @@ If a checkpoint slips 90 minutes, apply the next scope cut (see CLAUDE.md) and l
 - What broke: diver tipped over and scrambled controls (fixed with an auto-stand-up); rotated rooms hid signs from the fixed camera (rooms now mirror by position, everything faces +z); ball bin walls wedged the diver (replaced with a mat); a damaged node_modules/@types/three folder from the interrupted first install.
 - Prod URL works: yes. On prod: walked to all 8 consoles + license and opened each with E; full keyboard-only Map mode run with the network off; zero external requests. Tests: 36/36 (new layout tests).
 - Docs: README (station section, demos, Graphics toggle, screenshots), DEMO.md shot list rewritten for the walk-through, DEVPOST updated (under 700 words).
+- Scope cuts so far: none.
+
+### Sat 9:30PM, solid sea floor, second code review, token goggles
+- Milestone: hit. Ethan asked for (1) outside objects you can't walk through, (2) another code check, (3) a feature that sets Deep Dive apart from the video's world.
+- Solid sea floor: rocks, coral and kelp got colliders, plus the welcome sign board and the pipes on the outer walls. Rocks first used their exact convex shape, but ecctrl's floating capsule climbed the sloped faces and walked over the top (traced: y went 0.9 to 3.0). Rocks now use their footprint raised straight up to their top, coral uses cylinders: the diver slides along them.
+- Code review: 7 scoped reviewers plus 2 verifiers per finding. The session limit killed 49 of 80 agents, so unverified findings were checked by hand before fixing. Fixed: Library rule said AI "knows" (now "guesses from what it read"; its Read to me falls back to the browser voice since the clip no longer matches, no credits spent); Chef/Toolbox lines saying Pip "did not know"; license said "every lab" (now "all 5 main labs"); "works offline" narrowed to Map mode (the 3D chunk is not prefetched on purpose); a failed chunk download now shows a message (3D offers Map mode) instead of a blank page; failed tokenizer/book loads no longer stay cached; story label now shows the temperature it was written at; word count no longer counts punctuation (63,507 was really 55,689 words); E no longer types an "e" into the license name box; Space no longer re-presses the HUD buttons; beach balls no longer trigger consoles; keys held during alt-tab no longer stick; Low to High graphics remounts the ocean (instanced meshes can't grow; kelp piled at the door with reduced motion); license prints on 1 page; dialog has an accessible name; token count read to screen readers counts tokens, not chunks; contrast fixes (urchin text, fell-out chat bubbles, unfinished license rows); Toolbox wrong steps say "Think again" in text; Fact Check / Safe Harbor move focus to the score; HUD buttons move up on narrow screens; remaining hardcoded "Lab"/"Pip:" strings moved to content.ts.
+- Not fixed (low value before freeze): environment lighting after a WebGL context loss and restore.
+- Token goggles (the differentiator): press T or the HUD button and every canvas-painted sign, door and console screen is repainted as colored token chunks from the real o200k_base tokenizer, with a cyan goggles rim. The whole station becomes a walkable Lab 1. No split is hardcoded: the goggles run the tokenizer on each sign's text.
+- Verified: 36/36 tests; build; outside colliders traced in the browser; all 8 consoles + license open by walking; license name box stays empty after pressing E twice; full keyboard-only Map mode run offline; zero external requests; 60 fps High and Low on the GPU.
+- Docs: README (goggles section + screenshot, rule, word count, offline wording), DEVPOST (goggles, offline wording, 697 words), DEMO (goggles shot, Token Reef steps), LESSONS.md regenerated.
 - Scope cuts so far: none.

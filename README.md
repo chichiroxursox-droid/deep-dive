@@ -21,6 +21,10 @@ Two rooms have hands-on 3D physics that run the lesson's real logic:
 
 ![The Next Word Machine filling its tubes](docs/next-word-machine.png)
 
+**Token goggles.** Press T, or the Token goggles button, and every sign, door and console screen in the station is repainted the way a chatbot reads it: split into colored tokens by the same GPT-4o tokenizer as Lab 1. "Toolbox" turns out to be two tokens, "Tool" and "box". The whole station becomes a Lab 1 you can walk around in, and nothing is prewritten: turning the goggles on runs the tokenizer on every sign's text.
+
+![Token goggles on in the corridor: door signs split into colored tokens](docs/goggles.png)
+
 ## Why
 
 - **"84% of students use AI, but only 16% are being taught to understand it."** Code.org, 2025 State of AI + CS Education Report. The 16% is high school leaders saying all of their students learn about AI. Only four states have formal AI education standards, and 14 require AI or CS for graduation. https://advocacy.code.org/stateofcs/
@@ -40,7 +44,7 @@ Five core labs, then three bonus labs. Finishing the five core labs earns the **
 | 4 | Robot Chef | Say exactly what you want. | Natural Interaction |
 | 5 | Fact Check Lagoon | AI can sound sure and still be wrong. Check facts that matter. | Societal Impact |
 | 6 | Toolbox (bonus) | Tools make AI more reliable. An agent picks its own tools. | Representation and Reasoning |
-| 7 | Library (bonus) | AI only knows what it read. | Learning, Societal Impact |
+| 7 | Library (bonus) | AI only guesses from what it read. | Learning, Societal Impact |
 | 8 | Safe Harbor (bonus) | Some things you never tell a chatbot. | Societal Impact |
 
 Perception, the first AI4K12 Big Idea, is not covered.
@@ -52,7 +56,7 @@ Perception, the first AI4K12 Big Idea, is not covered.
 Nothing in Deep Dive fakes a token split or a probability. They are computed live in the browser.
 
 - **Token Reef** runs the real **o200k_base tokenizer, the one GPT-4o uses** (js-tiktoken). Kids guess how many tokens a word is, then see the real chunks and their token numbers. "strawberry" comes out as st, raw, berry, which shows why chatbots can trip on counting letters. Type your own name and see how it gets cut.
-- **Guessing Machine** is a **real language model that trains in your browser**: a word-level trigram model with bigram backoff, built from 63,507 words of three public-domain books. "The captain looked at the ___" shows its real top 5 guesses as probability bars. Story mode has a temperature dial: ice cold gets stuck repeating itself, red hot turns silly. The lesson calls it "a tiny language model, a great-great-grandparent of ChatGPT: same job, way smaller."
+- **Guessing Machine** is a **real language model that trains in your browser**: a word-level trigram model with bigram backoff, built from 55,689 words of three public-domain books. "The captain looked at the ___" shows its real top 5 guesses as probability bars. Story mode has a temperature dial: ice cold gets stuck repeating itself, red hot turns silly. The lesson calls it "a tiny language model, a great-great-grandparent of ChatGPT: same job, way smaller."
 - **Backpack** is a 60-token context window. Every chat message is weighed by the real GPT-4o tokenizer. Chat with Pip, then ask "What's my dog's name?" If the first message fell out, Pip guesses wrong. Pin it, or toss the small talk, and Pip gets it right.
 - **Robot Chef** is scripted on purpose, not a model: Pip's birthday card is assembled only from the prompt cards the kid picked, so every missing card shows up in the result. Stars are scored on the finished card.
 - **Fact Check Lagoon** has Pip state five sea facts, each "99% sure." Two are surprising but true, three are wrong or made up. Every Field Guide fact links to a NOAA page that was opened and checked on 2026-09-26.
@@ -64,9 +68,9 @@ Nothing in Deep Dive fakes a token split or a probability. They are computed liv
 
 Shown on the start screen for teachers and parents:
 
-> No accounts. No chatting with a live AI. Nothing you type leaves this page. Works offline once it loads.
+> No accounts. No chatting with a live AI. Nothing you type leaves this page. Map mode works offline once it loads.
 
-It is a static site. There is no server, no database, no login, no analytics, and no API keys. The app makes zero API calls: the tokenizer, the language model and the books all run or live in the browser, and after the first load every lab is prefetched so it keeps working offline. A kid's name on the Diver's License lives only in page memory.
+It is a static site. There is no server, no database, no login, no analytics, and no API keys. The app makes zero API calls: the tokenizer, the language model and the books all run or live in the browser, and after the first load every lab is prefetched so Map mode keeps working offline. The 3D station is a separate download (Map mode never needs it), so it needs the internet the first time you open it; if that download fails, the page offers Map mode instead of going blank. A kid's name on the Diver's License lives only in page memory.
 
 ## Accessibility (the HCI part)
 

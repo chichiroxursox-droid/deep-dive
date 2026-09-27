@@ -7,8 +7,19 @@ import type { Station } from './world/World.tsx'
 
 export type GameProps = { onDone: () => void }
 
+// If a chunk can't download (the internet dropped), show a message instead of a blank page.
+function safe<P>(load: () => Promise<{ default: ComponentType<P> }>, Failed: ComponentType<P>) {
+  return lazy(() => load().catch(() => ({ default: Failed })))
+}
+const Failed = () => <p className="card">{UI.loadFailed}</p>
+
 // Map mode never downloads three.js: the 3D world is its own lazy chunk.
-const World = lazy(() => import('./world/World.tsx'))
+const World = safe(() => import('./world/World.tsx'), ({ onMap }) => (
+  <div className="flex flex-col items-start gap-3 p-8">
+    <Failed />
+    <button className="btn-main" onClick={onMap}>{UI.mapMode}</button>
+  </div>
+))
 const LOADERS = {
   tokens: () => import('./lessons/tokens/Lesson.tsx'),
   guess: () => import('./lessons/guess/Lesson.tsx'),
@@ -20,14 +31,15 @@ const LOADERS = {
   harbor: () => import('./lessons/harbor/Lesson.tsx'),
 }
 const GAMES: Partial<Record<LessonId, ComponentType<GameProps>>> = Object.fromEntries(
-  Object.entries(LOADERS).map(([id, load]) => [id, lazy(load)]),
+  Object.entries(LOADERS).map(([id, load]) => [id, safe(load, Failed)]),
 )
 
 // Fetch every lab, the tokenizer and the books in the background, so the app keeps working offline once loaded.
 function prefetch() {
-  Object.values(LOADERS).forEach((load) => load())
-  import('./lessons/tokens/logic.ts').then((m) => m.loadEncoder())
-  import('./lessons/guess/logic.ts').then((m) => m.loadModel(BOOKS.map((b) => b.file)))
+  const quiet = () => {}
+  Object.values(LOADERS).forEach((load) => load().catch(quiet))
+  import('./lessons/tokens/logic.ts').then((m) => m.loadEncoder()).catch(quiet)
+  import('./lessons/guess/logic.ts').then((m) => m.loadModel(BOOKS.map((b) => b.file))).catch(quiet)
 }
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -108,10 +120,10 @@ function Overlay({ onClose, children }: { onClose: () => void; children: ReactNo
     ref.current?.showModal()
   }, [])
   return (
-    <dialog ref={ref} onClose={onClose} className="m-auto max-h-[94vh] w-[min(58rem,96vw)] rounded-3xl border-2 border-line bg-deep p-0 text-sand">
+    <dialog ref={ref} onClose={onClose} aria-labelledby="overlay-title" className="m-auto max-h-[94vh] w-[min(58rem,96vw)] rounded-3xl border-2 border-line bg-deep p-0 text-sand">
       <div className="flex flex-col gap-5 p-5 sm:p-7">
         {children}
-        <button className="btn-ghost self-start" onClick={() => ref.current?.close()}>{UI.back}</button>
+        <button className="btn-ghost self-start print:hidden" onClick={() => ref.current?.close()}>{UI.back}</button>
       </div>
     </dialog>
   )
@@ -126,7 +138,7 @@ function Lesson({ id, onDone }: { id: LessonId; onDone: () => void }) {
         <Pip size={56} />
         <div>
           <p className="text-sm font-bold uppercase tracking-wider text-glow">{meta.bonus ? UI.bonusLab : UI.lab} {meta.num}</p>
-          <h2 className="text-3xl font-black">{meta.title}</h2>
+          <h2 id="overlay-title" className="text-3xl font-black">{meta.title}</h2>
           <p className="mt-1 text-xl font-bold text-coral">{meta.rule}</p>
           <div className="mt-2 space-y-1 text-lg">{meta.intro.map((s) => <p key={s}>{s}</p>)}</div>
           <ReadAloud meta={meta} />

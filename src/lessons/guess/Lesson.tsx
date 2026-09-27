@@ -27,7 +27,7 @@ export default function GuessingMachine({ onDone }: GameProps) {
   const [guess, setGuess] = useState('')
   const [shown, setShown] = useState(false)
   const [temp, setTemp] = useState(0)
-  const [story, setStory] = useState<string | null>(null)
+  const [story, setStory] = useState<{ text: string; label: string } | null>(null)
 
   useEffect(() => {
     loadModel(BOOKS.map((b) => b.file)).then(setModel)
@@ -44,7 +44,7 @@ export default function GuessingMachine({ onDone }: GameProps) {
 
   const write = () => {
     const start = words(G.start)
-    setStory(toText([...start, ...generate(model, start, 40, t, seeded(Date.now()))], true))
+    setStory({ text: toText([...start, ...generate(model, start, 40, t, seeded(Date.now()))], true), label })
     onDone()
   }
 
@@ -103,8 +103,8 @@ export default function GuessingMachine({ onDone }: GameProps) {
           <button className="btn-main self-start" onClick={write}>{G.write}</button>
           {story && (
             <p aria-live="polite" className="rounded-xl border-2 border-line bg-abyss p-4 text-xl leading-relaxed">
-              <span className="mb-1 block text-sm font-bold text-glow">{label}</span>
-              {story}
+              <span className="mb-1 block text-sm font-bold text-glow">{story.label}</span>
+              {story.text}
             </p>
           )}
         </section>

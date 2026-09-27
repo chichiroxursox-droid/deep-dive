@@ -22,7 +22,8 @@ export function train(text: string): Model {
     bump(bi, w[i], w[i + 1])
     if (i > 0) bump(tri, `${w[i - 1]} ${w[i]}`, w[i + 1])
   }
-  return { tri, bi, words: w.length }
+  // punctuation marks are tokens for the model but not words to a kid
+  return { tri, bi, words: w.filter((x) => /[a-z]/.test(x)).length }
 }
 
 // What came after the last two words in the books. If that pair never showed up, back off to the last word.
@@ -91,9 +92,19 @@ export function toText(w: string[], capitalFirst = false): string {
 let books: Promise<string[]> | undefined
 // Same-origin static files in public/books. Fetched once, then reused by every lab that trains.
 export function loadBooks(files: string[]): Promise<string[]> {
-  return (books ??= Promise.all(files.map((f) => fetch(`/books/${f}`).then((r) => r.text()))))
+  return (books ??= Promise.all(files.map((f) => fetch(`/books/${f}`).then((r) => r.text()))).catch((e) => {
+    books = undefined // let the next lab try again
+    throw e
+  }))
 }
 
 let model: Promise<Model> | undefined
 // The Guessing Machine's model reads all the books. Trained once, then reused every time the lab opens.
-export const loadModel = (files: string[]) => (model ??= loadBooks(files).then((t) => train(t.join('\n'))))
+export const loadModel = (files: string[]) =>
+  (model ??= loadBooks(files).then(
+    (t) => train(t.join('\n')),
+    (e) => {
+      model = undefined
+      throw e
+    },
+  ))

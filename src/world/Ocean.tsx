@@ -3,12 +3,24 @@ import { memo, useMemo, useRef } from 'react'
 import * as THREE from 'three'
 import { useFrame } from '@react-three/fiber'
 import { Instance, Instances, Sparkles } from '@react-three/drei'
-import { CuboidCollider, RigidBody } from '@react-three/rapier'
+import { ConvexHullCollider, CuboidCollider, CylinderCollider, RigidBody } from '@react-three/rapier'
 import { calm } from './parts.tsx'
 import { caustics, mat, sand } from './textures.ts'
 import { DECK, OUTER_X } from './layout.ts'
 
 type V3 = [number, number, number]
+
+// A rock for physics: its footprint seen from above, raised straight up to its top.
+// Straight sides stop the diver; the real sloped faces let the floating capsule climb right over.
+function rockHull(geo: THREE.BufferGeometry, p: V3, r: V3, s: V3) {
+  const m = new THREE.Matrix4().compose(new THREE.Vector3(...p), new THREE.Quaternion().setFromEuler(new THREE.Euler(...r)), new THREE.Vector3(...s))
+  const v = geo.clone().applyMatrix4(m).attributes.position.array
+  let top = 0
+  for (let i = 1; i < v.length; i += 3) top = Math.max(top, v[i])
+  const out: number[] = []
+  for (let i = 0; i < v.length; i += 3) out.push(v[i], 0, v[i + 2], v[i], top, v[i + 2])
+  return new Float32Array(out)
+}
 
 function rng(seed: number) {
   return () => ((seed = (seed * 16807) % 2147483647) - 1) / 2147483646
@@ -30,11 +42,13 @@ function spots(n: number, seed: number, min = 18, max = 70): V3[] {
   return out
 }
 
+const kelpH = (i: number) => 3 + (i % 5) * 1.3
+
 // All the kelp as two instanced meshes (stems, leaves), swayed by rewriting their matrices each frame.
 function KelpField({ spots }: { spots: V3[] }) {
   const stems = useRef<THREE.InstancedMesh>(null)
   const leaves = useRef<THREE.InstancedMesh>(null)
-  const plants = useMemo(() => spots.map((p, i) => ({ p, h: 3 + (i % 5) * 1.3, phase: i, n: Math.floor((3 + (i % 5) * 1.3) / 1.1) })), [spots])
+  const plants = useMemo(() => spots.map((p, i) => ({ p, h: kelpH(i), phase: i, n: Math.floor(kelpH(i) / 1.1) })), [spots])
   const leafCount = plants.reduce((s, k) => s + k.n, 0)
   const tmp = useMemo(() => ({ base: new THREE.Object3D(), part: new THREE.Object3D(), m: new THREE.Matrix4() }), [])
   const drawn = useRef(false)
@@ -106,7 +120,11 @@ function School({ c, r, y, speed, color, n }: { c: V3; r: number; y: number; spe
 
 function Ocean({ high }: { high: boolean }) {
   const light = useRef<THREE.Mesh>(null)
-  const rocks = useMemo(() => spots(high ? 46 : 20, 21), [high])
+  const rocks = useMemo(
+    () => spots(high ? 46 : 20, 21).map((p, i) => ({ p: [p[0], 0.2, p[2]] as V3, s: [0.8 + (i % 5) * 0.5, 0.5 + (i % 3) * 0.4, 0.8 + (i % 4) * 0.4] as V3, r: [i, i * 2, 0] as V3 })),
+    [high],
+  )
+  const rockGeo = useMemo(() => new THREE.DodecahedronGeometry(1, 0), [])
   const kelp = useMemo(() => spots(high ? 44 : 14, 33, 17, 55), [high])
   const coral = useMemo(() => {
     const r = rng(8)
@@ -132,6 +150,12 @@ function Ocean({ high }: { high: boolean }) {
           <CuboidCollider key={`${x}${z}`} args={[w, 5, d]} position={[x, 5, z]} />
         ))}
       </RigidBody>
+      {/* rocks, coral and kelp are solid too */}
+      <RigidBody type="fixed" colliders={false}>
+        {rocks.map((k, i) => <ConvexHullCollider key={`r${i}`} args={[rockHull(rockGeo, k.p, k.r, k.s)]} />)}
+        {coral.map((c, i) => <CylinderCollider key={`c${i}`} args={[(c.p[1] + c.s) / 2, c.s]} position={[c.p[0], (c.p[1] + c.s) / 2, c.p[2]]} />)}
+        {kelp.map((p, i) => <CylinderCollider key={`k${i}`} args={[kelpH(i) / 2, 0.3]} position={[p[0], kelpH(i) / 2, p[2]]} />)}
+      </RigidBody>
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, -20]} material={mat('#ffffff', { map: floorTex, rough: 1 })} receiveShadow>
         <planeGeometry args={[240, 240]} />
       </mesh>
@@ -141,9 +165,8 @@ function Ocean({ high }: { high: boolean }) {
           <meshBasicMaterial map={causticTex} transparent opacity={0.16} blending={THREE.AdditiveBlending} depthWrite={false} />
         </mesh>
       )}
-      <Instances limit={rocks.length} material={mat('#6f7c86', { rough: 0.95 })}>
-        <dodecahedronGeometry args={[1, 0]} />
-        {rocks.map((p, i) => <Instance key={i} position={[p[0], 0.2, p[2]]} scale={[0.8 + (i % 5) * 0.5, 0.5 + (i % 3) * 0.4, 0.8 + (i % 4) * 0.4]} rotation={[i, i * 2, 0]} />)}
+      <Instances limit={rocks.length} material={mat('#6f7c86', { rough: 0.95 })} geometry={rockGeo}>
+        {rocks.map((k, i) => <Instance key={i} position={k.p} scale={k.s} rotation={k.r} />)}
       </Instances>
       <Instances limit={coral.length} material={mat('#ffffff', { rough: 0.6 })}>
         <icosahedronGeometry args={[1, 1]} />

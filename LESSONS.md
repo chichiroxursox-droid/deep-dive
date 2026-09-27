@@ -14,7 +14,7 @@ Token splits and word probabilities are never written here: the app computes the
 - **noWebGL**: This computer can't show 3D, so Map mode has every lab.
 - **touch**: On a phone or tablet, use Map mode. Walking the 3D station needs a keyboard.
 - **calm**: Your computer asks for less motion, so Map mode is a calm pick. It has every lab.
-- **safety**: No accounts. No chatting with a live AI. Nothing you type leaves this page. Works offline once it loads.
+- **safety**: No accounts. No chatting with a live AI. Nothing you type leaves this page. Map mode works offline once it loads.
 
 ## Lab 1: Token Reef
 - **Rule**: AI reads text in chunks called tokens.
@@ -236,23 +236,23 @@ Token splits and word probabilities are never written here: the app computes the
   - (1)
     - **id**: card
     - **label**: It is a birthday card
-    - **miss**: Pip did not know what to make. Try the Task card.
+    - **miss**: Your prompt did not say what to make, so Pip guessed. Try the Task card.
   - (2)
     - **id**: maya
     - **label**: It is for Maya
-    - **miss**: Pip did not know who it was for.
+    - **miss**: Your prompt did not say who it was for.
   - (3)
     - **id**: sharks
     - **label**: It talks about sharks
-    - **miss**: Pip did not know Maya loves sharks.
+    - **miss**: Your prompt did not say Maya loves sharks.
   - (4)
     - **id**: short
     - **label**: It is 3 lines long
-    - **miss**: Pip did not know how long to make it, so it kept going.
+    - **miss**: Your prompt did not say how long, so Pip kept going.
   - (5)
     - **id**: funny
     - **label**: It is funny
-    - **miss**: Pip did not know you wanted it funny.
+    - **miss**: Your prompt did not ask for funny.
 - **example**: The Example card shows Pip a style you like. Pip copied the sign-off.
 - **win**: 5 stars! When you say exactly what you want, you get closer to what you want.
 
@@ -392,7 +392,7 @@ Token splits and word probabilities are never written here: the app computes the
       - **calc**: The weather is 0.
       - **skill**: LAB REPORT. Weather: unknown.
     - **rightNote**: In this game the weather tool is pretend. Real weather tools look up live data.
-    - **wrongWhy**: Pip made that up. Without a tool, it has no way to know today's weather.
+    - **wrongWhy**: Pip made that up. Without a tool, Pip can only guess today's weather.
   - (3)
     - **id**: report
     - **text**: Write today's lab report in the station's format.
@@ -402,7 +402,7 @@ Token splits and word probabilities are never written here: the app computes the
       - **none**: Today we saw some octopuses and it was cool.
       - **calc**: 3
       - **weather**: Sunny.
-    - **wrongWhy**: Pip did not know the station's format. A skill card is saved instructions Pip can follow every time.
+    - **wrongWhy**: Pip had no card with the station's format. A skill card is saved instructions Pip can follow every time.
   - (4)
     - **id**: joke
     - **text**: Tell me a crab joke.
@@ -441,10 +441,11 @@ Token splits and word probabilities are never written here: the app computes the
 - **no**: No
 - **sendWhy**: You never asked Pip to send anything. Agents can take real actions, so a person should check each step.
 - **agentDone**: Plan ready: sunny beach, snacks cost ${total}, report written. And nothing was sent without asking you.
-- **agentOops**: Look again at the steps marked in red.
+- **agentOops**: Some steps say Think again. Look at those.
+- **thinkAgain**: Think again
 
 ## Lab 7: Library
-- **Rule**: AI only knows what it read.
+- **Rule**: AI only guesses from what it read.
 - **Intro**: A language model learns only from the text it reads. Pick the books Pip reads. Then see how it finishes a story. If it reads only one kind of book, it only talks one way. That is a kind of bias.
 - **AI4K12 Big Idea**: Learning, Societal Impact
 - **What is real**: Pip really retrains in your browser each time, using the same language model as the Guessing Machine.
@@ -579,7 +580,9 @@ Token splits and word probabilities are never written here: the app computes the
 - **lesson**: Chats can be saved, and people at the company may read them or use them to train new AI. So share ideas, not secrets. **[CHECK: Depends on the app and its settings. Is "may read them or use them to train new AI" fair as a general warning?]**
 
 ## 3D station: HUD
-- **help**: WASD to walk, Shift to run, drag to look around, E to use, F to kick a ball.
+- **help**: WASD to walk, Shift to run, drag to look around, E to use, F to kick a ball, T for token goggles.
+- **goggles**: Token goggles
+- **gogglesOn**: Token goggles on! Every sign is split into tokens, the way a chatbot reads it.
 - **enter**: Press E to dive in
 - **license**: Diver's License
 - **quality**: Graphics
@@ -617,6 +620,7 @@ Token splits and word probabilities are never written here: the app computes the
   - Walk up to a console and press E.
   - Finish Labs 1 to 5 for your Diver's License.
   - Press F near a ball to kick it. Just for fun!
+  - Press T for token goggles. See signs the way a chatbot does!
 - **machineTitle**: Next Word Machine
 - **machinePrompt**: The captain looked at the ___
 - **machineHow**: Each ball is one guess. It picks from the top 5 words using the real odds, so bigger chances fill up faster.
@@ -635,11 +639,13 @@ Token splits and word probabilities are never written here: the app computes the
 - **bonus**: Bonus
 - **loadingStation**: Loading the station...
 - **loadingLab**: Loading the lab...
+- **loadFailed**: This part could not load. Check the internet, then reload the page.
 - **loadingTokenizer**: Loading the real tokenizer...
 - **loadingBooks**: Loading the books...
 - **building**: This lab is still being built.
 - **mapMode**: Map mode
 - **labsDone**: Labs done: {n} of {total}
+- **stars**: {n} of {total} stars
 - **mapTitle**: Station Map
 - **mapHelp**: Pick a lab. Use Tab to move and Enter to open.
 - **walk3D**: Walk the 3D station
@@ -672,7 +678,7 @@ Token splits and word probabilities are never written here: the app computes the
 - **namePrompt**: Your first name
 - **nameNote**: Your name stays on this computer. It never leaves this page.
 - **locked**: Finish a lab to add its rule to your license.
-- **done**: You finished every lab. You know how chatbots really work!
+- **done**: You finished all 5 main labs. You know how chatbots really work!
 - **print**: Print my license
 
 ## Books the language model reads (public domain)

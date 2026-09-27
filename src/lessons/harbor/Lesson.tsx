@@ -34,7 +34,7 @@ export default function SafeHarbor({ onDone }: GameProps) {
         </button>
       ) : (
         <section className="card border-2 border-glow" aria-live="polite">
-          <p className="text-2xl font-black">{fill(H.score, { n: results.filter((r) => r.ok).length, total: H.cards.length })}</p>
+          <p className="text-2xl font-black" tabIndex={-1} autoFocus>{fill(H.score, { n: results.filter((r) => r.ok).length, total: H.cards.length })}</p>
           <p className="text-lg">{H.lesson}</p>
           <button className="btn-ghost mt-2" onClick={() => { setAnswers({}); setChecked(false) }}>{UI.tryAgain}</button>
         </section>

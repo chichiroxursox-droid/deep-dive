@@ -24,7 +24,7 @@ Vite + React 19.3 + TypeScript, Tailwind 4, three + @react-three/fiber 9 + drei 
   - `layout.ts` floor plan as pure data (rooms, walls, doors, `areaAt`), with `layout.test.ts`. Change the station here.
   - `Station.tsx` walls, ceiling, lobby, deck, consoles, Pip. `Rooms.tsx` themed props per lab. `Ocean.tsx` sea floor outside.
   - `Demos.tsx` Next Word Machine (real model odds), Backpack belt (lesson's `add()`), kickable balls. `Diver.tsx` ecctrl diver + camera.
-  - `textures.ts` canvas-painted textures and cached materials (no image downloads). `parts.tsx` `Solid`, `Board`, `StaticBatch`.
+  - `textures.ts` canvas-painted textures and cached materials (no image downloads). `goggles()` repaints every `sign()` texture as real token chunks (Token goggles, T key). `parts.tsx` `Solid`, `Board`, `StaticBatch`.
   - The camera always faces -z: put screens, signs and machine fronts on far walls facing +z. Mark anything that moves or changes its picture `userData.dynamic` so `StaticBatch` skips it.
 - `src/MapMode.tsx` keyboard-only list of every lesson, same overlays. Never cut.
 - `src/Certificate.tsx` Diver's License ending.
